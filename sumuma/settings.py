@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'tailwind',
+    'theme',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
@@ -156,6 +158,9 @@ else:
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
-# INTERNAL_IPS = [
-#     "127.0.0.1",
-# ]
+ACTIVATION_TIMEOUT_SECONDS = 60 * 60 * 24
+
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
