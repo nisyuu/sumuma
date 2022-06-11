@@ -8,6 +8,7 @@ authors = ["uichi <37263474+uichi@users.noreply.github.com>"]
 python = "^3.10"
 Django = "^4.0.5"
 django-environ = "^0.8.1"
+django-debug-toolbar = "^3.4.0"
 
 [tool.poetry.dev-dependencies]
 
