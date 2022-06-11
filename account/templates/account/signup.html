@@ -1,0 +1,53 @@
+{% extends "auth_base.html" %}
+{% block content %}
+  <div class="md:mx-auto md:w-1/2 md:m-0 w-full m-3">
+    <form class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4" method="POST">
+      <h2 class="mb-6 text-3xl text-green-500 text-center">
+        アカウント作成
+      </h2>
+      {% csrf_token %}
+      <div class="mb-4">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_email">
+          メールアドレス
+        </label>
+        {{ form.email }}
+        <p class="text-red-500 text-xs italic">{{ form.email.errors }}</p>
+      </div>
+      <div class="mb-4">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_password1">
+          パスワード
+        </label>
+        {{ form.password1 }}
+        <p class="text-red-500 text-xs italic">{{ form.password1.errors }}</p>
+      </div>
+      <div class="mb-4">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_password2">
+          パスワード(確認用)
+        </label>
+        {{ form.password2 }}
+        <p class="text-red-500 text-xs italic">{{ form.password2.errors }}</p>
+      </div>
+      <div class="mb-6">
+        <div class="md:w-1/3"></div>
+        <label class="md:w-2/3 block text-gray-500 font-bold">
+          <input id="js-agree-rule" class="mr-2 leading-tight" type="checkbox">
+          <span class="text-sm">
+            <a href="{% url 'home:terms_of_service' %}" target="_blank" rel="noopener noreferrer">私は利用規約に同意します</a>
+          </span>
+        </label>
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" id="js-signup-button"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline opacity-50 cursor-not-allowed" type="button" disabled>
+          サインイン
+        </button>
+        <a class="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800" href="{% url 'account:login' %}">
+          アカウントをお持ちの方
+        </a>
+      </div>
+      {{ form.non_field_errors }}
+    </form>
+    <p class="text-center text-gray-500 text-xs">
+      &copy;2018 uichi
+    </p>
+  </div>
+{% endblock %}

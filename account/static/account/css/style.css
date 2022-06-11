@@ -1,0 +1,49 @@
+::-webkit-scrollbar {
+      display: none;
+      -webkit-appearance: none;
+}
+@media only screen and (max-width: 768px) {
+  input{
+			font-size:16px !important;
+		}
+}
+
+body {
+    background-color: #fff;
+}
+body > .grid {
+  height: 100%;
+}
+.image {
+  margin-top: -100px;
+}
+.column {
+  max-width: 450px;
+}
+
+.ui.staclable.menu {
+  display: block
+}
+
+.hamburger.menu {
+  display: none
+}
+
+.ui.top.sidebar {
+  display: none
+}
+
+@media only screen and (max-width: 700px) {
+  .ui.stackable.menu {
+    display: none
+  }
+  .hamburger.menu {
+    display: block
+  }
+  .toc.item {
+    color: black;
+  }
+  .ui.top.sidebar {
+    display: block
+  }
+}

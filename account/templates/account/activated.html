@@ -1,0 +1,8 @@
+{% extends "auth_user_secondary_base.html" %}
+{% block content %}
+  <div class="mx-auto mx-3 bg-green-100 border-t border-green-500 rounded text-teal-900 px-4 py-3">
+    <p class="mb-1">本登録が完了しました。</p>
+    <p class="mb-4">登録されたメールアドレスとパスワードでログインしてください。</p>
+    <a class="font-bold text-blue-500 hover:text-blue-700" href="{% url 'account:login' %}">ログイン</a>
+  </div>
+{% endblock %}

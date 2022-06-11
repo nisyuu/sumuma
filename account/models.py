@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
-    """user manager"""
+    """User manager model."""
 
     use_in_migrations = True
 
@@ -41,7 +41,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    custom user model
+    Custom user model.
     Use email instead of email.
     """
 
@@ -84,5 +84,5 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.last_name
 
     def email_user(self, subject, message, from_email=None, **kwargs):
-        """Send an email to this user."""
+        """Email this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
