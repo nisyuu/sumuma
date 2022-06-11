@@ -1,0 +1,332 @@
+{% extends "home_base.html" %}
+{% block content %}
+{% load static %}
+<header class="ud-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="{% url 'home:top' %}">
+            <img src="{% static 'home/images/favicon.png' %}" alt="Logo" height="40px" />
+          </a>
+          <button class="navbar-toggler">
+            <span class="toggler-icon"> </span>
+            <span class="toggler-icon"> </span>
+            <span class="toggler-icon"> </span>
+          </button>
+
+          <div class="navbar-collapse">
+            <ul id="nav" class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="#about">DAIFUKUについて</a>
+              </li>
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="#features">機能</a>
+              </li>
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="#pricing">料金</a>
+              </li>
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="#testimonials">ユーザーの評価</a>
+              </li>
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="#contact">お問合わせ</a>
+              </li>
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="{% url 'account:login' %}">ログイン</a>
+              </li>
+              <li class="nav-item">
+                <a class="ud-menu-scroll" href="{% url 'account:signup' %}">サインアップ</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="navbar-btn d-none d-sm-inline-block">
+            <a href="{% url 'account:login' %}" class="ud-main-btn ud-login-btn">
+              ログイン
+            </a>
+            <a class="ud-main-btn ud-white-btn" href="{% url 'account:signup' %}">
+              サインアップ
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="ud-hero" id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
+          <h1 class="ud-hero-title">
+            DAIFUKU
+          </h1>
+          <p class="ud-hero-desc">
+            ただの家計簿で終わらせない、家計簿をもっと賢く美しく
+          </p>
+        </div>
+        <div
+          class="ud-hero-brands-wrapper wow fadeInUp"
+          data-wow-delay=".3s"
+        >
+        </div>
+        <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
+          <img src="{% static 'home/images/hero/hero-image-daifuku.svg' %}" alt="hero-image" />
+          <img
+            src="{% static 'home/images/hero/dotted-shape.svg' %}"
+            alt="shape"
+            class="shape shape-1"
+          />
+          <img
+            src="{% static 'home/images/hero/dotted-shape.svg' %}"
+            alt="shape"
+            class="shape shape-2"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="about" class="ud-about">
+  <div class="container">
+    <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
+      <div class="ud-about-content-wrapper">
+        <div class="ud-about-content">
+          <span class="tag">DAIFUKUについて</span>
+          <h2>ストレスを感じさせない、唯一無二の家計簿</h2>
+          <p>
+            ストレスフリーを第一に、直感的で洗練されたデザインに仕上げました。ユーザーフローにコストがかからない操作性を実現することでUI/UXの向上に努めています。
+          </p>
+          <p>
+            収支分析や収支計画機能などによって収支状況を把握でき、効率よく収支管理をすることができます。
+          </p>
+        </div>
+      </div>
+      <div class="ud-about-image">
+        <img src="{% static 'home/images/about/about-image.svg' %}" alt="about-image" />
+      </div>
+    </div>
+  </div>
+</section>
+<section id="features" class="ud-features">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-section-title">
+          <span>Features</span>
+          <h2>DAIFUKUの機能</h2>
+          <p>
+            DAIFUKUには他の家計簿アプリにはない沢山の機能があります。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-sm-6">
+        <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
+          <div class="ud-feature-icon">
+            <i class="lni lni-keyword-research"></i>
+          </div>
+          <div class="ud-feature-content">
+            <h3 class="ud-feature-title">収支分析</h3>
+            <p class="ud-feature-desc">
+              月の支出状況を、カテゴリごとの割合や収支推移など豊富なグラフによって様々な視点から分析することができます。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-6">
+        <div class="ud-single-feature wow fadeInUp" data-wow-delay=".15s">
+          <div class="ud-feature-icon">
+            <i class="lni lni-move"></i>
+          </div>
+          <div class="ud-feature-content">
+            <h3 class="ud-feature-title">収支計画</h3>
+            <p class="ud-feature-desc">
+              月々の収支を予め計画しておくことで、自分の今の支出状況を把握することができます。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-6">
+        <div class="ud-single-feature wow fadeInUp" data-wow-delay=".2s">
+          <div class="ud-feature-icon">
+            <i class="lni lni-layout"></i>
+          </div>
+          <div class="ud-feature-content">
+            <h3 class="ud-feature-title">直近登録履歴</h3>
+            <p class="ud-feature-desc">
+              登録順に収支データを見ることができます。間違って違う日付で登録した場合でも、登録順なのですぐに見つけて編集ができます。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-6">
+        <div class="ud-single-feature wow fadeInUp" data-wow-delay=".25s">
+          <div class="ud-feature-icon">
+            <i class="lni lni-layers"></i>
+          </div>
+          <div class="ud-feature-content">
+            <h3 class="ud-feature-title">CSVエクスポート</h3>
+            <p class="ud-feature-desc">
+              カテゴリや期間を絞った収支履歴をエクスポートすることも可能です。インポート機能は近日公開予定ですので、他の家計簿サービスからの移行もスムーズにできるようになります。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pricing" class="ud-pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-section-title mx-auto text-center">
+          <span>Pricing</span>
+          <h2>料金</h2>
+          <p>
+            機能が豊富でストレスフリーなUI/UXなのにもかかわらず、完全無料でご利用いただけます。
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row g-0 align-items-center justify-content-center">
+      <div class="col-lg-4 col-md-6 col-sm-10">
+        <div
+          class="ud-single-pricing active wow fadeInUp"
+          data-wow-delay=".1s"
+        >
+          <span class="ud-popular-tag">フリープラン</span>
+          <div class="ud-pricing-header">
+            <h3>FREE</h3>
+            <h4>¥ 0/月</h4>
+          </div>
+          <div class="ud-pricing-body">
+            <ul>
+              <li>収支登録無制限</li>
+              <li>収支分析機能</li>
+              <li>CSVエクスポート機能</li>
+              <li>収支計画機能</li>
+              <li>その他全機能</li>
+            </ul>
+          </div>
+          <div class="ud-pricing-footer">
+            <a href="{% url 'account:signup' %}" class="ud-main-btn ud-white-btn">
+              サインアップ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="testimonials" class="ud-testimonials">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-section-title mx-auto text-center">
+          <span>Testimonials</span>
+          <h2>DAIFUKUユーザーの評価</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div
+          class="ud-single-testimonial wow fadeInUp"
+          data-wow-delay=".1s"
+        >
+          <div class="ud-testimonial-ratings">
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star"></i>
+          </div>
+          <div class="ud-testimonial-content">
+            <p>
+              収支計画機能のおかげで、毎月の支出を予算内で管理できるようになりました。他の家計簿アプリにはない機能なので重宝しています。
+              デザインも良く操作がしやすいです。
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div
+          class="ud-single-testimonial wow fadeInUp"
+          data-wow-delay=".15s"
+        >
+          <div class="ud-testimonial-ratings">
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+          </div>
+          <div class="ud-testimonial-content">
+            <p>
+              他のアプリでは2ステップ以上踏まないと支出の登録ができなかったりするのですが、DAIFUKUはトップからすぐに登録が可能なのでストレスが減りました！
+              デザインもきれいでスマホのレスポンシブにも対応していて、すばやく支出登録ができます！
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div
+          class="ud-single-testimonial wow fadeInUp"
+          data-wow-delay=".2s"
+        >
+          <div class="ud-testimonial-ratings">
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star-filled"></i>
+            <i class="lni lni-star"></i>
+          </div>
+          <div class="ud-testimonial-content">
+            <p>
+              毎日の支出状況の推移やカテゴリごとの割合を分析できるので、何にどれぐらい使っているのかが分かり役立っています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="ud-contact">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-xl-8 col-lg-7">
+        <div class="ud-contact-content-wrapper">
+          <div class="ud-contact-title">
+            <span>お問合わせ</span>
+            <h2>
+              ご意見・不明点ありましたら<br />
+              遠慮なくご連絡ください！
+            </h2>
+          </div>
+          <div class="ud-contact-info-wrapper">
+            <div class="ud-single-info">
+              <div class="ud-info-icon">
+                <i class="lni lni-envelope"></i>
+              </div>
+              <div class="ud-info-meta">
+                <h5>DAIFUKU連絡先</h5>
+                <a href="mailto:info@daihuku.xyz">info@daihuku.xyz</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% include "home_footer.html" %}
+<!-- ====== Back To Top Start ====== -->
+<a href="javascript:void(0)" class="back-to-top">
+  <i class="lni lni-chevron-up"> </i>
+</a>
+<script src="{% static 'home/js/wow.min.js' %}"></script>
+<script src="{% static 'home/js/main.js' %}"></script>
+{% endblock %}
