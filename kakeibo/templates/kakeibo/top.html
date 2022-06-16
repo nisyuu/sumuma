@@ -1,0 +1,295 @@
+{% extends "loggedin_base.html" %}
+<style>
+    [x-cloak] {
+        display: none;
+    }
+</style>
+{% block content %}
+  <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
+    <div class="flex flex-row flex-wrap flex-grow mt-2">
+      <div class="w-full p-3 pb-0">
+        <!--Graph Card-->
+        <div class="bg-white border rounded shadow">
+          <div class="md:p-3 lg:p-5 md:h-full lg:h-1/2">
+            <canvas id="line_graph" class="h-full"></canvas>
+          </div>
+        </div>
+        <!--/Graph Card-->
+      </div>
+    </div>
+    <!--/ Console Content-->
+  </div>
+  <div class="flex flex-row items-center">
+    <div class="w-full p-3 pr-0">
+      <button
+        class="w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+        type="button" onclick="toggleModal('modal-expenditure')">
+        支出登録
+      </button>
+    </div>
+    <div class="w-full p-3">
+      <button
+        class="w-full bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+        type="button" onclick="toggleModal('modal-income')">
+        収入登録
+      </button>
+    </div>
+  </div>
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="flex flex-col px-3">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                カテゴリー/日付
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                金額
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                メモ
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Edit</span>
+              </th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            {% for record in records %}
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  {% if record.category_id in expenditure_categories %}
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100">
+                          支出
+                        </span>
+                  {% elif record.category_id in income_categories %}
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100">
+                          収入
+                        </span>
+                  {% endif %}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-0">
+                      <div class="text-sm font-medium text-gray-900">
+                        {{ record.category }}
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        {{ record.event_date }}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">
+                    {{ record.amount }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <div class="text-sm text-gray-900">
+                    {{ record.memo }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  {% if record.category_id in expenditure_categories %}
+                    <a href="{% url 'kakeibo:edit_expenditure' pk=record.pk %}"
+                       class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                    <button
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                      data-record-pk={{ record.pk }}
+                      data-category="expenditure"
+                      onclick="toggleModal('delete-modal')">
+                      削除
+                    </button>
+                  {% elif record.category_id in income_categories %}
+                    <a href="{% url 'kakeibo:edit_income' pk=record.pk %}"
+                       class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                    <button
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                      data-record-pk={{ record.pk }}
+                      data-category="income"
+                      onclick="toggleModal('delete-modal')">
+                      削除
+                    </button>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if is_paginated %}
+    <div class="flex justify-center mt-2 p-3">
+      <nav class="relative items-center z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        {% if page_obj.has_previous %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md"
+            href="?page=1"><<</a>
+        {% else %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md"><<</a>
+        {% endif %}
+
+        {% for page_num in paginator.page_range %}
+
+          {% if not page_obj.has_previous and page_num <= 3 %}
+            {% if page_num == page_obj.number %}
+              <a aria-current="page"
+                 class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                 href="?page={{ page_num }}">{{ page_num }}</a>
+            {% else %}
+              <a
+                class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                href="?page={{ page_num }}">{{ page_num }}</a>
+            {% endif %}
+
+          {% elif not page_obj.has_next and page_num == paginator.num_pages %}
+            <a
+              class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            <a aria-current="page"
+               class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+               href="?page={{ page_num }}">{{ page_num }}</a>
+
+          {% elif page_obj.previous_page_number <= page_num and page_num <= page_obj.next_page_number %}
+            {% if page_obj.number == page_num %}
+              <a aria-current="page"
+                 class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">{{ page_num }}</a>
+            {% else %}
+              <a
+                class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                href="?page={{ page_num }}">{{ page_num }}</a>
+            {% endif %}
+
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-r-md"
+            href="?page={{ paginator.num_pages }}">>></a>
+        {% else %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md">>></a>
+        {% endif %}
+      </nav>
+    </div>
+  {% endif %}
+  {% include 'kakeibo/income_form.html' %}
+  {% include 'kakeibo/expenditure_form.html' %}
+  {% include 'kakeibo/delete_form.html' %}
+  {% include 'kakeibo/bottom_menu.html' %}
+  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-expenditure-backdrop"></div>
+  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-income-backdrop"></div>
+  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="delete-modal-backdrop"></div>
+  {% load static %}
+  <script type="text/javascript">
+    // expenditures graph
+    const incomes = {{ incomes }};
+    const expenditures = {{ expenditures }};
+    const eventDate = {{ event_date | safe }};
+    const ctx = document.getElementById("line_graph").getContext('2d');
+    if (window.parent.screen.width > 768) {
+      ctx.canvas.height = 100;
+    }
+    const line_graph = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: eventDate,
+        datasets: [
+          {
+            label: "収入",
+            borderColor: '#3B82F6',
+            pointBorderWidth: 3,
+            lineTension: 0.1,
+            fill: false,
+            data: incomes,
+          },
+          {
+            label: "支出",
+            borderColor: '#EC4899',
+            pointBorderWidth: 3,
+            lineTension: 0.1,
+            fill: false,
+            data: expenditures,
+          }
+        ]
+      },
+      options: {
+        animation: false,
+      }
+    });
+
+    {% for message in messages %}
+      $.toast({
+        icon: '{{ message.tags }}',
+        text: '{{ message }}',
+        position: 'bottom-right',
+        showHideTransition: 'slide',
+        hideAfter: 5000,
+      });
+    {% endfor %}
+
+    // Datepicker
+    const MONTH_NAMES = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "９月", "10月", "11月", "12月",];
+    const DAYS = ["日", "月", "火", "水", "木", "金", "土"];
+
+    function app() {
+      return {
+        showDatepicker: false, datepickerValue: "",
+
+        month: "", year: "", no_of_days: [], blankDays: [], days: DAYS,
+
+        initDate() {
+          let today = new Date();
+          this.month = today.getMonth();
+          this.year = today.getFullYear();
+          let thisDay = new Date(this.year, this.month, today.getDate());
+          this.datepickerValue = thisDay.getFullYear() + '-' + ('00' + (thisDay.getMonth() + 1)).slice(-2) + '-' + ('00' + thisDay.getDate()).slice(-2);
+        },
+
+        isToday(date) {
+          const today = new Date();
+          const d = new Date(this.year, this.month, date);
+
+          return today.toDateString() === d.toDateString() ? true : false;
+        },
+
+        getDateValue(date) {
+          let selectedDate = new Date(this.year, this.month, date);
+          this.datepickerValue = selectedDate.getFullYear() + '-' + ('00' + (selectedDate.getMonth() + 1)).slice(-2) + '-' + ('00' + selectedDate.getDate()).slice(-2);
+          this.showDatepicker = false;
+        },
+
+        getNoOfDays() {
+          let daysInMonth = new Date(this.year, parseInt(this.month) + 1, 0).getDate();
+
+          // find where to start calendar day of week
+          let dayOfWeek = new Date(this.year, this.month).getDay();
+          let blankDaysArray = [];
+          for (let i = 1; i <= dayOfWeek; i++) {
+            blankDaysArray.push(i);
+          }
+
+          let daysArray = [];
+          for (let i = 1; i <= daysInMonth; i++) {
+            daysArray.push(i);
+          }
+
+          this.blankDays = blankDaysArray;
+          this.no_of_days = daysArray;
+        },
+      };
+    }
+  </script>
+  <script type="text/javascript" src="{% static 'kakeibo/js/functions.js' %}"></script>
+{% endblock %}

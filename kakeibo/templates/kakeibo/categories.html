@@ -1,0 +1,101 @@
+{% extends "loggedin_base.html" %}
+{% block content %}
+  <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
+    {% with view.category_form as form %}
+      <form class="p-3 pt-0 pb-8" action="{% url 'kakeibo:create_category' %}" method="post">
+        {% csrf_token %}
+        <input type='hidden' name='submit_token' value="{{ submit_token }}">
+        <div class="mt-2 p-3 bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <span class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">収支</span>
+              <label class="inline-flex items-center">
+                <input type="radio" class="form-radio text-indigo-600" name="label" value='expenditure' checked>
+                <span class="ml-2">支出</span>
+              </label>
+              <label class="inline-flex items-center ml-6">
+                <input type="radio" class="form-radio text-indigo-600" name="label" value='income'>
+                <span class="ml-2">収入</span>
+              </label>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_name" required>
+                カテゴリ名
+              </label>
+              {{ form.name }}
+            </div>
+          </div>
+          <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
+            登録
+          </button>
+        </div>
+      </form>
+    {% endwith %}
+    <div class="flex flex-col px-3">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+              <tr>
+                <th scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  カテゴリー名
+                </th>
+                <th scope="col" class="relative px-6 py-3"></th>
+              </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+              {% for category in categories %}
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {% if category.label == 'expenditure' %}
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100">
+                        支出
+                      </span>
+                    {% elif category.label ==  'income' %}
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100">
+                        収入
+                      </span>
+                    {% endif %}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-sm text-gray-900">
+                      {{ category.name }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-category-button"
+                      data-category-id="{{ category.id }}"
+                      onclick="toggleModal('delete-modal')">
+                      削除
+                    </button>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="delete-modal-backdrop"></div>
+  {% include 'kakeibo/delete_form.html' %}
+  </div>
+  <script type="text/javascript">
+    {% for message in messages %}
+      $.toast({
+        icon: '{{ message.tags }}',
+        text: '{{ message }}',
+        position: 'bottom-right',
+        showHideTransition: 'slide',
+        hideAfter: 5000,
+      });
+    {% endfor %}
+  </script>
+  {% load static %}
+  <script type="text/javascript" src="{% static 'kakeibo/js/functions.js' %}"></script>
+{% endblock %}
