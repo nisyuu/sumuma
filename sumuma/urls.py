@@ -22,4 +22,5 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('home.urls')),
     path('account/', include('account.urls')),
+    path('kakeibo/', include('kakeibo.urls')),
 ]
