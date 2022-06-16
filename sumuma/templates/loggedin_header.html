@@ -1,7 +1,8 @@
 <nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
   <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3 md:pb-0">
     <div class="w-1/2 pl-2 md:pl-0">
-      <a class="pl-1 text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold" href="{% url 'kakeibo_management:top' %}">DAIFUKU</a>
+      <a class="pl-1 text-gray-900 text-base xl:text-xl no-underline hover:no-underline font-bold"
+         href="{% url 'kakeibo:top' %}">DAIFUKU</a>
     </div>
     <div class="w-1/2 pr-0">
       <div class="flex relative inline-block float-right">
@@ -40,23 +41,23 @@
          id="nav-content">
       <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
         <li class="mr-6 my-2 md:my-0">
-          <a href="{% url 'kakeibo_management:top' %}"
-             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name in 'kakeibo_management,records_management' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
+          <a href="{% url 'kakeibo:top' %}"
+             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name in 'kakeibo,records_management' and request.resolver_match.url_name == 'top' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
-              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.app_name in 'kakeibo_management,records_management' %} text-pink-600 {% endif %}"></i>
+              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.app_name in 'kakeibo,records_management' and request.resolver_match.url_name == 'top' %} text-pink-600 {% endif %}"></i>
             <span class="pb-1 md:pb-0 text-sm">収支管理</span>
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
-          <a href="{% url 'categories_management:top' %}"
-             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'categories_management' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
+          <a href="{% url 'kakeibo:categories' %}"
+             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.url_name == 'categories' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
-              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.app_name == 'categories_management' %} text-pink-600 {% endif %}"></i>
+              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.url_name == 'categories' %} text-pink-600 {% endif %}"></i>
             <span class="pb-1 md:pb-0 text-sm">カテゴリー</span>
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
-          <a href="{% url 'kakeibo_analyses:top' %}"
+          <a href="#"
              class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'kakeibo_analyses' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
               class="fas fa-tasks fa-fw mr-3 {% if request.resolver_match.app_name == 'kakeibo_analyses' %} text-pink-600 {% endif %}"></i>
@@ -64,7 +65,7 @@
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
-          <a href="{% url 'budget_plan:top' %}"
+          <a href="#"
              class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'budget_plan' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
               class="fa fa-envelope fa-fw mr-3 {% if request.resolver_match.app_name == 'budget_plan' %} text-pink-600 {% endif %}"></i>
@@ -80,7 +81,7 @@
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
-          <a href="{% url 'contact:top' %}"
+          <a href="#"
              class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'contact' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
               class="fa fa-wallet fa-fw mr-3 {% if request.resolver_match.app_name == 'contact' %} text-pink-600 {% endif %}"></i>
