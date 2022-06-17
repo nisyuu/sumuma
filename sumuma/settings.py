@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
+    'analyses.apps.AnalysesConfig',
 ]
 
 MIDDLEWARE = [
