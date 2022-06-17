@@ -1,0 +1,31 @@
+::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.ui.staclable.menu {
+  display: block
+}
+
+.hamburger.menu {
+  display: none
+}
+
+.ui.top.sidebar {
+  display: none
+}
+
+@media only screen and (max-width: 700px) {
+  .ui.stackable.menu {
+    display: none
+  }
+  .hamburger.menu {
+    display: block
+  }
+  .toc.item {
+    color: black;
+  }
+  .ui.top.sidebar {
+    display: block
+  }
+}
