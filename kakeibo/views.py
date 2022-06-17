@@ -151,7 +151,7 @@ class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView, gen
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['user_id'] = self.request.user.id
+        initial['user'] = self.request.user
         return initial
 
     def form_valid(self, form):
