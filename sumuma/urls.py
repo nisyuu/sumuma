@@ -24,4 +24,5 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('kakeibo/', include('kakeibo.urls')),
     path('analyses/', include('analyses.urls')),
+    path('contact/', include('contact.urls')),
 ]

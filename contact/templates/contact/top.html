@@ -1,0 +1,42 @@
+{% extends "loggedin_base.html" %}
+{% block content %}
+<div class="w-full px-4 md:px-0 md:mt-8 text-gray-800 leading-normal">
+  <div class="bg-green-100 border-t border-green-500 rounded-b text-teal-900 px-4 py-3 mb-4" role="alert">
+    <div class="flex">
+      <div>
+        <p class="font-bold">バグや要望したい機能の追加、その他質問がありましたら、お問い合わせください。</p>
+        <p class="text-sm">返信の必要がある場合は、ご登録いただいたメールアドレス宛にご対応のメールを送信いたします。</p>
+      </div>
+    </div>
+  </div>
+  <form class="" action="" method="post">
+    {% csrf_token %}
+    <div class="w-full pb-4">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_name" required>
+        件名
+      </label>
+      {{ form.subject }}
+    </div>
+    <div class="w-full pb-4">
+      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_name" required>
+        メッセージ
+      </label>
+      {{ form.message }}
+    </div>
+    <button type="submit" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
+      更新
+    </button>
+  </form>
+</div>
+<script type="text/javascript">
+{% for message in messages %}
+    $.toast({
+      icon: '{{ message.tags }}',
+      text: '{{ message }}',
+      position: 'bottom-right',
+      showHideTransition: 'slide',
+      hideAfter: 5000,
+    });
+{% endfor %}
+</script>
+{% endblock %}
