@@ -169,3 +169,10 @@ INTERNAL_IPS = [
 ]
 
 LOGIN_REDIRECT_URL = 'kakeibo:top'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+    }
+}
