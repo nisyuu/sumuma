@@ -1,0 +1,187 @@
+{% extends "loggedin_base.html" %}
+{% block content %}
+  <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
+    <div class="m-3 mt-0 p-3 bg-white shadow border-b border-gray-200 sm:rounded-lg">
+      <div class="flex flex-wrap">
+        <form class="flex flex-wrap items-stretch w-full relative" id="event_month" action="{% url 'budget:top' %}"
+              method="get">
+          <input type="month"
+                 class="flex-shrink flex-grow flex-auto leading-normal border-gray-200 w-px flex-1 border h-10 rounded rounded-r-none px-3 relative"
+                 value="{{ year_and_month }}" name="year_and_month" required>
+          <div class="flex">
+            <select name="expenditure_or_income"
+                    class="bg-gray-200 bg-grey-lighter border-0 border-l-0 whitespace-no-wrap text-grey-dark text-sm appearance-none"
+                    required>
+              <option selected="true" value="expenditure">支出</option>
+            </select>
+          </div>
+          <button type="submit"
+                  class="flex items-center bg-green-500 leading-normal bg-grey-lighter rounded rounded-l-none border-0 border-l-0 px-5 whitespace-no-wrap text-white">
+            検索
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="flex flex-row flex-wrap flex-grow">
+      <div class="w-full">
+        <div class="bg-white border rounded shadow mx-3 mb-3">
+          <div class="border-b p-3">
+            <h5 class="font-bold uppercase text-gray-600">収支計画</h5>
+          </div>
+          <div class="md:p-3 lg:p-5">
+            <canvas id="line_graph" class="h-full"></canvas>
+          </div>
+        </div>
+        <!--/Graph Card-->
+      </div>
+    </div>
+    <!-- edit button-->
+    {% if expenditure_condition %}
+      <form class="px-3 pb-3" action="{% url 'budget:edit' %}" method="get">
+        <input type="hidden" name="year_and_month" value="{{ year_and_month }}">
+        <div class="w-full">
+          <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">編集</button>
+        </div>
+      </form>
+    {% else %}
+      <form class="px-3 pb-3" action="{% url 'budget:create' %}" method="get">
+        <input type="hidden" name="year_and_month" value="{{ year_and_month }}">
+        <div class="w-full">
+          <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">新規作成</button>
+        </div>
+      </form>
+    {% endif %}
+    <!-- income and expenditure -->
+    {% if expenditure_condition %}
+      <div class="flex flex-col px-3 pb-8">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">カテゴリー
+                  </th>
+                  <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">予算
+                  </th>
+                  <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">実支出
+                  </th>
+                  <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">残額
+                  </th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                {% for expenditure_condition in expenditure_condition %}
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-900">
+                        {{ expenditure_condition.category_name }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <div class="text-sm text-gray-900">
+                        {{ expenditure_condition.budget }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <div class="text-sm text-gray-900">
+                        {{ expenditure_condition.expenditure }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <div class="text-sm text-gray-900">
+                        {{ expenditure_condition.balance }}
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-sm text-gray-900">
+                      合計
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-sm text-gray-900">
+                      {{ sum_budget }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-sm text-gray-900">
+                      {{ sum_expenditure }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-sm text-gray-900">
+                      {{ sum_balance }}
+                    </div>
+                  </td>
+                </tr>
+                <!-- More people... -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <script type="text/javascript">
+    // income and expenditure graph
+    const expenditure = {{ expenditure_records }};
+    const eventDate = {{ this_month | safe }};
+    const ctx = document.getElementById("line_graph").getContext('2d');
+    if (window.parent.screen.width > 768) {
+      ctx.canvas.height = 100;
+    }
+    const line_graph = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: eventDate,
+        datasets: [
+          {
+            label: "",
+            borderColor: 'rgb(0, 255, 0)',
+            pointBorderWidth: 3,
+            lineTension: 0,
+            fill: origin,
+            data: {{ straight_line }},
+          },
+          {
+            label: "支出",
+            borderColor: 'rgb(255, 0, 0)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            pointBorderWidth: 3,
+            lineTension: 0,
+            fill: '-1',
+            data: expenditure,
+          },
+        ]
+      },
+      options: {
+        animation: false,
+      },
+      plugins: {
+        filler: {
+          propagate: true
+        }
+      }
+    });
+  </script>
+  {% load static %}
+  <script type="text/javascript">
+    {% for message in messages %}
+      $.toast({
+        icon: '{{ message.tags }}',
+        text: '{{ message }}',
+        position: 'bottom-right',
+        showHideTransition: 'slide',
+        hideAfter: 5000,
+      });
+    {% endfor %}
+  </script>
+{% endblock %}
