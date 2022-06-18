@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
     'analyses.apps.AnalysesConfig',
+    'budget.apps.BudgetPlanConfig',
     'contact.apps.ContactConfig',
 ]
 
@@ -148,7 +149,7 @@ STATICFILES_DIRS = [str(PurePath.joinpath(SUMUMA_PROJECT_DIR, 'static'))]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'account.user'
+AUTH_USER_MODEL = 'account.User'
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
