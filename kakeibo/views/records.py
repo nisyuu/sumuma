@@ -12,7 +12,7 @@ from django.views import generic
 from itertools import chain
 
 from kakeibo.forms import IncomeForm, ExpenditureForm
-from kakeibo.models import Income, Expenditure, Categories
+from kakeibo.models import Incomes, Expenditures, Categories
 from sumuma.concerns.permission import OnlyYouIncomeMixin, OnlyYouExpenditureMixin
 
 
@@ -45,11 +45,11 @@ class Top(LoginRequiredMixin, generic.ListView):
             start_date = _get_beginning_of_month(today)
             end_date = _get_end_of_month(today)
 
-        income_record = Income.objects.filter(user_id=self.request.user.id,
+        income_record = Incomes.objects.filter(user_id=self.request.user.id,
                                               category_id__in=category_ids,
                                               event_date__range=[start_date, end_date],
                                               deleted=False).select_related('category')
-        expenditure_record = Expenditure.objects.filter(user_id=self.request.user.id,
+        expenditure_record = Expenditures.objects.filter(user_id=self.request.user.id,
                                                         category_id__in=category_ids,
                                                         event_date__range=[start_date, end_date],
                                                         deleted=False).select_related('category')
@@ -75,16 +75,16 @@ def records_export(request):
     filename = urllib.parse.quote((datetime.today().strftime('%Y%m%dexport.csv')).encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
     if request.POST.get('categories'):
-        income_record = Income.objects.filter(user_id=request.user.id, category_id__in=categories,
+        income_record = Incomes.objects.filter(user_id=request.user.id, category_id__in=categories,
                                               event_date__range=[start_date, end_date],
                                               deleted=False).select_related('category')
-        expenditure_record = Expenditure.objects.filter(user_id=request.user.id, category_id__in=categories,
+        expenditure_record = Expenditures.objects.filter(user_id=request.user.id, category_id__in=categories,
                                                         event_date__range=[start_date, end_date],
                                                         deleted=False).select_related('category')
     else:
-        income_record = Income.objects.filter(user_id=request.user.id, event_date__range=[start_date, end_date],
+        income_record = Incomes.objects.filter(user_id=request.user.id, event_date__range=[start_date, end_date],
                                               deleted=False).select_related('category')
-        expenditure_record = Expenditure.objects.filter(user_id=request.user.id,
+        expenditure_record = Expenditures.objects.filter(user_id=request.user.id,
                                                         event_date__range=[start_date, end_date],
                                                         deleted=False).select_related('category')
     records = sorted(chain(income_record, expenditure_record), key=lambda instance: instance.event_date, reverse=True)
@@ -102,7 +102,7 @@ def records_export(request):
 
 class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.UpdateView):
     template_name = 'records/edit.html'
-    model = Expenditure
+    model = Expenditures
     form_class = ExpenditureForm
     success_url = reverse_lazy('records:top')
 
@@ -128,7 +128,7 @@ class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.Updat
 
 class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView):
     template_name = 'records/edit.html'
-    model = Income
+    model = Incomes
     form_class = IncomeForm
     success_url = reverse_lazy('kakeibo:records_top')
 
@@ -154,7 +154,7 @@ class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView):
 
 class EditLatestExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.UpdateView):
     template_name = 'records/edit.html'
-    model = Expenditure
+    model = Expenditures
     form_class = ExpenditureForm
     success_url = reverse_lazy('kakeibo:records_latest_registration_list')
 
@@ -180,7 +180,7 @@ class EditLatestExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic
 
 class EditLatestIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView):
     template_name = 'records/edit.html'
-    model = Income
+    model = Incomes
     form_class = IncomeForm
     success_url = reverse_lazy('kakeibo:records_latest_registration_list')
 
@@ -210,11 +210,11 @@ class LatestRegistrationList(LoginRequiredMixin, generic.ListView):
     paginate_by = 20
 
     def get_queryset(self):
-        expenditure_record = Expenditure.objects.order_by('-created_at').filter(user_id=self.request.user.id,
+        expenditure_record = Expenditures.objects.order_by('-created_at').filter(user_id=self.request.user.id,
                                                                                 deleted=False).select_related(
             'category')[
                              :100]
-        income_record = Income.objects.order_by('-created_at').filter(user_id=self.request.user.id,
+        income_record = Incomes.objects.order_by('-created_at').filter(user_id=self.request.user.id,
                                                                       deleted=False).select_related('category')[
                         :100]
         return sorted(chain(expenditure_record, income_record), key=lambda instance: instance.created_at, reverse=True)
@@ -264,7 +264,7 @@ def _csv_date_validate(request):
 
 def _delete_income(request, pk):
     if request.method == 'POST':
-        income = Income.objects.get(pk=pk)
+        income = Incomes.objects.get(pk=pk)
         income.deleted = True
         income.save()
         return income
@@ -272,7 +272,7 @@ def _delete_income(request, pk):
 
 def _delete_expenditure(request, pk):
     if request.method == 'POST':
-        expenditure = Expenditure.objects.get(pk=pk)
+        expenditure = Expenditures.objects.get(pk=pk)
         expenditure.deleted = True
         expenditure.save()
         return expenditure

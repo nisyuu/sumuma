@@ -8,7 +8,7 @@ from django.db.models import Sum, Prefetch
 from django.shortcuts import redirect
 from django.views import generic
 
-from kakeibo.models import Expenditure, Categories
+from kakeibo.models import Expenditures, Categories
 from .forms import ExpenditurePlanAmountForm
 from .models import ExpenditurePlans
 
@@ -38,7 +38,7 @@ class Top(LoginRequiredMixin, generic.TemplateView):
         sum_expenditure = 0
         sum_balance = 0
         for expenditure_plan in expenditure_plans:
-            expenditure = Expenditure.objects.filter(
+            expenditure = Expenditures.objects.filter(
                 user_id=self.request.user.id,
                 category_id=expenditure_plan.category_id,
                 event_date__range=[beginning_of_month, end_of_month],
@@ -70,7 +70,7 @@ class Top(LoginRequiredMixin, generic.TemplateView):
             straight_line.append(this_day_ave_accumulation)
 
         expenditure_records = []
-        expenditure = Expenditure.objects.filter(
+        expenditure = Expenditures.objects.filter(
             user_id=self.request.user.id,
             event_date__range=[beginning_of_month, year_and_month],
             deleted=False

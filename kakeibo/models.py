@@ -23,7 +23,7 @@ class Categories(models.Model):
         return self.name
 
 
-class Expenditure(models.Model):
+class Incomes(models.Model):
     amount = models.BigIntegerField(_('amount'), help_text=_('Please enter the amount.'))
     event_date = models.DateField(_('event date'), default=timezone.now, help_text=_('Please enter the event date.'))
     memo = models.TextField(_('memo'), max_length=1000, blank=True, null=True)
@@ -37,7 +37,7 @@ class Expenditure(models.Model):
         return str(self.amount)
 
 
-class Income(models.Model):
+class Expenditures(models.Model):
     amount = models.BigIntegerField(_('amount'), help_text=_('Please enter the amount.'))
     event_date = models.DateField(_('event date'), default=timezone.now, help_text=_('Please enter the event date.'))
     memo = models.TextField(_('memo'), max_length=1000, blank=True, null=True)

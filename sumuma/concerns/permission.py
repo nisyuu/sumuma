@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-from kakeibo.models import Income, Expenditure
+from kakeibo.models import Incomes, Expenditures
 
 
 class OnlyYouMixin(UserPassesTestMixin):
@@ -20,7 +20,7 @@ class OnlyYouIncomeMixin(UserPassesTestMixin):
     raise_exception = True
 
     def test_func(self):
-        return Income.objects.filter(id=self.kwargs['pk'], user_id=self.request.user.id, deleted=False).exists()
+        return Incomes.objects.filter(id=self.kwargs['pk'], user_id=self.request.user.id, deleted=False).exists()
 
 
 class OnlyYouExpenditureMixin(UserPassesTestMixin):
@@ -30,4 +30,4 @@ class OnlyYouExpenditureMixin(UserPassesTestMixin):
     raise_exception = True
 
     def test_func(self):
-        return Expenditure.objects.filter(id=self.kwargs['pk'], user_id=self.request.user.id, deleted=False).exists()
+        return Expenditures.objects.filter(id=self.kwargs['pk'], user_id=self.request.user.id, deleted=False).exists()

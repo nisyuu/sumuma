@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from .models import Income, Expenditure, Categories
+from .models import Incomes, Expenditures, Categories
 
 
 class IncomeForm(forms.ModelForm):
@@ -48,7 +48,7 @@ class IncomeForm(forms.ModelForm):
             Categories.objects.filter(label='income', user=user)
 
     class Meta:
-        model = Income
+        model = Incomes
         fields = ['amount', 'category', 'memo', 'event_date']
 
 
@@ -96,7 +96,7 @@ class ExpenditureForm(forms.ModelForm):
             Categories.objects.filter(label='expenditure', user=user)
 
     class Meta:
-        model = Expenditure
+        model = Expenditures
         fields = ['amount', 'category', 'memo', 'event_date']
 
 

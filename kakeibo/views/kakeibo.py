@@ -11,7 +11,7 @@ from django.views import generic
 from itertools import chain
 
 from kakeibo.forms import ExpenditureForm, IncomeForm, CategoryForm
-from kakeibo.models import Expenditure, Income, Categories
+from kakeibo.models import Expenditures, Incomes, Categories
 from sumuma.concerns.permission import OnlyYouExpenditureMixin, OnlyYouIncomeMixin
 
 User = get_user_model()
@@ -25,10 +25,10 @@ class Top(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         today = datetime.today()
         one_month_ago_date = today - relativedelta(months=1, days=1)
-        incomes_record = Income.objects.filter(user_id=self.request.user.id,
+        incomes_record = Incomes.objects.filter(user_id=self.request.user.id,
                                                 event_date__range=[one_month_ago_date, today],
                                                 deleted=False).select_related('category')
-        expenditures_record = Expenditure.objects.filter(user_id=self.request.user.id,
+        expenditures_record = Expenditures.objects.filter(user_id=self.request.user.id,
                                                      event_date__range=[one_month_ago_date, today],
                                                      deleted=False).select_related('category')
         return sorted(chain(incomes_record, expenditures_record), key=lambda instance: instance.event_date, reverse=True)
@@ -42,10 +42,10 @@ class Top(LoginRequiredMixin, generic.ListView):
         for day in range(32):
             date = one_month_ago_date + timedelta(day)
             income = \
-                Income.objects.filter(user_id=self.request.user.id, event_date=date, deleted=False).aggregate(
+                Incomes.objects.filter(user_id=self.request.user.id, event_date=date, deleted=False).aggregate(
                     sum_amount=Sum('amount'))['sum_amount']
             expenditure = \
-                Expenditure.objects.filter(user_id=self.request.user.id, event_date=date, deleted=False).aggregate(
+                Expenditures.objects.filter(user_id=self.request.user.id, event_date=date, deleted=False).aggregate(
                     sum_amount=Sum('amount'))['sum_amount']
             if income:
                 incomes.append(income)
@@ -78,7 +78,7 @@ class Top(LoginRequiredMixin, generic.ListView):
 
 
 class CreateIncome(LoginRequiredMixin, generic.CreateView):
-    model = Income
+    model = Incomes
     form_class = IncomeForm
     template_name = 'kakeibo/top.html'
     success_url = reverse_lazy('kakeibo:top')
@@ -101,7 +101,7 @@ class CreateIncome(LoginRequiredMixin, generic.CreateView):
 
 
 class CreateExpenditure(LoginRequiredMixin, generic.CreateView):
-    model = Expenditure
+    model = Expenditures
     form_class = ExpenditureForm
     template_name = 'kakeibo/top.html'
     success_url = reverse_lazy('kakeibo:top')
@@ -124,7 +124,7 @@ class CreateExpenditure(LoginRequiredMixin, generic.CreateView):
 
 class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.UpdateView, generic.FormView):
     template_name = 'kakeibo/edit.html'
-    model = Expenditure
+    model = Expenditures
     form_class = ExpenditureForm
     success_url = reverse_lazy('kakeibo:top')
 
@@ -144,7 +144,7 @@ class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.Updat
 
 class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView, generic.FormView):
     template_name = 'kakeibo/edit.html'
-    model = Income
+    model = Incomes
     form_class = IncomeForm
     success_url = reverse_lazy('kakeibo:top')
 
@@ -163,7 +163,7 @@ class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView, gen
 
 def delete_income(request, pk):
     if request.method == 'POST':
-        income = Income.objects.get(pk=pk)
+        income = Incomes.objects.get(pk=pk)
         income.deleted = True
         income.save()
         messages.success(request, '削除しました。')
@@ -172,7 +172,7 @@ def delete_income(request, pk):
 
 def delete_expenditure(request, pk):
     if request.method == 'POST':
-        expenditure = Expenditure.objects.get(pk=pk)
+        expenditure = Expenditures.objects.get(pk=pk)
         expenditure.deleted = True
         expenditure.save()
         messages.success(request, '削除しました。')

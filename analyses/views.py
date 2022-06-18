@@ -6,7 +6,7 @@ from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.views import generic
 
-from kakeibo.models import Expenditure, Income, Categories
+from kakeibo.models import Expenditures, Incomes, Categories
 
 
 class Top(LoginRequiredMixin, generic.TemplateView):
@@ -16,7 +16,7 @@ class Top(LoginRequiredMixin, generic.TemplateView):
         today = date.today()
         categories = Categories.objects.filter(user_id=self.request.user.id)
 
-        expenditures = Expenditure.objects.filter(
+        expenditures = Expenditures.objects.filter(
             user_id=self.request.user.id,
             event_date__range=[_get_beginning_of_month(today), today],
             deleted=False
@@ -50,7 +50,7 @@ class Transition(LoginRequiredMixin, generic.TemplateView):
         event_date = []
         expenditure_records = []
 
-        expenditures = Expenditure.objects.filter(
+        expenditures = Expenditures.objects.filter(
             user_id=self.request.user.id,
             event_date__range=[_get_beginning_of_month(today), today],
             deleted=False
@@ -88,7 +88,7 @@ class Accumulation(LoginRequiredMixin, generic.TemplateView):
         event_date = []
         expenditure_records = []
 
-        expenditures = Expenditure.objects.filter(
+        expenditures = Expenditures.objects.filter(
             user_id=self.request.user.id,
             event_date__range=[_get_beginning_of_month(today), today],
             deleted=False
@@ -131,7 +131,7 @@ class AnalysesByCategory(LoginRequiredMixin, generic.TemplateView):
         expenditure_records = {}
         for category in categories:
             expenditure_records[category.name] = []
-            expenditures = Expenditure.objects.filter(
+            expenditures = Expenditures.objects.filter(
                 user_id=self.request.user.id,
                 category=category,
                 event_date__range=[_get_beginning_of_month(today), today],
@@ -170,13 +170,13 @@ def search_pie_each_month(request):
     end_of_month = _get_end_of_month(year_and_month)
 
     if selected_expenditure_or_income == 'expenditure':
-        expenditure_or_income = Expenditure.objects.filter(
+        expenditure_or_income = Expenditures.objects.filter(
             user_id=request.user.id,
             event_date__range=[beginning_of_month, end_of_month],
             deleted=False
         )
     else:
-        expenditure_or_income = Income.objects.filter(
+        expenditure_or_income = Incomes.objects.filter(
             user_id=request.user.id,
             event_date__range=[beginning_of_month, end_of_month],
             deleted=False
@@ -227,13 +227,13 @@ def search_accumulation_each_month(request):
     end_of_month = _get_end_of_month(year_and_month)
 
     if selected_expenditure_or_income == 'expenditure':
-        expenditure_or_income = Expenditure.objects.filter(
+        expenditure_or_income = Expenditures.objects.filter(
             user_id=request.user.id,
             event_date__range=[_get_beginning_of_month(year_and_month), end_of_month],
             deleted=False
         )
     else:
-        expenditure_or_income = Income.objects.filter(
+        expenditure_or_income = Incomes.objects.filter(
             user_id=request.user.id,
             event_date__range=[_get_beginning_of_month(year_and_month), end_of_month],
             deleted=False
@@ -284,13 +284,13 @@ def search_transition_each_month(request):
     end_of_month = _get_end_of_month(year_and_month)
 
     if selected_expenditure_or_income == 'expenditure':
-        expenditure_or_income = Expenditure.objects.filter(
+        expenditure_or_income = Expenditures.objects.filter(
             user_id=request.user.id,
             event_date__range=[_get_beginning_of_month(year_and_month), end_of_month],
             deleted=False
         )
     else:
-        expenditure_or_income = Income.objects.filter(
+        expenditure_or_income = Incomes.objects.filter(
             user_id=request.user.id,
             event_date__range=[_get_beginning_of_month(year_and_month), end_of_month],
             deleted=False
@@ -342,14 +342,14 @@ def search_analyses_by_category_each_month(request):
         expenditures_or_income_records[category.name] = []
 
         if selected_expenditure_or_income == 'expenditure':
-            expenditure_or_income = Expenditure.objects.filter(
+            expenditure_or_income = Expenditures.objects.filter(
                 user_id=request.user.id,
                 category=category,
                 event_date__range=[_get_beginning_of_month(year_and_month), end_of_month],
                 deleted=False
             )
         else:
-            expenditure_or_income = Income.objects.filter(
+            expenditure_or_income = Incomes.objects.filter(
                 user_id=request.user.id,
                 category=category,
                 event_date__range=[_get_beginning_of_month(year_and_month), end_of_month],
