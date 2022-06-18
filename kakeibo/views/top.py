@@ -10,8 +10,8 @@ from django.urls import reverse_lazy
 from django.views import generic
 from itertools import chain
 
-from .forms import ExpenditureForm, IncomeForm, CategoryForm
-from .models import Expenditure, Income, Categories
+from kakeibo.forms import ExpenditureForm, IncomeForm, CategoryForm
+from kakeibo.models import Expenditure, Income, Categories
 from sumuma.concerns.permission import OnlyYouExpenditureMixin, OnlyYouIncomeMixin
 
 User = get_user_model()
