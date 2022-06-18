@@ -42,9 +42,9 @@
       <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
         <li class="mr-6 my-2 md:my-0">
           <a href="{% url 'kakeibo:top' %}"
-             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name in 'kakeibo,records_management' and request.resolver_match.url_name == 'top' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
+             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'kakeibo' and request.resolver_match.url_name in 'top,records_top,records_latest_registration_list,edit_income,edit_expenditure,records_edit_income,records_edit_expenditure,records_edit_latest_income,records_edit_latest_expenditure' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
-              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.app_name in 'kakeibo,records_management' and request.resolver_match.url_name == 'top' %} text-pink-600 {% endif %}"></i>
+              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.app_name == 'kakeibo' and request.resolver_match.url_name in 'top,records_top,records_latest_registration_list,edit_income,edit_expenditure,records_edit_income,records_edit_expenditure,records_edit_latest_income,records_edit_latest_expenditure' %} text-pink-600 {% endif %}"></i>
             <span class="pb-1 md:pb-0 text-sm">収支管理</span>
           </a>
         </li>
@@ -66,9 +66,9 @@
         </li>
         <li class="mr-6 my-2 md:my-0">
           <a href="{% url 'budget:top' %}"
-             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'budget_plan' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
+             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'budget' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
-              class="fa fa-envelope fa-fw mr-3 {% if request.resolver_match.app_name == 'budget_plan' %} text-pink-600 {% endif %}"></i>
+              class="fa fa-envelope fa-fw mr-3 {% if request.resolver_match.app_name == 'budget' %} text-pink-600 {% endif %}"></i>
             <span class="pb-1 md:pb-0 text-sm">収支計画</span>
           </a>
         </li>

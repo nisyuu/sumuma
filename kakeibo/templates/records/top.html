@@ -1,0 +1,184 @@
+{% extends "loggedin_base.html" %}
+{% load static %}
+{% load get_list %}
+{% block content %}
+  <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
+    <div class="p-3 pt-0">
+      <div class="mt-2 p-3 bg-white shadow border-b border-gray-200 sm:rounded-lg pb-0">
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <div class="w-full md:w-1/2 pb-4">
+              <form action="{% url 'kakeibo:records_export' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="start_date" value="{{ request.GET.start_date }}">
+                <input type="hidden" name="end_date" value="{{ request.GET.end_date }}">
+                <input type="hidden" name="categories" value="">
+                <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">CSVエクスポート</button>
+              </form>
+            </div>
+            <form action="" method="get">
+              {% csrf_token %}
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-1/2 px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="select-role">
+                    カテゴリー
+                  </label>
+                  <div class="relative mb-3">
+                    <select
+                      id="select-role"
+                      name="category_ids"
+                      autocomplete="off"
+                      class="block w-full rounded-sm cursor-pointer focus:outline-none"
+                      multiple
+                    >
+                      {% for category in categories %}
+                        <option value="{{ category.pk }}">{{ category.name }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="w-1/2 px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_category">
+                    期間
+                  </label>
+                  <div class="w-full flex">
+                    <div class="w-1/2">
+                      <input type="date"
+                             name="start_date"
+                             class="w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                             value="{{ request.GET.start_date }}"
+                             required>
+                    </div>
+                    <div class="w-1/2 pl-3">
+                      <input type="date"
+                             name="end_date"
+                             class="w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                             value="{{ request.GET.end_date }}"
+                             required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                      type="submit">
+                検索
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col px-3">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  カテゴリー/日付
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  金額
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  メモ
+                </th>
+                <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+              {% for record in records %}
+                <tr id="record{{ record.id }}">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {% if record.category.label == 'expenditure' %}
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-pink-100">
+                        支出
+                      </span>
+                    {% elif record.category.label == 'income' %}
+                      <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100">
+                        収入
+                      </span>
+                    {% endif %}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="ml-0">
+                        <div class="text-sm font-medium text-gray-900">
+                          {{ record.category }}
+                        </div>
+                        <div class="text-sm text-gray-500">
+                          {{ record.event_date }}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      {{ record.amount }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-sm text-gray-900">
+                      {{ record.memo }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    {% if record.category.label == 'expenditure' %}
+                      <a href="{% url 'kakeibo:records_edit_expenditure' pk=record.pk %}"
+                         class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                      <button
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                        data-record-pk="{{ record.pk }}"
+                        data-category="expenditure"
+                        onclick="toggleModal('delete-modal')">
+                        削除
+                      </button>
+                    {% elif record.category.label in 'income' %}
+                      <a href="{% url 'kakeibo:records_edit_income' pk=record.pk %}"
+                         class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                      <button
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                        data-record-pk="{{ record.pk }}"
+                        data-category="income"
+                        onclick="toggleModal('delete-modal')">
+                        削除
+                      </button>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'records/delete_form.html' %}
+  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="delete-modal-backdrop"></div>
+  {% include 'kakeibo/bottom_menu.html' %}
+  <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+  <script type="text/javascript">
+    new TomSelect('#select-role', {
+      maxItems: 50,
+      plugins: ['remove_button'],
+      items: "{{ request.GET|get_list:'category_ids' }}".split(',')
+    });
+    {% for message in messages %}
+      $.toast({
+        icon: '{{ message.tags }}',
+        text: '{{ message }}',
+        position: 'bottom-right',
+        showHideTransition: 'slide',
+        hideAfter: 5000,
+      });
+    {% endfor %}
+  </script>
+  <script type="text/javascript" src="{% static 'records/js/functions.js' %}"></script>
+{% endblock %}
