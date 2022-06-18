@@ -28,6 +28,11 @@ class Login(LoginView):
     template_name = 'account/login.html'
     form_class = LoginForm
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('kakeibo:top')
+        return super(Login, self).dispatch(request, *args, **kwargs)
+
 
 class Logout(LoginRequiredMixin, LogoutView):
     """Logout view."""
