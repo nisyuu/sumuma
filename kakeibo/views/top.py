@@ -39,7 +39,6 @@ class Top(LoginRequiredMixin, generic.ListView):
         event_date = []
         incomes = []
         expenditures = []
-        # NOTE: 1ヶ月分の収支折れ線グラフデータを作成
         for day in range(32):
             date = one_month_ago_date + timedelta(day)
             income = \
