@@ -2,14 +2,17 @@ import csv
 import urllib
 from datetime import date
 from datetime import datetime
+from io import TextIOWrapper
+from itertools import chain
+
 from dateutil.relativedelta import relativedelta
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from itertools import chain
 
 from kakeibo.forms import IncomeForm, ExpenditureForm
 from kakeibo.models import Incomes, Expenditures, Categories
@@ -46,13 +49,13 @@ class Top(LoginRequiredMixin, generic.ListView):
             end_date = _get_end_of_month(today)
 
         income_record = Incomes.objects.filter(user_id=self.request.user.id,
-                                              category_id__in=category_ids,
-                                              event_date__range=[start_date, end_date],
-                                              deleted=False).select_related('category')
+                                               category_id__in=category_ids,
+                                               event_date__range=[start_date, end_date],
+                                               deleted=False).select_related('category')
         expenditure_record = Expenditures.objects.filter(user_id=self.request.user.id,
-                                                        category_id__in=category_ids,
-                                                        event_date__range=[start_date, end_date],
-                                                        deleted=False).select_related('category')
+                                                         category_id__in=category_ids,
+                                                         event_date__range=[start_date, end_date],
+                                                         deleted=False).select_related('category')
         return sorted(chain(income_record, expenditure_record), key=lambda instance: instance.event_date, reverse=True)
 
     def get_context_data(self, **kwargs):
@@ -76,17 +79,17 @@ def records_export(request):
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
     if request.POST.get('categories'):
         income_record = Incomes.objects.filter(user_id=request.user.id, category_id__in=categories,
-                                              event_date__range=[start_date, end_date],
-                                              deleted=False).select_related('category')
+                                               event_date__range=[start_date, end_date],
+                                               deleted=False).select_related('category')
         expenditure_record = Expenditures.objects.filter(user_id=request.user.id, category_id__in=categories,
-                                                        event_date__range=[start_date, end_date],
-                                                        deleted=False).select_related('category')
+                                                         event_date__range=[start_date, end_date],
+                                                         deleted=False).select_related('category')
     else:
         income_record = Incomes.objects.filter(user_id=request.user.id, event_date__range=[start_date, end_date],
-                                              deleted=False).select_related('category')
+                                               deleted=False).select_related('category')
         expenditure_record = Expenditures.objects.filter(user_id=request.user.id,
-                                                        event_date__range=[start_date, end_date],
-                                                        deleted=False).select_related('category')
+                                                         event_date__range=[start_date, end_date],
+                                                         deleted=False).select_related('category')
     records = sorted(chain(income_record, expenditure_record), key=lambda instance: instance.event_date, reverse=True)
     writer = csv.writer(response)
     writer.writerow(['', 'カテゴリ名', '日付', '金額', 'メモ'])
@@ -211,11 +214,11 @@ class LatestRegistrationList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         expenditure_record = Expenditures.objects.order_by('-created_at').filter(user_id=self.request.user.id,
-                                                                                deleted=False).select_related(
+                                                                                 deleted=False).select_related(
             'category')[
                              :100]
         income_record = Incomes.objects.order_by('-created_at').filter(user_id=self.request.user.id,
-                                                                      deleted=False).select_related('category')[
+                                                                       deleted=False).select_related('category')[
                         :100]
         return sorted(chain(expenditure_record, income_record), key=lambda instance: instance.created_at, reverse=True)
 
@@ -276,3 +279,31 @@ def _delete_expenditure(request, pk):
         expenditure.deleted = True
         expenditure.save()
         return expenditure
+
+
+@transaction.atomic
+def records_import(request):
+    if 'kakeibo-csv' in request.FILES:
+        form_data = TextIOWrapper(request.FILES['kakeibo-csv'].file, encoding='utf-8')
+        csv_file = csv.reader(form_data)
+        # NOTE: Skip header.
+        next(csv_file)
+    try:
+        with transaction.atomic():
+            for line in csv_file:
+                if line[0] == "収入":
+                    category = Categories.objects.filter(label='income', name=line[1], user=request.user).first()
+                    if not category:
+                        category = Categories.objects.create(label='income', name=line[1], user=request.user)
+                    Expenditures.objects.create(user=request.user, category=category, event_date=line[2],
+                                                amount=int(line[3]), memo=line[4])
+                if line[0] == "支出":
+                    category = Categories.objects.filter(label='expenditure', name=line[1], user=request.user).first()
+                    if not category:
+                        category = Categories.objects.create(label='expenditure', name=line[1], user=request.user)
+                    Expenditures.objects.create(user=request.user, category=category, event_date=line[2],
+                                                amount=int(line[3]), memo=line[4])
+            messages.success(request, 'インポートに成功しました。')
+    except:
+        messages.error(request, "インポートに失敗しました。")
+    return redirect('kakeibo:records_top')

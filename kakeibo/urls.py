@@ -30,4 +30,5 @@ urlpatterns = [
     path("records/delete-latest-expenditure/<int:pk>/", records.delete_latest_expenditure,
          name='records_delete_latest_expenditure'),
     path("records-export/", records.records_export, name='records_export'),
+    path("records_import/", records.records_import, name='records_import'),
 ]
