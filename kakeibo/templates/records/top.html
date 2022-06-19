@@ -12,14 +12,16 @@
                 {% csrf_token %}
                 <input type="hidden" name="start_date" value="{{ request.GET.start_date }}">
                 <input type="hidden" name="end_date" value="{{ request.GET.end_date }}">
-                <input type="hidden" name="categories" value="">
+                <input type="hidden" name="category_ids" value="{{ request.GET|get_list:'category_ids' }}">
                 <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">CSVエクスポート</button>
               </form>
-              <form class="flex" action="{% url 'kakeibo:records_import' %}" method="post" enctype="multipart/form-data">
+              <form class="flex" action="{% url 'kakeibo:records_import' %}" method="post"
+                    enctype="multipart/form-data">
                 {% csrf_token %}
-                <label for="kakeibo-csv" class="block bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-l cursor-pointer">
+                <label for="kakeibo-csv"
+                       class="block bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-l cursor-pointer">
                   CSVインポート
-                  <input id="kakeibo-csv" class="hidden" type="file" name="kakeibo-csv" accept="text/csv">
+                  <input id="kakeibo-csv" class="hidden" type="file" name="kakeibo-csv" accept="text/csv" required>
                 </label>
                 <button class="border border-gray-400 py-2 px-4 mr-2 rounded-r">ファイルを送信する</button>
               </form>

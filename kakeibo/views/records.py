@@ -1,7 +1,6 @@
 import csv
 import urllib
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime
 from io import TextIOWrapper
 from itertools import chain
 
@@ -48,15 +47,24 @@ class Top(LoginRequiredMixin, generic.ListView):
             start_date = _get_beginning_of_month(today)
             end_date = _get_end_of_month(today)
 
-        income_record = Incomes.objects.filter(user_id=self.request.user.id,
-                                               category_id__in=category_ids,
-                                               event_date__range=[start_date, end_date],
-                                               deleted=False).select_related('category')
-        expenditure_record = Expenditures.objects.filter(user_id=self.request.user.id,
-                                                         category_id__in=category_ids,
-                                                         event_date__range=[start_date, end_date],
-                                                         deleted=False).select_related('category')
-        return sorted(chain(income_record, expenditure_record), key=lambda instance: instance.event_date, reverse=True)
+        if category_ids:
+            income_records = Incomes.objects.filter(user_id=self.request.user.id,
+                                                    category_id__in=category_ids,
+                                                    event_date__range=[start_date, end_date],
+                                                    deleted=False).select_related('category')
+            expenditure_records = Expenditures.objects.filter(user_id=self.request.user.id,
+                                                              category_id__in=category_ids,
+                                                              event_date__range=[start_date, end_date],
+                                                              deleted=False).select_related('category')
+        else:
+            income_records = Incomes.objects.filter(user_id=self.request.user.id,
+                                                    event_date__range=[start_date, end_date],
+                                                    deleted=False).select_related('category')
+            expenditure_records = Expenditures.objects.filter(user_id=self.request.user.id,
+                                                              event_date__range=[start_date, end_date],
+                                                              deleted=False).select_related('category')
+        return sorted(chain(income_records, expenditure_records), key=lambda instance: instance.event_date,
+                      reverse=True)
 
     def get_context_data(self, **kwargs):
         context = super(Top, self).get_context_data(**kwargs)
@@ -68,20 +76,22 @@ class Top(LoginRequiredMixin, generic.ListView):
 
 
 def records_export(request):
-    if not _csv_date_validate(request):
-        messages.error(request, 'エクスポートに失敗しました。')
-        return redirect('kakeibo:records_top')
-    start_date = _csv_date_validate(request)[0]
-    end_date = _csv_date_validate(request)[1]
-    categories = request.POST.get('categories').split(',')
+    start_date = request.POST.get('start_date')
+    end_date = request.POST.get('end_date')
+    category_ids = request.POST.get('category_ids').split(',')
+    today = date.today()
+    if not start_date:
+        start_date = _get_beginning_of_month(today)
+    if not end_date:
+        end_date = _get_end_of_month(today)
     response = HttpResponse(content_type='text/csv; charset=UTF-8')
     filename = urllib.parse.quote((datetime.today().strftime('%Y%m%dexport.csv')).encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
-    if request.POST.get('categories'):
-        income_record = Incomes.objects.filter(user_id=request.user.id, category_id__in=categories,
+    if category_ids:
+        income_record = Incomes.objects.filter(user_id=request.user.id, category_id__in=category_ids,
                                                event_date__range=[start_date, end_date],
                                                deleted=False).select_related('category')
-        expenditure_record = Expenditures.objects.filter(user_id=request.user.id, category_id__in=categories,
+        expenditure_record = Expenditures.objects.filter(user_id=request.user.id, category_id__in=category_ids,
                                                          event_date__range=[start_date, end_date],
                                                          deleted=False).select_related('category')
     else:
@@ -255,14 +265,6 @@ def delete_latest_expenditure(request, pk):
 
 def _validate_search(specified_date):
     return datetime.strptime(specified_date, '%Y-%m-%d')
-
-
-def _csv_date_validate(request):
-    start_date = request.POST.get('start_date')
-    end_date = request.POST.get('end_date')
-    if not (start_date or end_date):
-        return None
-    return start_date, end_date
 
 
 def _delete_income(request, pk):
