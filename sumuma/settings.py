@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'analyses.apps.AnalysesConfig',
     'budget.apps.BudgetPlanConfig',
     'contact.apps.ContactConfig',
+    'shopping.apps.ShoppingConfig',
 ]
 
 MIDDLEWARE = [
