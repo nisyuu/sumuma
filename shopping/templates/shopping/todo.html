@@ -1,0 +1,145 @@
+{% extends "loggedin_base.html" %}
+{% block content %}
+  <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
+    <div class="m-3 mt-0 p-3 bg-white shadow border-b border-gray-200 sm:rounded-lg">
+      <a href="{% url 'shopping:create_todo' %}"
+         class="inline-block bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">新規作成</a>
+    </div>
+    <div class="flex flex-col px-3">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  ステータス
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  名前
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  金額
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  購入予定日
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  カテゴリー
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  メモ
+                </th>
+                <th scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+              </tr>
+              </thead>
+              <tbody id="js-table-row" class="bg-white divide-y text-sm divide-gray-200">
+              {% for todo in todos %}
+                <tr id="todo{{ todo.id }}">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <input type="checkbox" value="{{ todo.is_bought }}"
+                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300">
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {{ todo.name }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {{ todo.amount }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {{ todo.event_date }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {{ todo.category.name }}
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    {{ todo.memo }}
+                  </td>
+                  <td class="px-6 py-4 text-right whitespace-nowrap">
+                    <a href="#"
+                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                    <button
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                      data-record-pk={{ todo.pk }}
+                        data-category="expenditure"
+                      onclick="toggleModal('delete-modal')">
+                      削除
+                    </button>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if is_paginated %}
+    <div class="flex justify-center mt-2 p-3 pb-8">
+      <nav class="relative items-center z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+        {% if page_obj.has_previous %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md"
+            href="?page=1"><<</a>
+        {% else %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md"><<</a>
+        {% endif %}
+        {% for page_num in paginator.page_range %}
+          {% if not page_obj.has_previous and page_num <= 3 %}
+            {% if page_num == page_obj.number %}
+              <a aria-current="page"
+                 class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                 href="?page={{ page_num }}">{{ page_num }}</a>
+            {% else %}
+              <a
+                class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                href="?page={{ page_num }}">{{ page_num }}</a>
+            {% endif %}
+          {% elif not page_obj.has_next and page_num == paginator.num_pages %}
+            <a
+              class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+              href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            <a aria-current="page"
+               class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+               href="?page={{ page_num }}">{{ page_num }}</a>
+          {% elif page_obj.previous_page_number <= page_num and page_num <= page_obj.next_page_number %}
+            {% if page_obj.number == page_num %}
+              <a aria-current="page"
+                 class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">{{ page_num }}</a>
+            {% else %}
+              <a
+                class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                href="?page={{ page_num }}">{{ page_num }}</a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-r-md"
+            href="?page={{ paginator.num_pages }}">>></a>
+        {% else %}
+          <a
+            class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md">>></a>
+        {% endif %}
+      </nav>
+    </div>
+  {% endif %}
+  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="delete-modal-backdrop"></div>
+  {% include 'records/delete_form.html' %}
+  {% load static %}
+  <script type="text/javascript">
+    {% for message in messages %}
+      $.toast({
+        icon: '{{ message.tags }}',
+        text: '{{ message }}',
+        position: 'bottom-right',
+        showHideTransition: 'slide',
+        hideAfter: 5000,
+      });
+    {% endfor %}
+  </script>
+  <script type="text/javascript" src="{% static 'records/js/functions.js' %}"></script>
+{% endblock %}
