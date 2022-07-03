@@ -57,6 +57,14 @@
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
+          <a href="{% url 'shopping:top' %}"
+             class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'shopping' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
+            <i
+              class="fas fa-home fa-fw mr-3 {% if request.resolver_match.app_name == 'shopping' %} text-pink-600 {% endif %}"></i>
+            <span class="pb-1 md:pb-0 text-sm">買い物リスト</span>
+          </a>
+        </li>
+        <li class="mr-6 my-2 md:my-0">
           <a href="{% url 'analyses:top' %}"
              class="block py-1 md:py-3 pl-1 align-middle no-underline border-b-2 {% if request.resolver_match.app_name == 'analyses' %} text-pink-600 hover:text-pink-600 border-red-500 {% else %} border-white text-gray-500 hover:text-pink-600 hover:border-red-500 {% endif %}">
             <i
