@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from kakeibo.models import Categories
+
 User = get_user_model()
 
 
@@ -15,6 +17,7 @@ class ToDo(models.Model):
         help_text=_('Please enter the event date.')
     )
     memo = models.TextField(_('memo'), max_length=1000, blank=True, null=True)
+    category = models.ForeignKey(Categories, on_delete=models.DO_NOTHING, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_bought = models.BooleanField(_('is bought'), default=False)
     created_at = models.DateTimeField(auto_now_add=True)
