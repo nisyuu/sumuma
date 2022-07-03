@@ -141,7 +141,7 @@
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     {% if record.category.label == 'expenditure' %}
                       <a href="{% url 'kakeibo:records_edit_expenditure' pk=record.pk %}"
-                         class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                         class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
                       <button
                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
                         data-record-pk="{{ record.pk }}"
@@ -151,7 +151,7 @@
                       </button>
                     {% elif record.category.label in 'income' %}
                       <a href="{% url 'kakeibo:records_edit_income' pk=record.pk %}"
-                         class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                         class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
                       <button
                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
                         data-record-pk="{{ record.pk }}"
