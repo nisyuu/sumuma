@@ -21,7 +21,7 @@ urlpatterns = [
     path('records/edit-expenditure/<int:pk>/', records.EditExpenditure.as_view(), name='records_edit_expenditure'),
     path("records/delete-income/<int:pk>/", records.delete_income, name='records_delete_income'),
     path("records/delete-expenditure/<int:pk>/", records.delete_expenditure, name='records_delete_expenditure'),
-    path('records/latest-registration_list/', records.LatestRegistrationList.as_view(),
+    path('records/latest-registration-list/', records.LatestRegistrationList.as_view(),
          name='records_latest_registration_list'),
     path('records/edit-latest-income/<int:pk>/', records.EditLatestIncome.as_view(), name='records_edit_latest_income'),
     path('records/edit-latest-expenditure/<int:pk>/', records.EditLatestExpenditure.as_view(),
