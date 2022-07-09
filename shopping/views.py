@@ -59,9 +59,11 @@ class EditToDo(LoginRequiredMixin, OnlyYouToDoMixin, generic.UpdateView):
         user = self.request.user
         instance = form.instance
         form.instance.user = user
-        if instance.is_registered:
-            Expenditures.objects.create(user=user, category=instance.category, event_date=instance.event_date,
-                                        amount=instance.amount, memo=instance.memo)
+        if instance.is_registered and not form.instance.expenditure:
+            expenditure = Expenditures.objects.create(user=user, category=instance.category,
+                                                      event_date=instance.event_date,
+                                                      amount=instance.amount, memo=instance.memo)
+            form.instance.expenditure = expenditure
         form.save()
         messages.success(self.request, '更新しました。')
         return super().form_valid(form)
