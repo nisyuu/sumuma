@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
+from kakeibo.models import Expenditures
 from .forms import ToDoForm
 from .models import ToDo
 
@@ -51,8 +53,14 @@ class EditToDo(LoginRequiredMixin, generic.UpdateView):
         initial['user'] = self.request.user
         return initial
 
+    @transaction.atomic
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        user = self.request.user
+        instance = form.instance
+        form.instance.user = user
+        if instance.is_registered:
+            Expenditures.objects.create(user=user, category=instance.category, event_date=instance.event_date,
+                                        amount=instance.amount, memo=instance.memo)
         form.save()
         messages.success(self.request, '更新しました。')
         return super().form_valid(form)

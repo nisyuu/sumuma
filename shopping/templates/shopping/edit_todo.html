@@ -164,6 +164,24 @@
           </label>
           {{ form.is_bought }}
         </div>
+        <div class="w-full px-3">
+          {% if form.is_registered.value %}
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_is_registered">
+              支出に登録済み
+            </label>
+            <input type="checkbox"
+                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 mb-3" id="id_is_registered" checked
+                   disabled>
+            <div class="hidden">
+              {{ form.is_registered }}
+            </div>
+          {% else %}
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_is_registered">
+              更新時に支出へ同時登録する
+            </label>
+            {{ form.is_registered }}
+          {% endif %}
+        </div>
       </div>
       <div class="px-3">
         <button class="w-full bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded"
@@ -195,10 +213,11 @@
         month: "", year: "", no_of_days: [], blankDays: [], days: DAYS,
 
         initDate() {
-          let today = new Date();
-          this.month = today.getMonth();
-          this.year = today.getFullYear();
-          let thisDay = new Date(this.year, this.month, today.getDate());
+          const idEventDate = document.getElementById('id_event_date');
+          const date = new Date(idEventDate.value);
+          this.month = date.getMonth();
+          this.year = date.getFullYear();
+          let thisDay = new Date(this.year, this.month, date.getDate());
           this.datepickerValue = thisDay.getFullYear() + '-' + ('00' + (thisDay.getMonth() + 1)).slice(-2) + '-' + ('00' + thisDay.getDate()).slice(-2);
         },
 
