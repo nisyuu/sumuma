@@ -13,7 +13,7 @@
               <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  ステータス
+                  購入チェック
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   名前
@@ -38,8 +38,8 @@
               {% for todo in todos %}
                 <tr id="todo{{ todo.id }}">
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <input type="checkbox" value="{{ todo.is_bought }}"
-                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300">
+                    <input type="checkbox" {% if todo.is_bought %} checked {% endif %}
+                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300" disabled>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     {{ todo.name }}
@@ -57,12 +57,11 @@
                     {{ todo.memo }}
                   </td>
                   <td class="px-6 py-4 text-right whitespace-nowrap">
-                    <a href="#"
+                    <a href="{% url 'shopping:edit_todo' pk=todo.id %}"
                        class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
                     <button
-                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
-                      data-record-pk={{ todo.pk }}
-                        data-category="expenditure"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-todo-button"
+                      data-todo-pk="{{ todo.pk }}"
                       onclick="toggleModal('delete-modal')">
                       削除
                     </button>
@@ -141,5 +140,5 @@
       });
     {% endfor %}
   </script>
-  <script type="text/javascript" src="{% static 'records/js/functions.js' %}"></script>
+  <script type="text/javascript" src="{% static 'shopping/js/functions.js' %}"></script>
 {% endblock %}

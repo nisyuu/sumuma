@@ -153,10 +153,16 @@
           {{ form.category }}
         </div>
         <div class="w-full px-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_memo">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_category">
             メモ
           </label>
           {{ form.memo }}
+        </div>
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="id_is_bought">
+            完了チェック
+          </label>
+          {{ form.is_bought }}
         </div>
       </div>
       <div class="px-3">
@@ -167,7 +173,6 @@
     </form>
   </div>
   {% load static %}
-  <script type="text/javascript" src="{% static 'kakeibo_management/js/functions.js' %}"></script>
   <script type="text/javascript">
     {% for message in messages %}
       $.toast({
@@ -231,5 +236,4 @@
       };
     }
   </script>
-  <script type="text/javascript" src="{% static 'kakeibo_management/js/functions.js' %}"></script>
 {% endblock %}
