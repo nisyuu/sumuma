@@ -20,6 +20,7 @@ class ToDo(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.DO_NOTHING, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_bought = models.BooleanField(_('is bought'), default=False)
+    is_registered = models.BooleanField(_('is registered'), default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
