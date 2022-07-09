@@ -269,7 +269,7 @@ def _validate_search(specified_date):
 
 def _delete_income(request, pk):
     if request.method == 'POST':
-        income = Incomes.objects.get(pk=pk)
+        income = Incomes.objects.get(pk=pk, user=request.user)
         income.deleted = True
         income.save()
         return income
@@ -277,7 +277,7 @@ def _delete_income(request, pk):
 
 def _delete_expenditure(request, pk):
     if request.method == 'POST':
-        expenditure = Expenditures.objects.get(pk=pk)
+        expenditure = Expenditures.objects.get(pk=pk, user=request.user)
         expenditure.deleted = True
         expenditure.save()
         return expenditure

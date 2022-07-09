@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from kakeibo.models import Expenditures
+from sumuma.concerns.permission import OnlyYouToDoMixin
 from .forms import ToDoForm
 from .models import ToDo
 
@@ -42,7 +43,7 @@ class CreateToDo(LoginRequiredMixin, generic.CreateView):
         return redirect(self.success_url)
 
 
-class EditToDo(LoginRequiredMixin, generic.UpdateView):
+class EditToDo(LoginRequiredMixin, OnlyYouToDoMixin, generic.UpdateView):
     model = ToDo
     form_class = ToDoForm
     template_name = 'shopping/edit_todo.html'
@@ -70,7 +71,7 @@ class EditToDo(LoginRequiredMixin, generic.UpdateView):
         return redirect(self.success_url)
 
 
-class DeleteToDo(LoginRequiredMixin, generic.DeleteView):
+class DeleteToDo(LoginRequiredMixin, OnlyYouToDoMixin, generic.DeleteView):
     model = ToDo
     success_url = reverse_lazy('shopping:top')
 

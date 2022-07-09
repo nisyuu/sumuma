@@ -13,7 +13,7 @@ from django.views import generic
 
 from kakeibo.forms import ExpenditureForm, IncomeForm, CategoryForm
 from kakeibo.models import Expenditures, Incomes, Categories
-from sumuma.concerns.permission import OnlyYouExpenditureMixin, OnlyYouIncomeMixin
+from sumuma.concerns.permission import OnlyYouExpenditureMixin, OnlyYouIncomeMixin, OnlyYouCategoryMixin
 
 User = get_user_model()
 
@@ -165,7 +165,7 @@ class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView):
 
 def delete_income(request, pk):
     if request.method == 'POST':
-        income = Incomes.objects.get(pk=pk)
+        income = Incomes.objects.get(pk=pk, user=request.user)
         income.deleted = True
         income.save()
         messages.success(request, '削除しました。')
@@ -174,7 +174,7 @@ def delete_income(request, pk):
 
 def delete_expenditure(request, pk):
     if request.method == 'POST':
-        expenditure = Expenditures.objects.get(pk=pk)
+        expenditure = Expenditures.objects.get(pk=pk, user=request.user)
         expenditure.deleted = True
         expenditure.save()
         messages.success(request, '削除しました。')
@@ -245,7 +245,7 @@ class CreateCategory(LoginRequiredMixin, generic.CreateView):
         return redirect(self.success_url)
 
 
-class DeleteCategory(LoginRequiredMixin, generic.DeleteView):
+class DeleteCategory(LoginRequiredMixin, OnlyYouCategoryMixin, generic.DeleteView):
     model = Categories
     success_url = reverse_lazy('kakeibo:categories')
 
