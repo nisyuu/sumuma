@@ -50,8 +50,15 @@ class ToDoForm(forms.ModelForm):
                      'mb-3 leading-tight focus:outline-none focus:bg-white'}),
     )
     is_bought = forms.BooleanField(
+        required=False,
         widget=forms.CheckboxInput(attrs={
-            'class': 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300'
+            'class': 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 mb-3'
+        })
+    )
+    is_registered = forms.BooleanField(
+        required=False,
+        widget=forms.CheckboxInput(attrs={
+            'class': 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 mb-3'
         })
     )
 
@@ -64,4 +71,4 @@ class ToDoForm(forms.ModelForm):
 
     class Meta:
         model = ToDo
-        fields = ['name', 'amount', 'event_date', 'category', 'memo', 'is_bought']
+        fields = ['name', 'amount', 'event_date', 'category', 'memo', 'is_bought', 'is_registered']
