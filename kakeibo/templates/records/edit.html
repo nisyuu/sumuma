@@ -185,10 +185,11 @@
         month: "", year: "", no_of_days: [], blankDays: [], days: DAYS,
 
         initDate() {
-          let today = new Date();
-          this.month = today.getMonth();
-          this.year = today.getFullYear();
-          let thisDay = new Date(this.year, this.month, today.getDate());
+          const idEventDate = document.getElementById('id_event_date');
+          const date = new Date(idEventDate.value);
+          this.month = date.getMonth();
+          this.year = date.getFullYear();
+          let thisDay = new Date(this.year, this.month, date.getDate());
           this.datepickerValue = thisDay.getFullYear() + '-' + ('00' + (thisDay.getMonth() + 1)).slice(-2) + '-' + ('00' + thisDay.getDate()).slice(-2);
         },
 
