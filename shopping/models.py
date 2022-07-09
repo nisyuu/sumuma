@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from kakeibo.models import Categories
+from kakeibo.models import Expenditures, Categories
 
 User = get_user_model()
 
@@ -21,6 +21,7 @@ class ToDo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_bought = models.BooleanField(_('is bought'), default=False)
     is_registered = models.BooleanField(_('is registered'), default=False)
+    expenditure = models.ForeignKey(Expenditures, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
