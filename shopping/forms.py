@@ -5,7 +5,7 @@ from kakeibo.models import Categories
 from .models import ToDo
 
 
-class CreateToDoForm(forms.ModelForm):
+class ToDoForm(forms.ModelForm):
     name = forms.CharField(
         max_length=100,
         required=True,
@@ -14,6 +14,7 @@ class CreateToDoForm(forms.ModelForm):
                      'mb-3 leading-tight focus:outline-none focus:bg-white'}),
     )
     amount = forms.IntegerField(
+        required=False,
         validators=[
             MinValueValidator(0),
             MaxValueValidator(9999999999999)
@@ -23,6 +24,7 @@ class CreateToDoForm(forms.ModelForm):
                      'mb-3 leading-tight focus:outline-none focus:bg-white'}),
     )
     event_date = forms.DateField(
+        required=False,
         widget=forms.DateInput(attrs={
             'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
                      'mb-3 leading-tight focus:outline-none focus:bg-white',
@@ -34,6 +36,7 @@ class CreateToDoForm(forms.ModelForm):
     )
     category = forms.ModelChoiceField(
         queryset=None,
+        required=False,
         widget=forms.Select(attrs={
             'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
                      'mb-3 leading-tight focus:outline-none focus:bg-white'}, ),
@@ -44,7 +47,12 @@ class CreateToDoForm(forms.ModelForm):
         required=False,
         widget=forms.TextInput(attrs={
             'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'leading-tight focus:outline-none focus:bg-white'}),
+                     'mb-3 leading-tight focus:outline-none focus:bg-white'}),
+    )
+    is_bought = forms.BooleanField(
+        widget=forms.CheckboxInput(attrs={
+            'class': 'w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300'
+        })
     )
 
     def __init__(self, user=None, *args, **kwargs):
@@ -56,4 +64,4 @@ class CreateToDoForm(forms.ModelForm):
 
     class Meta:
         model = ToDo
-        fields = ['name', 'amount', 'event_date', 'category', 'memo']
+        fields = ['name', 'amount', 'event_date', 'category', 'memo', 'is_bought']
