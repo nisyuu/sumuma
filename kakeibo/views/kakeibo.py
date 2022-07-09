@@ -1,5 +1,7 @@
 import uuid
 from datetime import datetime, timedelta
+from itertools import chain
+
 from dateutil.relativedelta import relativedelta
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -8,7 +10,6 @@ from django.db.models import Sum
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from itertools import chain
 
 from kakeibo.forms import ExpenditureForm, IncomeForm, CategoryForm
 from kakeibo.models import Expenditures, Incomes, Categories
@@ -29,9 +30,10 @@ class Top(LoginRequiredMixin, generic.ListView):
                                                 event_date__range=[one_month_ago_date, today],
                                                 deleted=False).select_related('category')
         expenditures_record = Expenditures.objects.filter(user_id=self.request.user.id,
-                                                     event_date__range=[one_month_ago_date, today],
-                                                     deleted=False).select_related('category')
-        return sorted(chain(incomes_record, expenditures_record), key=lambda instance: instance.event_date, reverse=True)
+                                                          event_date__range=[one_month_ago_date, today],
+                                                          deleted=False).select_related('category')
+        return sorted(chain(incomes_record, expenditures_record), key=lambda instance: instance.event_date,
+                      reverse=True)
 
     def get_context_data(self, **kwargs):
         one_month_ago_date = datetime.today() - relativedelta(months=1, days=1)
@@ -122,7 +124,7 @@ class CreateExpenditure(LoginRequiredMixin, generic.CreateView):
         return redirect(self.success_url)
 
 
-class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.UpdateView, generic.FormView):
+class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.UpdateView):
     template_name = 'kakeibo/edit.html'
     model = Expenditures
     form_class = ExpenditureForm
@@ -142,7 +144,7 @@ class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.Updat
         return redirect(self.success_url)
 
 
-class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView, generic.FormView):
+class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView):
     template_name = 'kakeibo/edit.html'
     model = Incomes
     form_class = IncomeForm
