@@ -86,15 +86,9 @@ WSGI_APPLICATION = 'sumuma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+DATABASE_REMOTE = env.get_value('DATABASE_REMOTE', bool)
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': str(PurePath.joinpath(BASE_DIR, 'db.sqlite3')),
-        }
-    }
-else:
+if DATABASE_REMOTE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -106,6 +100,13 @@ else:
             'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             },
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(PurePath.joinpath(BASE_DIR, 'db.sqlite3')),
         }
     }
 
@@ -152,15 +153,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
+EMAIL_REMOTE = env.get_value('EMAIL_REMOTE', bool)
+
+if EMAIL_REMOTE:
     EMAIL_HOST = env('EMAIL_HOST')
     EMAIL_PORT = env.get_value('EMAIL_PORT', int)
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACTIVATION_TIMEOUT_SECONDS = 60 * 60 * 24
 
