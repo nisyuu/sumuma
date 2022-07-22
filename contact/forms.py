@@ -23,6 +23,6 @@ class ContactForm(forms.Form):
         subject = self.cleaned_data['subject']
         message = self.cleaned_data['message']
         from_email = self.email
-        to = ['info@daihuku.xyz']
+        to = ['info@sumuma.com']
 
         send_mail(subject, message, from_email, to)
