@@ -26,3 +26,21 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_DIR: ${{ secrets.SSH_DIR }}
+        - name: Setup Django
+          uses: appleboy/ssh-action@master
+          with:
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            host: ${{secrets.SSH_HOST}}
+            username: ${{secrets.SSH_USER}}
+            port: ${{secrets.SSH_PORT}}
+            script: |
+              su ${{ secrets.DJANGO_PROJECT_USER }}
+              cd ${{ secrets.SSH_DIR }}
+              source env/bin/activate
+              source ${{ secrets.POETRY_ENV_PATH }}
+              poetry install
+              python3 manage.py migrate
+              python3 manage.py collectstatic --noinput
+              exit
+              sudo systemctl restart nginx
+              sudo systemctl restart uwsgi
