@@ -224,20 +224,22 @@ class CreateCategory(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy('kakeibo:categories')
 
     def form_valid(self, form):
+        user = self.request.user
         if not exists_submit_token(self.request):
             messages.error(self.request, '登録に失敗しました。')
             return redirect(self.success_url)
 
         existed_category = Categories.objects.filter(
             name=self.request.POST.get('name'),
-            label=self.request.POST.get('label')
+            label=self.request.POST.get('label'),
+            user=user
         ).first()
 
         if existed_category:
             messages.error(self.request, self.request.POST.get('name') + 'はすでに登録されています。')
             return redirect(self.success_url)
 
-        form.instance.user = self.request.user
+        form.instance.user = user
         messages.success(self.request, self.request.POST.get('name') + 'を登録しました。')
         return super().form_valid(form)
 
