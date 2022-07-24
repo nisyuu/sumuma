@@ -117,7 +117,7 @@ class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.Updat
     template_name = 'records/edit.html'
     model = Expenditures
     form_class = ExpenditureForm
-    success_url = reverse_lazy('records:top')
+    success_url = reverse_lazy('kakeibo:records_top')
 
     def get_initial(self):
         initial = super().get_initial()
@@ -136,7 +136,7 @@ class EditExpenditure(LoginRequiredMixin, OnlyYouExpenditureMixin, generic.Updat
 
     def form_invalid(self, form):
         messages.error(self.request, "更新できませんでした。")
-        return redirect('records:top')
+        return redirect('kakeibo:records_top')
 
 
 class EditIncome(LoginRequiredMixin, OnlyYouIncomeMixin, generic.UpdateView):
