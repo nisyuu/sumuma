@@ -13,8 +13,9 @@ from django.shortcuts import redirect, resolve_url
 from django.template.loader import get_template
 from django.urls import reverse_lazy
 from django.views import generic
-from sumuma.concerns.permission import OnlyYouMixin
+from kakeibo.models import Categories
 
+from sumuma.concerns.permission import OnlyYouMixin
 from .forms import (
     LoginForm, SignupForm, UpdateUserForm, PasswordChangeForm,
     PasswordResetForm, SetPasswordForm
@@ -99,13 +100,32 @@ class Activated(generic.TemplateView):
         else:
             try:
                 user = User.objects.get(pk=user_pk)
-            except User.DoenNotExist:
-                return HttpResponseBadRequest()
-            else:
                 if not user.is_active:
                     user.is_active = True
                     user.save()
-                    return super().get(request, **kwargs)
+                    new_expenditure_categories = [
+                        '食費',
+                        '日用品費',
+                        '水道光熱費',
+                        '通信費',
+                        '美容費',
+                        '娯楽費',
+                        '交際費',
+                        '交通費',
+                        '医療費',
+                        '住居費',
+                        '教育費',
+                        '保険代'
+                    ]
+                    expenditure_categories = []
+                    for new_expenditure_category in new_expenditure_categories:
+                        category = Categories(name=new_expenditure_category, label='expenditure', user=user)
+                        expenditure_categories.append(category)
+                    Categories.objects.bulk_create(expenditure_categories)
+            except User.DoenNotExist:
+                return HttpResponseBadRequest()
+            else:
+                return super().get(request, **kwargs)
 
         return HttpResponseBadRequest()
 
