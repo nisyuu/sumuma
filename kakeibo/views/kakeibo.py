@@ -204,11 +204,12 @@ def set_submit_token(request):
 
 class CategoryIndex(LoginRequiredMixin, generic.ListView):
     template_name = 'kakeibo/categories.html'
-    context_object_name = 'categories'
     model = Categories
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        categories = Categories.objects.filter(user=self.request.user)
+        context['categories'] = categories
         context['submit_token'] = set_submit_token(self.request)
         return context
 
