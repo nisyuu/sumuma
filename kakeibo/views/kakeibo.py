@@ -24,18 +24,20 @@ class Top(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
+        user = self.request.user
         today = datetime.today()
         one_month_ago_date = today - relativedelta(months=1, days=1)
-        incomes_record = Incomes.objects.filter(user_id=self.request.user.id,
+        incomes_record = Incomes.objects.filter(user=user,
                                                 event_date__range=[one_month_ago_date, today],
                                                 deleted=False).select_related('category')
-        expenditures_record = Expenditures.objects.filter(user_id=self.request.user.id,
+        expenditures_record = Expenditures.objects.filter(user=user,
                                                           event_date__range=[one_month_ago_date, today],
                                                           deleted=False).select_related('category')
         return sorted(chain(incomes_record, expenditures_record), key=lambda instance: instance.event_date,
                       reverse=True)
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         one_month_ago_date = datetime.today() - relativedelta(months=1, days=1)
         context = super().get_context_data(**kwargs)
         event_date = []
@@ -44,10 +46,10 @@ class Top(LoginRequiredMixin, generic.ListView):
         for day in range(32):
             date = one_month_ago_date + timedelta(day)
             income = \
-                Incomes.objects.filter(user_id=self.request.user.id, event_date=date, deleted=False).aggregate(
+                Incomes.objects.filter(user=user, event_date=date, deleted=False).aggregate(
                     sum_amount=Sum('amount'))['sum_amount']
             expenditure = \
-                Expenditures.objects.filter(user_id=self.request.user.id, event_date=date, deleted=False).aggregate(
+                Expenditures.objects.filter(user=user, event_date=date, deleted=False).aggregate(
                     sum_amount=Sum('amount'))['sum_amount']
             if income:
                 incomes.append(income)
@@ -64,11 +66,11 @@ class Top(LoginRequiredMixin, generic.ListView):
         context['expenditures'] = expenditures
         context['expenditure_categories'] = Categories.objects.filter(
             label='expenditure',
-            user=self.request.user
+            user=user
         ).values_list('id', flat=True)
         context['income_categories'] = Categories.objects.filter(
             label='income',
-            user=self.request.user
+            user=user
         ).values_list('id', flat=True)
         return context
 
