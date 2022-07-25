@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+{% load static %}
+{% load tailwind_tags %}
+<head>
+  {% include 'gtm.html' %}
+  <!-- Ordinary meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="ストレスフリー、直感的、シンプルにこだわった家計簿">
+  <meta name="keywords" content="家計簿">
+  <meta property="og:title" content="SUMUMA"/>
+  <meta property="og:site_name" content="SUMUMA"/>
+  <meta property="og:description" content="ストレスフリー、直感的、シンプルにこだわった家計簿"/>
+  <meta property="og:url" content="https://sumuma.com"/>
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://sumuma.com/static/home/images/top_image.jpg"/>
+  <meta property="og:locale" content="ja_JP"/>
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="SUMUMA">
+  <meta itemprop="description" content="ストレスフリー、直感的、シンプルにこだわった家計簿">
+  <meta itemprop="image" content="https://sumuma.com/static/home/images/top_image.jpg">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://sumuma.com">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SUMUMA">
+  <meta property="og:description" content="ストレスフリー、直感的、シンプルにこだわった家計簿">
+  <meta property="og:image" content="https://sumuma.com/static/home/images/top_image.jpg">
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SUMUMA">
+  <meta name="twitter:description" content="ストレスフリー、直感的、シンプルにこだわった家計簿">
+  <meta name="twitter:image" content="https://sumuma.com/static/home/images/top_image.jpg">
+  <!-- iOS Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="SUMUMA">
+  <!-- favicon -->
+  <link rel="icon" type="image/png" href="{% static 'home/images/favicon.png' %}" alt="">
+  <link rel="apple-touch-icon" href="{% static 'home/images/favicon.png' %}" alt="">
+  <title>SUMUMA</title>
+  {% tailwind_css %}
+</head>
+<body class="font-inter antialiased bg-white text-gray-900 tracking-tight" data-aos-easing="ease-out-cubic"
+      data-aos-duration="700" data-aos-delay="0">
+{% include 'gtm_noscript.html' %}
+{% block content %}
+{% endblock %}
+</body>
+</html>
