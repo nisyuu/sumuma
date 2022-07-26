@@ -1,43 +1,42 @@
 {% extends "lp/base.html" %}
 {% block content %}
   {% load static %}
-  <script>
-    if (localStorage.getItem('sidebar-expanded') == 'true') {
-      document.querySelector('body').classList.add('sidebar-expanded');
-    } else {
-      document.querySelector('body').classList.remove('sidebar-expanded');
-    }
-  </script>
   <div id="root">
     <div class="flex flex-col min-h-screen overflow-hidden">
-      <header class="fixed w-full z-30 md:bg-opacity-90 transition duration-300 ease-in-out false">
+      <header class="fixed w-full z-30 md:bg-opacity-90 transition duration-300 ease-in-out">
         <div class="max-w-6xl mx-auto px-5 sm:px-6">
           <div class="flex items-center justify-between h-16 md:h-20">
-            <div class="flex-shrink-0 mr-4"><a class="block" aria-label="Cruip" href="/">
-              <svg class="w-8 h-8" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient cx="21.152%" cy="86.063%" fx="21.152%" fy="86.063%" r="79.941%" id="header-logo">
-                    <stop stop-color="#4FD1C5" offset="0%"></stop>
-                    <stop stop-color="#81E6D9" offset="25.871%"></stop>
-                    <stop stop-color="#338CF5" offset="100%"></stop>
-                  </radialGradient>
-                </defs>
-                <rect width="32" height="32" rx="16" fill="url(#header-logo)" fill-rule="nonzero"></rect>
-              </svg>
-            </a></div>
+            <div class="flex-shrink-0 mr-4">
+              <a class="block" href="{% url 'home:top' %}">
+                <svg class="w-8 h-8" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient cx="21.152%" cy="86.063%" fx="21.152%" fy="86.063%" r="79.941%" id="header-logo">
+                      <stop stop-color="#4FD1C5" offset="0%"></stop>
+                      <stop stop-color="#81E6D9" offset="25.871%"></stop>
+                      <stop stop-color="#338CF5" offset="100%"></stop>
+                    </radialGradient>
+                  </defs>
+                  <rect width="32" height="32" rx="16" fill="url(#header-logo)" fill-rule="nonzero"></rect>
+                </svg>
+              </a>
+            </div>
             <nav class="flex flex-grow">
               <ul class="flex flex-grow justify-end flex-wrap items-center">
-                <li><a
-                  class="font-medium text-gray-600 hover:text-gray-900 bg-white py-2 px-4 rounded"
-                  href="{% url 'account:login' %}">ログイン</a></li>
-                <li><a class="text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3 py-2 px-4 rounded"
-                       href="{% url 'account:signup' %}"><span>サインアップ</span>
-{#                  <svg class="w-3 h-3 fill-current text-gray-400 flex-shrink-0 ml-2 -mr-1" viewBox="0 0 12 12"#}
-{#                       xmlns="http://www.w3.org/2000/svg">#}
-{#                    <path d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z"#}
-{#                          fill-rule="nonzero"></path>#}
-{#                  </svg>#}
-                </a></li>
+                <li>
+                  <a class="font-medium text-gray-600 hover:text-gray-900 bg-white py-2 px-4 rounded"
+                     href="{% url 'account:login' %}">ログイン</a>
+                </li>
+                <li>
+                  <a class="text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3 py-2 px-4 rounded"
+                     href="{% url 'account:signup' %}">
+                    <span>サインアップ</span>
+                    {#                  <svg class="w-3 h-3 fill-current text-gray-400 flex-shrink-0 ml-2 -mr-1" viewBox="0 0 12 12"#}
+                    {#                       xmlns="http://www.w3.org/2000/svg">#}
+                    {#                    <path d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z"#}
+                    {#                          fill-rule="nonzero"></path>#}
+                    {#                  </svg>#}
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -62,29 +61,29 @@
           </div>
           <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="pt-32 pb-12 md:pt-40 md:pb-20">
-              <div class="text-center pb-12 md:pb-16">
+              <div class="text-center pb-3 md:pb-4">
                 <h1
                   class="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 aos-init aos-animate"
                   data-aos="zoom-y-out">常識を革新に <span
                   class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">SUMUMA</span></h1>
                 <div class="max-w-3xl mx-auto">
                   <p class="text-xl text-gray-600 mb-8 aos-init aos-animate" data-aos="zoom-y-out" data-aos-delay="150">
-                    ただの家計簿で終わらせない、家計簿をもっと賢く美しく</p>
-                  <div class="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center aos-init aos-animate"
-                       data-aos="zoom-y-out" data-aos-delay="300">
-                    <div><a class="text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0 py-2 px-4 rounded"
-                            href="{% url 'account:signup' %}">家計簿を始める</a></div>
-{#                    <div><a class="text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 py-2 px-4 rounded"#}
-{#                            href="{% url 'account:login' %}">ログイン</a></div>#}
-                  </div>
+                    ただの家計簿で終わらせない、家計簿をもっと賢く美しく
+                  </p>
+                  {#                  <div class="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center aos-init aos-animate"#}
+                  {#                       data-aos="zoom-y-out" data-aos-delay="300">#}
+                  {#                    <div><a class="text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0 py-2 px-4 rounded"#}
+                  {#                            href="{% url 'account:signup' %}">家計簿を始める</a></div>#}
+                  {#                    <div><a class="text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4 py-2 px-4 rounded"#}
+                  {#                            href="{% url 'account:login' %}">ログイン</a></div>#}
+                  {#                  </div>#}
                 </div>
               </div>
               <div>
                 <div class="relative flex justify-center mb-8 aos-init aos-animate" data-aos="zoom-y-out"
                      data-aos-delay="450">
-                  <div class="flex flex-col justify-center"><img class="mx-auto"
-                                                                 src="{% static 'lp/images/hero-image.png' %}"
-                                                                 width="768" height="432" alt="Hero">
+                  <div class="flex flex-col justify-center">
+                    <img class="mx-auto" src="{% static 'lp/images/hero-image.png' %}" width="768" height="432" alt="">
                     <svg class="absolute inset-0 max-w-full mx-auto md:max-w-none h-auto" width="768" height="432"
                          viewBox="0 0 768 432" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -116,28 +115,14 @@
                       </g>
                     </svg>
                   </div>
-                  <button
-                    class="absolute top-full flex items-center transform -translate-y-1/2 bg-white rounded-full font-medium group p-4 shadow-lg"
-                    aria-controls="modal">
-                    <svg class="w-6 h-6 fill-current text-gray-400 group-hover:text-blue-600 flex-shrink-0"
-                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0 2C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12z"></path>
-                      <path d="M10 17l6-5-6-5z"></path>
-                    </svg>
-                    <span class="ml-3">Watch the full video (2 min)</span></button>
-                </div>
-                <div class="fixed inset-0 z-50 bg-white bg-opacity-75 transition-opacity backdrop-blur-sm exit-done"
-                     aria-hidden="true" style="display: none;"></div>
-                <div id="modal"
-                     class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center transform px-4 sm:px-6 exit-done"
-                     role="dialog" aria-modal="true" aria-labelledby="modal-headline" style="display: none;">
-                  <div class="bg-white overflow-auto max-w-6xl w-full max-h-full">
-                    <div class="relative pb-9/16">
-                      <iframe class="absolute w-full h-full" src="https://player.vimeo.com/video/174002812"
-                              title="Video" allowfullscreen=""></iframe>
-                    </div>
-                  </div>
+                  <a href="{% url 'account:signup' %}"
+                     class="absolute top-full flex items-center transform -translate-y-1/2 bg-blue-500 text-white text-xl rounded-full font-medium group py-3 px-6 shadow-lg cursor-pointer">
+                    {#                    <svg class="w-6 h-6 fill-current text-gray-400 group-hover:text-blue-600 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">#}
+                    {#                      <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0 2C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12z"></path>#}
+                    {#                      <path d="M10 17l6-5-6-5z"></path>#}
+                    {#                    </svg>#}
+                    <span>サインアップ</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -149,27 +134,28 @@
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div class="pt-12 md:pt-20">
               <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-                <h1 class="h2 mb-4">Explore the solutions</h1>
-                <p class="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</p>
+                <h1 class="h2 mb-4">SUMUMAについて</h1>
+                <p class="text-xl text-gray-600">
+                  常に先を考える、唯一無二の家計簿
+                </p>
               </div>
               <div class="md:grid md:grid-cols-12 md:gap-6">
                 <div
                   class="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-7 lg:col-span-6 md:mt-6 aos-init aos-animate"
                   data-aos="fade-right">
                   <div class="md:pr-4 lg:pr-12 xl:pr-16 mb-8">
-                    <h3 class="h3 mb-3">Powerful suite of tools</h3>
-                    <p class="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse
-                      cillum dolore pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+                    <h3 class="h3 mb-3">家計簿のさらに上を</h3>
+                    <p class="text-xl text-gray-600">
+                      SUMUMAはストレスフリー、直感的、利便性によって今までにない家計簿を作り上げています
+                    </p>
                   </div>
                   <div class="mb-8 md:mb-0">
-                    <a
-                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-gray-200 border-transparent"
-                      href="#0">
+                    <div
+                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
                       <div>
-                        <div class="font-bold leading-snug tracking-tight mb-1">Building the Simple ecosystem</div>
-                        <div class="text-gray-600">Take collaboration to the next level with security and administrative
-                          features built for teams.
+                        <div class="font-bold leading-snug tracking-tight mb-1">ストレスフリー</div>
+                        <div class="text-gray-600">
+                          ストレスフリーを第一に考えることで、初めてのご利用でも簡単にお使いいただけます。
                         </div>
                       </div>
                       <div
@@ -179,14 +165,13 @@
                             d="M11.953 4.29a.5.5 0 00-.454-.292H6.14L6.984.62A.5.5 0 006.12.173l-6 7a.5.5 0 00.379.825h5.359l-.844 3.38a.5.5 0 00.864.445l6-7a.5.5 0 00.075-.534z"></path>
                         </svg>
                       </div>
-                    </a>
-                    <a
-                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg"
-                      href="#0">
+                    </div>
+                    <div
+                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
                       <div>
-                        <div class="font-bold leading-snug tracking-tight mb-1">Building the Simple ecosystem</div>
-                        <div class="text-gray-600">Take collaboration to the next level with security and administrative
-                          features built for teams.
+                        <div class="font-bold leading-snug tracking-tight mb-1">直感的</div>
+                        <div class="text-gray-600">
+                          直感的で洗練されたデザインに仕上げることで、操作性の向上を実現しています。
                         </div>
                       </div>
                       <div
@@ -197,14 +182,13 @@
                             fill-rule="nonzero"></path>
                         </svg>
                       </div>
-                    </a>
-                    <a
-                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg"
-                      href="#0">
+                    </div>
+                    <div
+                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
                       <div>
-                        <div class="font-bold leading-snug tracking-tight mb-1">Building the Simple ecosystem</div>
-                        <div class="text-gray-600">Take collaboration to the next level with security and administrative
-                          features built for teams.
+                        <div class="font-bold leading-snug tracking-tight mb-1">利便性</div>
+                        <div class="text-gray-600">
+                          豊富な機能により、ただの家計簿にとどまない圧倒的な利便性を追求しています。
                         </div>
                       </div>
                       <div
@@ -215,7 +199,7 @@
                             fill="#191919" fill-rule="nonzero"></path>
                         </svg>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -260,9 +244,10 @@
           <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div class="py-12 md:py-20">
               <div class="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-                <h2 class="h2 mb-4">How Simple works</h2>
-                <p class="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</p>
+                <h2 class="h2 mb-4">SUMUMAの機能</h2>
+                <p class="text-xl text-gray-600">
+                  SUMUMAには他の家計簿アプリにはない沢山の機能があります
+                </p>
               </div>
               <div
                 class="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none">
@@ -281,8 +266,8 @@
                       </g>
                     </g>
                   </svg>
-                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">Initial Contact</h4>
-                  <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">収支分析</h4>
+                  <p class="text-gray-600 text-center">月の支出状況を豊富なグラフによって様々な視点から分析することができます。</p>
                 </div>
                 <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -298,8 +283,8 @@
                       </g>
                     </g>
                   </svg>
-                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">Discovery Session</h4>
-                  <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">収支計画</h4>
+                  <p class="text-gray-600 text-center">月々の収支を予め計画しておくことで今の支出状況を把握することができます。</p>
                 </div>
                 <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -313,8 +298,8 @@
                       </g>
                     </g>
                   </svg>
-                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">Contracting</h4>
-                  <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">直近登録履歴</h4>
+                  <p class="text-gray-600 text-center">誤った日付で登録した場合でも、登録順なのですぐに見つけて編集ができます。</p>
                 </div>
                 <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -331,8 +316,8 @@
                       </g>
                     </g>
                   </svg>
-                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">Fast Prototyping</h4>
-                  <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">CSVエクスポート</h4>
+                  <p class="text-gray-600 text-center">CSVエクスポートが可能なので、独自の分析も可能です。</p>
                 </div>
                 <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -345,8 +330,8 @@
                       </g>
                     </g>
                   </svg>
-                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">Design Phase</h4>
-                  <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">CSVインポート</h4>
+                  <p class="text-gray-600 text-center">CSVインポートが可能なので、他の家計簿からの移行もスムーズです。</p>
                 </div>
                 <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -365,8 +350,8 @@
                       </g>
                     </g>
                   </svg>
-                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">Develop &amp; Launch</h4>
-                  <p class="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                  <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">買い物リスト</h4>
+                  <p class="text-gray-600 text-center">購入するものをリスト化して管理することができます。</p>
                 </div>
               </div>
             </div>
