@@ -38,7 +38,7 @@ class Top(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         user = self.request.user
-        one_month_ago_date = datetime.today() - relativedelta(months=1, days=1)
+        one_month_ago_date = datetime.today() - relativedelta(months=1)
         context = super().get_context_data(**kwargs)
         event_date = []
         incomes = []
