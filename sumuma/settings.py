@@ -174,6 +174,7 @@ INTERNAL_IPS = [
 ]
 
 LOGIN_REDIRECT_URL = 'kakeibo:top'
+LOGIN_URL = '/account/login'
 
 CACHES = {
     'default': {
