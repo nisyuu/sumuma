@@ -9,9 +9,15 @@
         </div>
         <div class="w-full md:w-1/2 p-3 mb-6 md:mb-0 flex items-center justify-end">
           <form action="{% url 'shopping:top' %}" method="get">
-            <input type="checkbox" {% if request.GET.only_is_not_bought %} checked {% endif %} name="only_is_not_bought" id="only-is-not-bought" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300">
-            <label class="ml-2 text-sm" for="only-is-not-bought">未購入のものだけ表示</label>
-            <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 ml-4 rounded">検索</button>
+            <input type="checkbox" {% if not request.GET.is_all %} checked {% endif %} name="is_all"
+                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 hidden">
+            <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 ml-4 rounded">
+              {% if request.GET.is_all %}
+                未購入のみ表示
+              {% else %}
+                全表示
+              {% endif %}
+            </button>
           </form>
         </div>
       </div>

@@ -17,14 +17,13 @@ User = get_user_model()
 class Top(LoginRequiredMixin, generic.ListView):
     template_name = 'shopping/todo.html'
     context_object_name = 'todos'
-    paginate_by = 50
+    paginate_by = 100
     model = ToDo
 
     def get_queryset(self):
-        if self.request.GET.get('only_is_not_bought') == 'on':
-            return ToDo.objects.filter(is_bought=False, user=self.request.user)
-        else:
+        if self.request.GET.get('is_all') == 'on':
             return ToDo.objects.filter(user=self.request.user)
+        return ToDo.objects.filter(is_bought=False, user=self.request.user)
 
 
 class CreateToDo(LoginRequiredMixin, generic.CreateView):
