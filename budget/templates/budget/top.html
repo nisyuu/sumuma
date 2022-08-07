@@ -144,12 +144,21 @@
         labels: eventDate,
         datasets: [
           {
-            label: "支出",
+            label: "支出予算",
             borderColor: 'rgb(0, 255, 0)',
             pointBorderWidth: 3,
             lineTension: 0,
             fill: origin,
             data: {{ straight_line }},
+          },
+          {
+            label: "実支出",
+            borderColor: 'rgb(255, 0, 0)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            pointBorderWidth: 3,
+            lineTension: 0,
+            fill: '-1',
+            data: expenditure,
           },
         ]
       },
