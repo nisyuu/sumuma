@@ -1,10 +1,11 @@
 import uuid
 from datetime import date, datetime, timedelta
+
 from dateutil.relativedelta import relativedelta
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
-from django.db.models import Sum, Prefetch
+from django.db.models import Sum
 from django.shortcuts import redirect
 from django.views import generic
 
@@ -79,7 +80,8 @@ class Top(LoginRequiredMixin, generic.TemplateView):
         if expenditure_plans:
             for count_back_day in range(0, int(year_and_month.strftime('%d'))):
                 back_date = year_and_month - timedelta(count_back_day)
-                sum_expenditure = expenditure.filter(event_date=back_date).aggregate(sum_amount=Sum('amount'))['sum_amount']
+                sum_expenditure = expenditure.filter(event_date=back_date).aggregate(sum_amount=Sum('amount'))[
+                    'sum_amount']
                 if bool(sum_expenditure):
                     expenditure_records.append(sum_expenditure)
                 else:
@@ -141,7 +143,7 @@ class Edit(LoginRequiredMixin, generic.TemplateView):
 @transaction.atomic
 def expenditure_plan_save(request):
     budget = ExpenditurePlans.objects.filter(user_id=request.user.id,
-                                                  event_date=request.POST.get('year_and_month')).first()
+                                             event_date=request.POST.get('year_and_month')).first()
     if budget:
         target_date = datetime.strptime(request.POST.get('year_and_month'), '%Y-%m-%d').strftime('%m月')
         messages.error(request, target_date + "の支出予算登録に失敗しました。")
