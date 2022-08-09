@@ -50,8 +50,8 @@ class UpdateUserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                                     'border-gray-200 rounded py-3 px-4 leading-tight ' \
-                                                     'focus:outline-none focus:bg-white focus:border-gray-300 '
+                                                     'border-gray-200 rounded py-3 px-4 leading-tight '
+        self.fields['email'].widget.attrs['readonly'] = 'readonly'
         self.fields['last_name'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 ' \
                                                          'border border-gray-200 rounded py-3 px-4 leading-tight ' \
                                                          'focus:outline-none focus:bg-white focus:border-gray-300 '
