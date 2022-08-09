@@ -56,14 +56,14 @@
                       <input type="date"
                              name="start_date"
                              class="w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                             value="{{ request.GET.start_date }}"
+                             value={% if request.GET.start_date %} "{{ request.GET.start_date }}" {% else %} "{{ start_date }}" {% endif %}
                              required>
                     </div>
                     <div class="w-1/2 pl-3">
                       <input type="date"
                              name="end_date"
                              class="w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
-                             value="{{ request.GET.end_date }}"
+                             value={% if request.GET.end_date %} "{{ request.GET.end_date }}" {% else %} "{{ end_date }}" {% endif %}
                              required>
                     </div>
                   </div>

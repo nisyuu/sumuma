@@ -33,7 +33,7 @@ def _get_end_of_month(year_and_month):
 class Top(LoginRequiredMixin, generic.ListView):
     template_name = 'records/top.html'
     context_object_name = 'records'
-    paginate_by = 100
+    paginate_by = 300
 
     def get_queryset(self):
         query = self.request.GET
@@ -72,13 +72,20 @@ class Top(LoginRequiredMixin, generic.ListView):
         context['categories'] = Categories.objects.filter(id__in=category_ids)
         context['expenditure_categories'] = Categories.objects.filter(label='expenditure').values_list('id', flat=True)
         context['income_categories'] = Categories.objects.filter(label='income').values_list('id', flat=True)
+        today = datetime.today()
+        start_date = _get_beginning_of_month(today)
+        end_date = _get_end_of_month(today)
+        context['start_date'] = start_date.strftime('%Y-%m-%d')
+        context['end_date'] = end_date.strftime('%Y-%m-%d')
         return context
 
 
 def records_export(request):
     start_date = request.POST.get('start_date')
     end_date = request.POST.get('end_date')
-    category_ids = request.POST.get('category_ids').split(',')
+    category_ids = request.POST.get('category_ids')
+    if category_ids:
+        request.POST.get('category_ids').split(',')
     today = date.today()
     if not start_date:
         start_date = _get_beginning_of_month(today)
