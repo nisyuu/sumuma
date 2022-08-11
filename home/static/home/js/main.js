@@ -15,9 +15,9 @@
 
     // === logo change
     if (ud_header.classList.contains("sticky")) {
-      logo.src = "static/home/images/favicon.png";
+      logo.src = "static/home/images/logo/symbol-logo.png";
     } else {
-      logo.src = "static/home/images/favicon.png";
+      logo.src = "static/home/images/logo/symbol-logo.png";
     }
 
     // show or hide the back-top-top button
