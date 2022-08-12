@@ -4,6 +4,8 @@ from django.contrib.auth.forms import (
     AuthenticationForm, UserCreationForm, PasswordChangeForm as PasswordChangeBaseForm,
     PasswordResetForm as PasswordResetBaseForm, SetPasswordForm as SetPasswordBaseForm
 )
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -55,6 +57,12 @@ class UpdateUserForm(forms.ModelForm):
         self.fields['first_name'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 ' \
                                                           'border border-gray-200 rounded py-3 px-4 leading-tight ' \
                                                           'focus:outline-none focus:bg-white focus:border-gray-300 '
+
+    def clean_email(self):
+        if self.instance.email != self.cleaned_data['email']:
+            raise ValidationError(_("無効な操作です"), code="invalid email")
+        else:
+            return self.cleaned_data['email']
 
 
 class PasswordChangeForm(PasswordChangeBaseForm):

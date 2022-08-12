@@ -13,8 +13,8 @@ from django.shortcuts import redirect, resolve_url
 from django.template.loader import get_template
 from django.urls import reverse_lazy
 from django.views import generic
-from kakeibo.models import Categories
 
+from kakeibo.models import Categories
 from sumuma.concerns.permission import OnlyYouMixin
 from .forms import (
     LoginForm, SignupForm, UpdateUserForm, PasswordChangeForm,
@@ -174,6 +174,10 @@ class UpdateUser(LoginRequiredMixin, OnlyYouMixin, generic.UpdateView):
     def get_success_url(self):
         messages.success(self.request, 'ユーザー情報を変更しました。')
         return resolve_url('account:user_detail', pk=self.kwargs['pk'])
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'ユーザー情報の更新に失敗しました。')
+        return redirect('account:user_detail', pk=self.kwargs['pk'])
 
 
 class PasswordChange(LoginRequiredMixin, OnlyYouMixin, PasswordChangeView):
