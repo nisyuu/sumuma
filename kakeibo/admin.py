@@ -9,12 +9,12 @@ class CategoriesAdmin(admin.ModelAdmin):
 
 
 class IncomesAdmin(admin.ModelAdmin):
-    list_display = ['id', 'event_date', 'memo', 'amount', 'user']
+    list_display = ['id', 'event_date', 'memo', 'amount', 'user', 'created_at']
     list_filter = ['user']
 
 
 class ExpendituresAdmin(admin.ModelAdmin):
-    list_display = ['id', 'event_date', 'memo', 'amount', 'user']
+    list_display = ['id', 'event_date', 'memo', 'amount', 'user', 'created_at']
     list_filter = ['user']
 
 
