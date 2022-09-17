@@ -190,6 +190,31 @@ def expenditure_plan_update(request):
     return redirect('budget:top')
 
 
+@transaction.atomic
+def copy_last_month_expenditure_plans(request):
+    if request.method != 'POST':
+        messages.error(request, "登録に失敗しました。")
+
+    user = request.user
+    year_and_month = request.POST.get('year_and_month')
+    last_month = datetime.strptime(year_and_month, '%Y-%m') + timedelta(days=-1)
+    last_month_budget_plans = ExpenditurePlans.objects.filter(user=user, event_date=last_month)
+    categories = Categories.objects.filter(user=user, label='expenditure')
+
+    if last_month_budget_plans:
+        try:
+            with transaction.atomic():
+                for category in categories:
+                    last_month_budget_plan = last_month_budget_plans.get(category=category)
+                    ExpenditurePlans.objects.create(user=user, category=category,
+                                                    event_date=last_month_budget_plan.event_date,
+                                                    amount=last_month_budget_plan.amount)
+                messages.success(request, "前月の支出計画から複製しました。")
+        except:
+            messages.error(request, " 。")
+    return redirect('budget:top')
+
+
 # setting the submit token
 def set_submit_token(request):
     submit_token = str(uuid.uuid4())
