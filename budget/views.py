@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.db.models import Sum
 from django.shortcuts import redirect
@@ -101,7 +102,8 @@ class Top(LoginRequiredMixin, generic.TemplateView):
             'expenditure_records': expenditure_records,
             'expenditure_condition': expenditure_condition,
             'sum_budget': sum_budget,
-            'sum_expenditure': sum_expenditure,
+            # HACK: sum_expenditure should not to be None
+            'sum_expenditure': sum_expenditure if sum_expenditure else 0,
             'sum_balance': sum_balance,
         }
 
@@ -197,22 +199,34 @@ def copy_last_month_expenditure_plans(request):
 
     user = request.user
     year_and_month = request.POST.get('year_and_month')
-    last_month = datetime.strptime(year_and_month, '%Y-%m') + timedelta(days=-1)
+    event_date = datetime.strptime(year_and_month, '%Y-%m')
+    last_month = (datetime.strptime(year_and_month, '%Y-%m') + timedelta(days=-1)).strftime('%Y-%m-01')
     last_month_budget_plans = ExpenditurePlans.objects.filter(user=user, event_date=last_month)
     categories = Categories.objects.filter(user=user, label='expenditure')
 
-    if last_month_budget_plans:
-        try:
-            with transaction.atomic():
-                for category in categories:
-                    last_month_budget_plan = last_month_budget_plans.get(category=category)
-                    ExpenditurePlans.objects.create(user=user, category=category,
-                                                    event_date=last_month_budget_plan.event_date,
+    if not last_month_budget_plans:
+        messages.error(request, "前月の支出計画がありません。")
+        return redirect('budget:top')
+
+    try:
+        with transaction.atomic():
+            for category in categories:
+                last_month_budget_plan = last_month_budget_plans.filter(category=category).first()
+                if last_month_budget_plan:
+                    ExpenditurePlans.objects.create(user=user,
+                                                    category=category,
+                                                    event_date=event_date,
                                                     amount=last_month_budget_plan.amount)
-                messages.success(request, "前月の支出計画から複製しました。")
-        except:
-            messages.error(request, " 。")
-    return redirect('budget:top')
+                else:
+                    ExpenditurePlans.objects.create(user=user,
+                                                    category=category,
+                                                    event_date=event_date,
+                                                    amount=0)
+            messages.success(request, "前月の支出計画から複製しました。")
+            return redirect('budget:top')
+    except ValidationError:
+        messages.error(request, "複製に失敗しました。")
+        return redirect('budget:top')
 
 
 # setting the submit token
