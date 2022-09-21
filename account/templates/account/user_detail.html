@@ -1,17 +1,19 @@
 {% extends "loggedin_base.html" %}
 {% block content %}
-<div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
-  <div class="m-3 p-4 bg-white shadow overflow-hidden sm:rounded-lg">
-    <div class="md:text-left lg:text-right">
-      <a class="bg-gray-400 hover:bg-gray-500 text-white hover:text-white font-bold py-2 px-4 rounded" href="{% url 'account:password_change' user.pk %}">パスワード変更</a>
-      <a class="bg-gray-400 hover:bg-gray-500 text-white hover:text-white font-bold py-2 px-4 rounded" href="{% url 'account:update_user' user.pk %}">ユーザー情報変更</a>
+  <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
+    <div class="m-3 p-4 bg-white shadow overflow-hidden sm:rounded-lg">
+      <div class="md:text-left lg:text-right">
+        <a class="bg-gray-400 hover:bg-gray-500 text-white hover:text-white font-bold py-2 px-4 rounded"
+           href="{% url 'account:password_change' user.pk %}">パスワード変更</a>
+        <a class="bg-gray-400 hover:bg-gray-500 text-white hover:text-white font-bold py-2 px-4 rounded"
+           href="{% url 'account:update_user' user.pk %}">ユーザー情報変更</a>
+      </div>
     </div>
-  </div>
-  <div class="flex flex-col m-3">
-    <div class="sm:-mx-6 lg:-mx-8">
-      <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <table class="min-w-full shadow overflow-hidden sm:rounded-lg">
-          <tbody class="bg-white divide-y divide-gray-200">
+    <div class="flex flex-col m-3">
+      <div class="sm:-mx-6 lg:-mx-8">
+        <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <table class="min-w-full shadow overflow-hidden sm:rounded-lg">
+            <tbody class="bg-white divide-y divide-gray-200">
             <tr>
               <th class="p-3 text-left text-gray-900">
                 メールアドレス
@@ -36,23 +38,34 @@
                 {{ user.first_name }}
               </td>
             </tr>
-          </tbody>
-          <!-- More people... -->
-        </table>
+            <tr>
+              <th class="p-3 text-left text-gray-900">
+                Twitterユーザー名
+              </th>
+              <td class="p-3 text-sm text-gray-900">
+                <a href="https://twitter.com/{{ user.twitter_username }}" class="text-blue-600" target="_blank"
+                   rel="noopener noreferrer">
+                  {{ user.twitter_username }}
+                </a>
+              </td>
+            </tr>
+            </tbody>
+            <!-- More people... -->
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<script type="text/javascript">
-{% for message in messages %}
-  $.toast({
-    icon: '{{ message.tags }}',
-    text: '{{ message }}',
-    position: 'bottom-right',
-    showHideTransition: 'slide',
-    hideAfter: 5000,
-  });
-{% endfor %}
-</script>
-{#<script type="text/javascript" src="{% static '' %}"></script>#}
+  <script type="text/javascript">
+    {% for message in messages %}
+      $.toast({
+        icon: '{{ message.tags }}',
+        text: '{{ message }}',
+        position: 'bottom-right',
+        showHideTransition: 'slide',
+        hideAfter: 5000,
+      });
+    {% endfor %}
+  </script>
+  {#<script type="text/javascript" src="{% static '' %}"></script>#}
 {% endblock %}

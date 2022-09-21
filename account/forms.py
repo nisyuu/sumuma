@@ -44,7 +44,7 @@ class UpdateUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name')
+        fields = ('email', 'first_name', 'last_name', 'twitter_username')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -57,6 +57,10 @@ class UpdateUserForm(forms.ModelForm):
         self.fields['first_name'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 ' \
                                                           'border border-gray-200 rounded py-3 px-4 leading-tight ' \
                                                           'focus:outline-none focus:bg-white focus:border-gray-300 '
+        self.fields['twitter_username'].widget.attrs['class'] = \
+            'appearance-none block w-full bg-gray-200 text-gray-700 ' \
+            'border border-gray-200 rounded py-3 px-4 leading-tight ' \
+            'focus:outline-none focus:bg-white focus:border-gray-300 '
 
     def clean_email(self):
         if self.instance.email != self.cleaned_data['email']:
