@@ -63,6 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    twitter_username = models.CharField(_('twitter_username'), max_length=50, blank=True, null=True)
 
     objects = UserManager()
 
