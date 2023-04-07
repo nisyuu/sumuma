@@ -202,14 +202,14 @@ testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
 
 [[package]]
 name = "django-tailwind"
-version = "3.1.1"
+version = "3.5.0"
 description = "Tailwind CSS Framework for Django projects"
 category = "main"
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = ">=3.8.1,<4.0.0"
 files = [
-    {file = "django-tailwind-3.1.1.tar.gz", hash = "sha256:3791d24f38afd9e0125e2a7e71478cd0981ac07033edd52a6ebae65c3daa5f28"},
-    {file = "django_tailwind-3.1.1-py3-none-any.whl", hash = "sha256:0bb8e33c28d2d1473ffc12bde4ff51500e15f24bfd116539780f0636d2a1a125"},
+    {file = "django_tailwind-3.5.0-py3-none-any.whl", hash = "sha256:dcc3b29463fff48a0e8ccd15c87fd467f0e746a7987bde0fdde6253dbb7861be"},
+    {file = "django_tailwind-3.5.0.tar.gz", hash = "sha256:c089b05b47d0e9d19567a81a74949fde16cbbfd8e4264c1f8eb4216a644065b2"},
 ]
 
 [package.dependencies]
