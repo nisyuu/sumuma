@@ -143,16 +143,16 @@ files = [
 
 [[package]]
 name = "uwsgi"
-version = "2.0.20"
+version = "2.0.21"
 description = "The uWSGI server"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "uwsgi-2.0.20.tar.gz", hash = "sha256:88ab9867d8973d8ae84719cf233b7dafc54326fcaec89683c3f9f77c002cdff9"},
+    {file = "uwsgi-2.0.21.tar.gz", hash = "sha256:35a30d83791329429bc04fe44183ce4ab512fcf6968070a7bfba42fc5a0552a9"},
 ]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "3d4edcba68758141f5677c101b0017523ab57fb83015f5934deb9dc9259c6854"
+content-hash = "15bd0dfc486bcef3096ab465c2946884ddb1e3e221c665b31f851f9e96fbe2d4"
