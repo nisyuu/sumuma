@@ -117,6 +117,17 @@ django = ">=3.0"
 pytz = "*"
 
 [[package]]
+name = "drf-flex-fields"
+version = "1.0.2"
+description = "Flexible, dynamic fields and nested resources for Django REST Framework serializers."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "drf-flex-fields-1.0.2.tar.gz", hash = "sha256:48139eeff0b1232fc05a9f353c3c2b570b225985043dedda6ab0d5e8b7a1d7af"},
+]
+
+[[package]]
 name = "mysqlclient"
 version = "2.1.1"
 description = "Python interface to MySQL"
@@ -183,4 +194,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "aecdf20fd591852b3fc8ef82dafa11406493614ed08c684d58ede789c50daa4e"
+content-hash = "f722782ca57ca86d0d508ce34cc86c95baefbcbb57f7a405474cbf23965a44fd"
