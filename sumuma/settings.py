@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'tailwind',
     'theme',
+    'rest_framework',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
@@ -182,3 +183,9 @@ CACHES = {
         'LOCATION': 'cache_table',
     }
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
