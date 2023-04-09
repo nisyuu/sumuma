@@ -17,7 +17,7 @@ class NestedCategoriesSerializer(serializers.ModelSerializer):
 
 
 class IncomesSerializer(FlexFieldsModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(queryset=Categories.objects.filter(label='expenditure'))
+    category = serializers.PrimaryKeyRelatedField(queryset=Categories.objects.filter(label='income'))
 
     class Meta:
         model = Incomes
