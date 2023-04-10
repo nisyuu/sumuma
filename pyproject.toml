@@ -6,7 +6,7 @@ authors = ["uichi <37263474+uichi@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-Django = "~4.0.10"
+Django = "~4.2"
 django-environ = "^0.10.0"
 django-debug-toolbar = "^4.0.0"
 django-tailwind = "^3.5.0"
