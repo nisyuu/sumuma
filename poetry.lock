@@ -168,14 +168,14 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-browser-reload"
-version = "1.7.0"
+version = "1.8.0"
 description = "Automatically reload your browser in development."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "django_browser_reload-1.7.0-py3-none-any.whl", hash = "sha256:0d7cc4308ebbdf9b5637e28ee7b41ae28d4fcdf350d55ce007515b44cd10291b"},
-    {file = "django_browser_reload-1.7.0.tar.gz", hash = "sha256:712d0a4d6caa6833c8c205d4ce177b474feb45583cd6ee684c9ea7b71dd921b6"},
+    {file = "django_browser_reload-1.8.0-py3-none-any.whl", hash = "sha256:6db7e6c5807fff87e421b53926c50cfa3de0115e438f3c2de6103d3069557adb"},
+    {file = "django_browser_reload-1.8.0.tar.gz", hash = "sha256:054ef5ce8b80f46e0beda1a3c847becdff51272cad6f2bda607e201a7afe7425"},
 ]
 
 [package.dependencies]
@@ -416,14 +416,14 @@ files = [
 
 [[package]]
 name = "packaging"
-version = "23.0"
+version = "23.1"
 description = "Core utilities for Python packages"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "packaging-23.0-py3-none-any.whl", hash = "sha256:714ac14496c3e68c99c29b00845f7a2b85f3bb6f1078fd9f72fd20f0570002b2"},
-    {file = "packaging-23.0.tar.gz", hash = "sha256:b6ad297f8907de0fa2fe1ccbd26fdaf387f5f47c7275fedf8cce89f99446cf97"},
+    {file = "packaging-23.1-py3-none-any.whl", hash = "sha256:994793af429502c4ea2ebf6bf664629d07c1a9fe974af92966e4b8d2df7edc61"},
+    {file = "packaging-23.1.tar.gz", hash = "sha256:a392980d2b6cffa644431898be54b0045151319d1e7ec34f0cfed48767dd334f"},
 ]
 
 [[package]]
