@@ -43,10 +43,12 @@
                 Twitterユーザー名
               </th>
               <td class="p-3 text-sm text-gray-900">
-                <a href="https://twitter.com/{{ user.twitter_username }}" class="text-blue-600" target="_blank"
+                {% if user.twitter_username %}
+                  <a href="https://twitter.com/{{ user.twitter_username }}" class="text-blue-600" target="_blank"
                    rel="noopener noreferrer">
                   {{ user.twitter_username }}
                 </a>
+                {% endif %}
               </td>
             </tr>
             </tbody>
