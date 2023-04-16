@@ -24,9 +24,9 @@ from kakeibo.views.api.kakeibo import CategoriesViewSet, IncomesViewSet, Expendi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="sumuma API",
+        title="SUMUMA API",
         default_version='v1',
-        description="sumuma Swagger UI",
+        description="SUMUMA Swagger UI",
     ),
     public=True,
     permission_classes=[permissions.IsAuthenticatedOrReadOnly],
