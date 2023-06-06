@@ -171,14 +171,14 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-browser-reload"
-version = "1.8.0"
+version = "1.9.0"
 description = "Automatically reload your browser in development."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "django_browser_reload-1.8.0-py3-none-any.whl", hash = "sha256:6db7e6c5807fff87e421b53926c50cfa3de0115e438f3c2de6103d3069557adb"},
-    {file = "django_browser_reload-1.8.0.tar.gz", hash = "sha256:054ef5ce8b80f46e0beda1a3c847becdff51272cad6f2bda607e201a7afe7425"},
+    {file = "django_browser_reload-1.9.0-py3-none-any.whl", hash = "sha256:f8017d33fa8e72e6038f2a6a6e5215d1ff2ce1d2be49957722a0919d5fb1e6e0"},
+    {file = "django_browser_reload-1.9.0.tar.gz", hash = "sha256:4384cccd49580b4d60f3266166462912b771e55e510fdb1a945270862209b799"},
 ]
 
 [package.dependencies]
