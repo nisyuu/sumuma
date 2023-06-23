@@ -2,8 +2,11 @@ version: 2
 updates:
   - package-ecosystem: "pip"
     directory: "/"
+    target-branch: "develop"
+    open-pull-requests-limit: 20
     schedule:
       interval: "daily"
+      time: "08:00"
+      timezone: "Asia/Tokyo"
     allow:
       - dependency-type: "all"
-    target-branch: "develop"
