@@ -14,7 +14,7 @@ uWSGI = "^2.0.21"
 mysqlclient = "^2.1.1"
 djangorestframework = "^3.14.0"
 drf-flex-fields = "^1.0.2"
-drf-yasg = "^1.21.6"
+drf-yasg = "1.21.5"
 
 [tool.poetry.dev-dependencies]
 
