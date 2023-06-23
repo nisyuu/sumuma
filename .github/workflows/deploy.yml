@@ -37,7 +37,6 @@ jobs:
             su ${{ secrets.DJANGO_PROJECT_USER }}
             cd ${{ secrets.SSH_DIR }}
             source env/bin/activate
-            source ${{ secrets.POETRY_ENV_PATH }}
             poetry install
             python manage.py migrate
             python manage.py collectstatic --noinput
