@@ -27,17 +27,28 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_DIR: ${{ secrets.SSH_DIR }}
       - name: Setup Django
-        uses: appleboy/ssh-action@master
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.SSH_USER}}
-          port: ${{secrets.SSH_PORT}}
-          script: |
-            cd ${{ secrets.SSH_DIR }}
-            poetry install
-            source env/bin/activate
-            python manage.py migrate
-            python manage.py collectstatic --noinput
-            systemctl restart nginx
-            systemctl restart uwsgi
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -p ${{ secrets.SSH_PORT }} -i .ssh/id_rsa
+          cd ${{ secrets.SSH_DIR }}
+          source env/bin/activate
+          poetry install
+          python manage.py migrate
+          python manage.py collectstatic --noinput
+          systemctl restart nginx
+          systemctl restart uwsgi
+
+#      - name: Setup Django
+#        uses: appleboy/ssh-action@1.0.2
+#        with:
+#          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          host: ${{secrets.SSH_HOST}}
+#          username: ${{secrets.SSH_USER}}
+#          port: ${{secrets.SSH_PORT}}
+#          script: |
+#            cd ${{ secrets.SSH_DIR }}
+#            source env/bin/activate
+#            poetry install
+#            python manage.py migrate
+#            python manage.py collectstatic --noinput
+#            systemctl restart nginx
+#            systemctl restart uwsgi
