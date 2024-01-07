@@ -34,7 +34,6 @@ jobs:
           username: ${{secrets.SSH_USER}}
           port: ${{secrets.SSH_PORT}}
           script: |
-            su ${{ secrets.DJANGO_PROJECT_USER }}
             cd ${{ secrets.SSH_DIR }}
             source env/bin/activate
             poetry install
