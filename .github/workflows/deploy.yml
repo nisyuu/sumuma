@@ -35,8 +35,8 @@ jobs:
           port: ${{secrets.SSH_PORT}}
           script: |
             cd ${{ secrets.SSH_DIR }}
-            source env/bin/activate
             poetry install
+            source env/bin/activate
             python manage.py migrate
             python manage.py collectstatic --noinput
             systemctl restart nginx
