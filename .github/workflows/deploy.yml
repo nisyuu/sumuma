@@ -39,5 +39,5 @@ jobs:
             poetry install
             python manage.py migrate
             python manage.py collectstatic --noinput
-            sudo systemctl restart nginx
-            sudo systemctl restart uwsgi
+            systemctl restart nginx
+            systemctl restart uwsgi
