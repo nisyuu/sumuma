@@ -28,14 +28,19 @@ jobs:
           SSH_DIR: ${{ secrets.SSH_DIR }}
       - name: Setup Django
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} -p ${{ secrets.SSH_PORT }} -i .ssh/id_rsa
-          cd ${{ secrets.SSH_DIR }}
+          ssh $SSH_USER@$SSH_HOST -p $SSH_PORT -i .ssh/id_rsa
+          cd $SSH_DIR
           source env/bin/activate
           poetry install
           python manage.py migrate
           python manage.py collectstatic --noinput
           systemctl restart nginx
           systemctl restart uwsgi
+        env:
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_DIR: ${{ secrets.SSH_DIR }}
 
 #      - name: Setup Django
 #        uses: appleboy/ssh-action@1.0.2
