@@ -23,6 +23,7 @@ python-dateutil = "^2.8.2"
 ruamel-yaml-clib = "^0.2.8"
 packaging = "^23.2"
 pytz = "^2023.3.post1"
+setuptools = "^69.0.3"
 
 [tool.poetry.dev-dependencies]
 
