@@ -1,8 +1,8 @@
 {% extends "auth_user_secondary_base.html" %}
 {% block content %}
   <div class="mx-auto mx-3 bg-green-100 border-t border-green-500 rounded text-teal-900 px-4 py-3">
-    <p class="mb-4">仮登録を受け付けました。</p>
-    <p class="mb-1">メールを確認して本登録を完了させてください。</p>
+    <p class="mb-1">仮登録を受け付けました。</p>
+    <p class="mb-4">メールを確認して本登録を完了させてください。</p>
     <a class="font-bold text-blue-500 hover:text-blue-700" href="{% url 'account:login' %}">ログイン</a>
   </div>
 {% endblock %}
