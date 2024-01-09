@@ -153,7 +153,7 @@ class SetPassword(PasswordResetConfirmView):
 
 class CompletePasswordReset(PasswordResetCompleteView):
     """Complete password reset view who forgot password."""
-    template_name = 'account/complete_provisional_registration.html'
+    template_name = 'account/complete_password_reset.html'
 
 
 # NOTE: internal views of dashboard
