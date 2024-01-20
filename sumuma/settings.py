@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'theme',
     'rest_framework',
     'drf_yasg',
+    'request_viewer',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
@@ -65,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'request_viewer.middleware.RequestViewerMiddleware',
+    'request_viewer.middleware.ExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'sumuma.urls'
