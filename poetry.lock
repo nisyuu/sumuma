@@ -222,6 +222,20 @@ docs = ["furo (>=2021.8.17b43,<2021.9.dev0)", "sphinx (>=3.5.0)", "sphinx-notfou
 testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
 
 [[package]]
+name = "django-request-viewer"
+version = "1.0.3"
+description = "Log and view requests and exceptions made on your Django app"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-request-viewer-1.0.3.tar.gz", hash = "sha256:bdda0d867414c794225b3d284c626dad5e8975758d76f87fa7bb3356955accbd"},
+    {file = "django_request_viewer-1.0.3-py3-none-any.whl", hash = "sha256:6b73bd3e4c4d82b0a41339c9f2b2d161e9ba5968dabcc94e54a263849198bc85"},
+]
+
+[package.dependencies]
+django = ">=2.2"
+
+[[package]]
 name = "django-tailwind"
 version = "3.8.0"
 description = "Tailwind CSS Framework for Django projects"
@@ -667,4 +681,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "ae9c892dff436b0c2dfc528f59a0e67a0461cba1fedcc290ebad3c0ed1c7f74b"
+content-hash = "eeea2a1bd313379f28982bcb90d8a8c8cc1fac8afab472023fa6765174f7e4d1"
