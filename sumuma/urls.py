@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+import environ
 from rest_framework import permissions
 from rest_framework import routers
 
 from kakeibo.views.api.kakeibo import CategoriesViewSet, IncomesViewSet, ExpendituresViewSet
+from sumuma.settings import ADMIN_DASHBOARD_PATH
+
+env = environ.Env()
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -38,7 +42,7 @@ router.register(r'incomes', IncomesViewSet, basename='incomes')
 router.register(r'expenditures', ExpendituresViewSet, basename='expenditures')
 
 urlpatterns = [
-    path('x9T5y2sg/', admin.site.urls),
+    path(ADMIN_DASHBOARD_PATH, admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('home.urls')),
