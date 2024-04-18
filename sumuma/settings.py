@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'shopping.apps.ShoppingConfig',
     'lp.apps.LpConfig',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -196,3 +197,7 @@ REST_FRAMEWORK = {
 }
 
 ADMIN_DASHBOARD_PATH = env('ADMIN_DASHBOARD_PATH')
+
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_REQUIRED_SCORE = 0.85

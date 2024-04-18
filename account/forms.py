@@ -6,6 +6,8 @@ from django.contrib.auth.forms import (
 )
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
 User = get_user_model()
 
@@ -20,6 +22,7 @@ class LoginForm(AuthenticationForm):
                                           'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
                                           'focus:bg-white'
 
+    recaptcha = ReCaptchaField(label="", widget=ReCaptchaV3())
 
 class SignupForm(UserCreationForm):
     """Signup form."""
@@ -38,6 +41,7 @@ class SignupForm(UserCreationForm):
                                           'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
                                           'focus:bg-white'
 
+    recaptcha = ReCaptchaField(label="", widget=ReCaptchaV3())
 
 class UpdateUserForm(forms.ModelForm):
     """Update user form."""
