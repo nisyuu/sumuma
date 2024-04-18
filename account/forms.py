@@ -22,7 +22,8 @@ class LoginForm(AuthenticationForm):
                                           'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
                                           'focus:bg-white'
 
-    recaptcha = ReCaptchaField(label="", widget=ReCaptchaV3())
+        self.fields['recaptcha'] = ReCaptchaField(label="", widget=ReCaptchaV3())
+
 
 class SignupForm(UserCreationForm):
     """Signup form."""
@@ -41,7 +42,8 @@ class SignupForm(UserCreationForm):
                                           'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
                                           'focus:bg-white'
 
-    recaptcha = ReCaptchaField(label="", widget=ReCaptchaV3())
+        self.fields['recaptcha'] = ReCaptchaField(label="", widget=ReCaptchaV3())
+
 
 class UpdateUserForm(forms.ModelForm):
     """Update user form."""
