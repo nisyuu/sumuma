@@ -25,6 +25,7 @@ packaging = "^24.0"
 pytz = "^2024.1"
 setuptools = "^69.5.1"
 django-request-viewer = "^1.0.3"
+django-recaptcha = "^4.0.0"
 
 [tool.poetry.dev-dependencies]
 
