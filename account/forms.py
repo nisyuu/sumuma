@@ -24,7 +24,6 @@ class LoginForm(AuthenticationForm):
 
     recaptcha = ReCaptchaField(label="", widget=ReCaptchaV3())
 
-
 class SignupForm(UserCreationForm):
     """Signup form."""
 
@@ -43,7 +42,6 @@ class SignupForm(UserCreationForm):
                                           'focus:bg-white'
 
     recaptcha = ReCaptchaField(label="", widget=ReCaptchaV3())
-
 
 class UpdateUserForm(forms.ModelForm):
     """Update user form."""
