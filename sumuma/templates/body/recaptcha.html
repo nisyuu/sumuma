@@ -1,0 +1,10 @@
+<!-- reCAPTCHA -->
+<script>
+  function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6Lcrxr4pAAAAAIaPXqjt3tD1132ls_eJcpcCUgIx', {action: 'LOGIN'});
+    });
+  }
+</script>
+<!-- End reCAPTCHA -->
