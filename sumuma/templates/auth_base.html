@@ -15,7 +15,6 @@
     <title>SUMUMA</title>
     {% tailwind_css %}
     {% include 'head/google_adsense.html' %}
-    {% include 'head/recaptcha.html' %}
   </head>
   <body class="bg-green-50">
     {% include 'gtm_noscript.html' %}
@@ -29,6 +28,5 @@
       {% endblock %}
     </div>
     <script type="text/javascript" src="{% static 'account/js/signup.js' %}"></script>
-    {% include 'body/recaptcha.html' %}
   </body>
 </html>
