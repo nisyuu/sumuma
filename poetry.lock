@@ -254,20 +254,6 @@ files = [
 django = "*"
 
 [[package]]
-name = "django-request-viewer"
-version = "1.0.3"
-description = "Log and view requests and exceptions made on your Django app"
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-request-viewer-1.0.3.tar.gz", hash = "sha256:bdda0d867414c794225b3d284c626dad5e8975758d76f87fa7bb3356955accbd"},
-    {file = "django_request_viewer-1.0.3-py3-none-any.whl", hash = "sha256:6b73bd3e4c4d82b0a41339c9f2b2d161e9ba5968dabcc94e54a263849198bc85"},
-]
-
-[package.dependencies]
-django = ">=2.2"
-
-[[package]]
 name = "django-tailwind"
 version = "3.8.0"
 description = "Tailwind CSS Framework for Django projects"
@@ -737,4 +723,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.1"
-content-hash = "a379e285a14617e60934b04de4629aad897a2280b103ed5e6421f73c1640eaa4"
+content-hash = "430003280bca6cc0e528c8e3470737be8ac83356b8b38b4124da029792d8ea0d"

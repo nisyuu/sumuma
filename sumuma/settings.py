@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'theme',
     'rest_framework',
     'drf_yasg',
-    'request_viewer',
     'django_recaptcha',
     'drf_api_logger',
     'home.apps.HomeConfig',
@@ -68,8 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'request_viewer.middleware.RequestViewerMiddleware',
-    'request_viewer.middleware.ExceptionMiddleware',
     'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
 ]
 
