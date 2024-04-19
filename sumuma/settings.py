@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'theme',
     'rest_framework',
     'drf_yasg',
-    'request_viewer',
+    'django_recaptcha',
+    'drf_api_logger',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
@@ -55,7 +56,6 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'shopping.apps.ShoppingConfig',
     'lp.apps.LpConfig',
-    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -67,8 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'request_viewer.middleware.RequestViewerMiddleware',
-    'request_viewer.middleware.ExceptionMiddleware',
+    'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
 ]
 
 ROOT_URLCONF = 'sumuma.urls'
@@ -201,3 +200,4 @@ ADMIN_DASHBOARD_PATH = env('ADMIN_DASHBOARD_PATH')
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_REQUIRED_SCORE = 0.85
+DRF_API_LOGGER_DATABASE = True
