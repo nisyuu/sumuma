@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_recaptcha',
     'drf_api_logger',
+    'corsheaders',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -207,3 +209,5 @@ SWAGGER_SETTINGS = {
     "LOGIN_URL": "/account/login/",
     "LOGOUT_URL": "/account/logout/",
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
