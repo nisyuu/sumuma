@@ -45,8 +45,8 @@ class ToDoForm(forms.ModelForm):
     memo = forms.CharField(
         max_length=1000,
         required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
+        widget=forms.Textarea(attrs={
+            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
                      'mb-3 leading-tight focus:outline-none focus:bg-white'}),
     )
     is_bought = forms.BooleanField(

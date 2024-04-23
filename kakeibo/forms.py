@@ -35,8 +35,8 @@ class IncomeForm(forms.ModelForm):
     memo = forms.CharField(
         max_length=100,
         required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
+        widget=forms.Textarea(attrs={
+            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
                      'leading-tight focus:outline-none focus:bg-white focus:border-gray-500'}),
     )
 
@@ -83,8 +83,8 @@ class ExpenditureForm(forms.ModelForm):
     memo = forms.CharField(
         max_length=100,
         required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
+        widget=forms.Textarea(attrs={
+            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
                      'leading-tight focus:outline-none focus:bg-white focus:border-gray-500'}),
     )
 
