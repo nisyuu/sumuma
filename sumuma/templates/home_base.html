@@ -32,7 +32,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SUMUMA">
   <meta name="twitter:description" content="ただの家計簿で終わらせない、家計簿をもっと賢く美しく">
-  <meta name="twitter:image" content="{% static 'home/images/daifuku.png' %}">
+  <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'home/images/daifuku.png' %}">
   <!-- iOS Meta Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
