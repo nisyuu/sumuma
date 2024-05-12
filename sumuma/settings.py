@@ -166,6 +166,12 @@ AUTH_USER_MODEL = 'account.User'
 EMAIL_REMOTE = env.get_value('EMAIL_REMOTE', bool)
 
 if EMAIL_REMOTE:
+    EMAIL_HOST = env('EMAIL_HOST')
+    EMAIL_PORT = env.get_value('EMAIL_PORT', int)
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+    EMAIL_USE_TLS = True
+
     ANYMAIL = {
         'BREVO_API_KEY': env('BREVO_API_KEY'),
     }
