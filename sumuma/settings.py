@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'drf_api_logger',
     'corsheaders',
     'anymail',
+    'import_export',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
     'kakeibo.apps.KakeiboConfig',
