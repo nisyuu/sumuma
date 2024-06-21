@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path, include
+from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 import environ
@@ -26,20 +26,20 @@ from sumuma.settings import ADMIN_DASHBOARD_PATH
 
 env = environ.Env()
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title="SUMUMA API",
-        default_version='v1',
-        description="SUMUMA Swagger UI",
-    ),
-    public=True,
-    permission_classes=[permissions.IsAuthenticatedOrReadOnly],
-)
+# schema_view = get_schema_view(
+#     openapi.Info(
+#         title="SUMUMA API",
+#         default_version='v1',
+#         description="SUMUMA Swagger UI",
+#     ),
+#     public=True,
+#     permission_classes=[permissions.IsAuthenticatedOrReadOnly],
+# )
 
-router = routers.DefaultRouter()
-router.register(r'categories', CategoriesViewSet, basename='categories')
-router.register(r'incomes', IncomesViewSet, basename='incomes')
-router.register(r'expenditures', ExpendituresViewSet, basename='expenditures')
+# router = routers.DefaultRouter()
+# router.register(r'categories', CategoriesViewSet, basename='categories')
+# router.register(r'incomes', IncomesViewSet, basename='incomes')
+# router.register(r'expenditures', ExpendituresViewSet, basename='expenditures')
 
 urlpatterns = [
     path(ADMIN_DASHBOARD_PATH, admin.site.urls),
