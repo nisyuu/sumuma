@@ -27,7 +27,7 @@ setuptools = "^70.1.0"
 django-recaptcha = "^4.0.0"
 drf-api-logger = "^1.1.15"
 django-cors-headers = "^4.4.0"
-django-anymail = {extras = ["brevo"], version = "^10.3"}
+django-anymail = {extras = ["brevo"], version = "^11.0"}
 django-import-export = "^4.0.9"
 
 [tool.poetry.dev-dependencies]
