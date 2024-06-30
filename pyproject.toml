@@ -23,12 +23,12 @@ python-dateutil = "^2.9.0"
 ruamel-yaml-clib = "^0.2.8"
 packaging = "^24.1"
 pytz = "^2024.1"
-setuptools = "^70.1.0"
+setuptools = "^70.1.1"
 django-recaptcha = "^4.0.0"
 drf-api-logger = "^1.1.15"
 django-cors-headers = "^4.4.0"
-django-anymail = {extras = ["brevo"], version = "^10.3"}
-django-import-export = "^4.0.9"
+django-anymail = {extras = ["brevo"], version = "^11.0"}
+django-import-export = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 
