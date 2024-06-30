@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path, include
+from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 import environ
@@ -26,40 +26,40 @@ from sumuma.settings import ADMIN_DASHBOARD_PATH
 
 env = environ.Env()
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title="SUMUMA API",
-        default_version='v1',
-        description="SUMUMA Swagger UI",
-    ),
-    public=True,
-    permission_classes=[permissions.IsAuthenticatedOrReadOnly],
-)
+# schema_view = get_schema_view(
+#     openapi.Info(
+#         title="SUMUMA API",
+#         default_version='v1',
+#         description="SUMUMA Swagger UI",
+#     ),
+#     public=True,
+#     permission_classes=[permissions.IsAuthenticatedOrReadOnly],
+# )
 
-router = routers.DefaultRouter()
-router.register(r'categories', CategoriesViewSet, basename='categories')
-router.register(r'incomes', IncomesViewSet, basename='incomes')
-router.register(r'expenditures', ExpendituresViewSet, basename='expenditures')
+# router = routers.DefaultRouter()
+# router.register(r'categories', CategoriesViewSet, basename='categories')
+# router.register(r'incomes', IncomesViewSet, basename='incomes')
+# router.register(r'expenditures', ExpendituresViewSet, basename='expenditures')
 
 urlpatterns = [
     path(ADMIN_DASHBOARD_PATH, admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path("__reload__/", include("django_browser_reload.urls")),
     path('', include('home.urls')),
-    path('account/', include('account.urls')),
-    path('kakeibo/', include('kakeibo.urls')),
-    path('analyses/', include('analyses.urls')),
-    path('contact/', include('contact.urls')),
-    path('budget/', include('budget.urls')),
-    path('shopping/', include('shopping.urls')),
-    path('lp/', include('lp.urls')),
+    # path('account/', include('account.urls')),
+    # path('kakeibo/', include('kakeibo.urls')),
+    # path('analyses/', include('analyses.urls')),
+    # path('contact/', include('contact.urls')),
+    # path('budget/', include('budget.urls')),
+    # path('shopping/', include('shopping.urls')),
+    # path('lp/', include('lp.urls')),
     # NOTE: api routers
-    path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('api/', include(router.urls)),
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # NOTE: swagger
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    # re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    # re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     # path('openapi/', get_schema_view(
     #     title="Your Project",
     #     description="API for all things …",
