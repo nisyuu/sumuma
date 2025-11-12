@@ -181,18 +181,18 @@ jinja2 = "*"
 
 [[package]]
 name = "diff-match-patch"
-version = "20230430"
-description = "Diff Match and Patch"
+version = "20241021"
+description = "Repackaging of Google's Diff Match and Patch libraries."
 optional = false
 python-versions = ">=3.7"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
-    {file = "diff-match-patch-20230430.tar.gz", hash = "sha256:953019cdb9c9d2c9e47b5b12bcff3cf4746fc4598eb406076fa1fc27e6a1f15c"},
-    {file = "diff_match_patch-20230430-py3-none-any.whl", hash = "sha256:dce43505fb7b1b317de7195579388df0746d90db07015ed47a85e5e44930ef93"},
+    {file = "diff_match_patch-20241021-py3-none-any.whl", hash = "sha256:93cea333fb8b2bc0d181b0de5e16df50dd344ce64828226bda07728818936782"},
+    {file = "diff_match_patch-20241021.tar.gz", hash = "sha256:beae57a99fa48084532935ee2968b8661db861862ec82c6f21f4acdd6d835073"},
 ]
 
 [package.extras]
-dev = ["attribution (==1.6.2)", "black (==23.3.0)", "flit (==3.8.0)", "mypy (==1.2.0)", "ufmt (==2.1.0)", "usort (==1.0.6)"]
+dev = ["attribution (==1.8.0)", "black (==24.8.0)", "build (>=1)", "flit (==3.9.0)", "mypy (==1.12.1)", "ufmt (==2.7.3)", "usort (==1.0.8.post1)"]
 
 [[package]]
 name = "django"
