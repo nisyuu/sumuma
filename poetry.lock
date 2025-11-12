@@ -297,18 +297,21 @@ yaml = ["tablib[yaml] (==3.5.0)"]
 
 [[package]]
 name = "django-recaptcha"
-version = "4.0.0"
+version = "4.1.0"
 description = "Django recaptcha form field/widget app."
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "django-recaptcha-4.0.0.tar.gz", hash = "sha256:5316438f97700c431d65351470d1255047e3f2cd9af0f2f13592b637dad9213e"},
-    {file = "django_recaptcha-4.0.0-py3-none-any.whl", hash = "sha256:0d912d5c7c009df4e47accd25029133d47a74342dbd2a8edc2877b6bffa971a3"},
+    {file = "django_recaptcha-4.1.0-py3-none-any.whl", hash = "sha256:463aa65967e973de466b28ce8e8b6abb2faffb1ce0c7faa1bf0e5b041e0497cb"},
+    {file = "django_recaptcha-4.1.0.tar.gz", hash = "sha256:73097b958733f65b729d4e4630c51fc2bf147aca6f026017d18898dfc25cb4c5"},
 ]
 
 [package.dependencies]
 django = "*"
+
+[package.extras]
+testing = ["coveralls", "tox", "tox-gh-actions"]
 
 [[package]]
 name = "django-tailwind"
@@ -811,4 +814,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "3.12.9"
-content-hash = "485cc183585da705ee5a0fcc005943d37194e1d9b0493aa220c2504ac0d71101"
+content-hash = "428807a348e8f8f04df67593055211a877d9b1c40941e8104cbfad7e6a584e1d"
