@@ -26,7 +26,7 @@ pytz = "^2024.1"
 setuptools = "^70.1.1"
 django-recaptcha = "^4.0.0"
 drf-api-logger = "^1.1.21"
-django-cors-headers = "^4.4.0"
+django-cors-headers = "^4.9.0"
 django-anymail = {extras = ["brevo"], version = "^11.0"}
 django-import-export = "^4.1.0"
 
