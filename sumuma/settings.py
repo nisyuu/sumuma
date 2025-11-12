@@ -19,7 +19,7 @@ SUMUMA_PROJECT_DIR = Path(__file__).resolve().parent
 BASE_DIR = SUMUMA_PROJECT_DIR.parent
 
 env = environ.Env()
-env.read_env(str(PurePath.joinpath(SUMUMA_PROJECT_DIR, '.env')))
+env.read_env(str(PurePath.joinpath(BASE_DIR, '.env')))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
