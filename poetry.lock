@@ -860,5 +860,10 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 
 [metadata]
 lock-version = "2.1"
+<<<<<<< HEAD
 python-versions = "3.12.1"
 content-hash = "5153cccb5abd9c040c290d8d8d0f1d6dafae9e1424db395fbfa78b0d6ffcb0db"
+=======
+python-versions = "3.12.9"
+content-hash = "3184bc52562eac9ae4a9f5717242fcdd5d8e86f698b69b61a284eced34fc9737"
+>>>>>>> develop-second
