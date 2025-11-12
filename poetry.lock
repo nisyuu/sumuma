@@ -378,13 +378,14 @@ django = ">=4.2"
 
 [[package]]
 name = "drf-api-logger"
-version = "1.1.15"
+version = "1.1.21"
 description = "An API Logger for your Django Rest Framework project."
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "drf_api_logger-1.1.15.tar.gz", hash = "sha256:134df3631cba81b6451cf59ac4a4a73eb3fbd20597b09f044a89da62a47aba3c"},
+    {file = "drf_api_logger-1.1.21-py3-none-any.whl", hash = "sha256:cc6e43a57da44bb5d70eba191a6b70ac294f6785b68e77e74e6847828fafbf6b"},
+    {file = "drf_api_logger-1.1.21.tar.gz", hash = "sha256:9a76c9f72460804e0573396bca24a4cfc9096dcecad3d179f65663652878cfe5"},
 ]
 
 [package.dependencies]
@@ -861,4 +862,4 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "3.12.9"
-content-hash = "e3b9d9d8fdca8bac8bcf5092a9c3afdeb5d85795630a9a6b0223f4c902ad8b33"
+content-hash = "d098564a64836c5e621dc18c994e19e307c4f776ffb65bbc48e83dff121e61cd"
