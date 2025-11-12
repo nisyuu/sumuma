@@ -32,22 +32,22 @@
               <li class="nav-item">
                 <a class="ud-menu-scroll" href="#contact">お問合わせ</a>
               </li>
-{#              <li class="nav-item d-lg-none">#}
-{#                <a class="ud-menu-scroll" href="{% url 'account:login' %}">ログイン</a>#}
-{#              </li>#}
-{#              <li class="nav-item d-lg-none">#}
-{#                <a class="ud-menu-scroll" href="{% url 'account:signup' %}">サインアップ</a>#}
-{#              </li>#}
+              <li class="nav-item d-lg-none">
+                <a class="ud-menu-scroll" href="{% url 'account:login' %}">ログイン</a>
+              </li>
+              <li class="nav-item d-lg-none">
+                <a class="ud-menu-scroll" href="{% url 'account:signup' %}">サインアップ</a>
+              </li>
             </ul>
           </div>
 
           <div class="navbar-btn d-none d-sm-inline-block">
-{#            <a href="{% url 'account:login' %}" class="ud-main-btn ud-login-btn">#}
-{#              ログイン#}
-{#            </a>#}
-{#            <a class="ud-main-btn ud-white-btn" href="{% url 'account:signup' %}">#}
-{#              サインアップ#}
-{#            </a>#}
+            <a href="{% url 'account:login' %}" class="ud-main-btn ud-login-btn">
+              ログイン
+            </a>
+            <a class="ud-main-btn ud-white-btn" href="{% url 'account:signup' %}">
+              サインアップ
+            </a>
           </div>
         </nav>
       </div>
@@ -216,9 +216,9 @@
             </ul>
           </div>
           <div class="ud-pricing-footer">
-{#            <a href="{% url 'account:signup' %}" class="ud-main-btn ud-white-btn">#}
-{#              サインアップ#}
-{#            </a>#}
+            <a href="{% url 'account:signup' %}" class="ud-main-btn ud-white-btn">
+              サインアップ
+            </a>
           </div>
         </div>
       </div>
@@ -333,7 +333,4 @@
 </a>
 <script src="{% static 'home/js/wow.min.js' %}"></script>
 <script src="{% static 'home/js/main.js' %}"></script>
-<script type="application/javascript">
-  alert('SUMUMAはサービス終了となりました。\nご利用いただきありがとうございました。');
-</script>
 {% endblock %}
