@@ -41,14 +41,13 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 # Application definition
 
-INSTALLED_APPS = [
+BASE_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
     'tailwind',
     'theme',
     'rest_framework',
@@ -68,6 +67,14 @@ INSTALLED_APPS = [
     'lp.apps.LpConfig',
 ]
 
+INSTALLED_APPS = BASE_APPS.copy()
+
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar',
+        'django_browser_reload',
+    ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,10 +84,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
+
+if DEBUG:
+    MIDDLEWARE.insert(
+        MIDDLEWARE.index('django.middleware.clickjacking.XFrameOptionsMiddleware') + 1,
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    )
 
 ROOT_URLCONF = 'sumuma.urls'
 

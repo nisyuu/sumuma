@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, re_path, include
 from drf_yasg import openapi
@@ -43,8 +44,6 @@ router.register(r'expenditures', ExpendituresViewSet, basename='expenditures')
 
 urlpatterns = [
     path(ADMIN_DASHBOARD_PATH, admin.site.urls),
-    path('__debug__/', include('debug_toolbar.urls')),
-    path("__reload__/", include("django_browser_reload.urls")),
     path('', include('home.urls')),
     path('account/', include('account.urls')),
     path('kakeibo/', include('kakeibo.urls')),
@@ -70,3 +69,11 @@ urlpatterns = [
     #     extra_context={'schema_url': 'openapi-schema'}
     # ), name='swagger-ui'),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+        path("__reload__/", include("django_browser_reload.urls")),
+    ]
