@@ -55,6 +55,7 @@ BASE_APPS = [
     'django_recaptcha',
     'drf_api_logger',
     'corsheaders',
+    'anymail',
     'import_export',
     'home.apps.HomeConfig',
     'account.apps.AccountConfig',
@@ -195,7 +196,10 @@ if EMAIL_REMOTE:
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+    ANYMAIL = {
+        'RESEND_API_KEY': env('RESEND_API_KEY'),
+    }
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
