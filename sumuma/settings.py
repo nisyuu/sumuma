@@ -190,11 +190,6 @@ AUTH_USER_MODEL = 'account.User'
 EMAIL_REMOTE = env.bool('EMAIL_REMOTE', default=False)
 
 if EMAIL_REMOTE:
-    EMAIL_HOST = env('EMAIL_HOST')
-    EMAIL_PORT = env.int('EMAIL_PORT')
-    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-    EMAIL_USE_TLS = True
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
     EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
     ANYMAIL = {
