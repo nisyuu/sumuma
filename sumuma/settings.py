@@ -14,13 +14,19 @@ from pathlib import Path, PurePath
 
 import dj_database_url
 import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 SUMUMA_PROJECT_DIR = Path(__file__).resolve().parent
 BASE_DIR = SUMUMA_PROJECT_DIR.parent
 
+env_file_path = os.path.join(BASE_DIR, '.env')
+
 env = environ.Env()
-env.read_env(str(PurePath.joinpath(BASE_DIR, '.env')))
+
+# .envファイルがあれば読み込む
+if os.path.exists(env_file_path):
+    env.read_env(env_file_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -29,9 +35,9 @@ env.read_env(str(PurePath.joinpath(BASE_DIR, '.env')))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.get_value('DEBUG', bool)
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.get_value('ALLOWED_HOSTS', list)
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 # Application definition
 
@@ -99,7 +105,7 @@ WSGI_APPLICATION = 'sumuma.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASE_REMOTE = env.get_value('DATABASE_REMOTE', bool)
+DATABASE_REMOTE = env.bool('DATABASE_REMOTE', default=False)
 
 if DATABASE_REMOTE:
     DATABASES = {
@@ -168,20 +174,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 
-EMAIL_REMOTE = env.get_value('EMAIL_REMOTE', bool)
+EMAIL_REMOTE = env.bool('EMAIL_REMOTE', default=False)
 
 if EMAIL_REMOTE:
     EMAIL_HOST = env('EMAIL_HOST')
-    EMAIL_PORT = env.get_value('EMAIL_PORT', int)
+    EMAIL_PORT = env.int('EMAIL_PORT')
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_USE_TLS = True
 
-    ANYMAIL = {
-        'BREVO_API_KEY': env('BREVO_API_KEY'),
-    }
+    # ANYMAIL = {
+    #     'BREVO_API_KEY': env('BREVO_API_KEY'),
+    # }
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-    EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+
+    # EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
