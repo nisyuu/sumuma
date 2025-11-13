@@ -29,6 +29,8 @@ drf-api-logger = "^1.1.21"
 django-cors-headers = "^4.4.0"
 django-anymail = {extras = ["brevo"], version = "^11.0"}
 django-import-export = "^4.1.0"
+psycopg2-binary = "^2.9.11"
+dj-database-url = "^3.0.1"
 
 [tool.poetry.group.dev.dependencies]
 
