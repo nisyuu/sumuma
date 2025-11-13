@@ -875,17 +875,6 @@ h11 = ">=0.8"
 standard = ["colorama (>=0.4) ; sys_platform == \"win32\"", "httptools (>=0.6.3)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.15.1) ; sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\"", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
 [[package]]
-name = "uwsgi"
-version = "2.0.31"
-description = "The uWSGI server"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "uwsgi-2.0.31.tar.gz", hash = "sha256:e8f8b350ccc106ff93a65247b9136f529c14bf96b936ac5b264c6ff9d0c76257"},
-]
-
-[[package]]
 name = "webencodings"
 version = "0.5.1"
 description = "Character encoding aliases for legacy web content"
@@ -933,4 +922,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.1"
 python-versions = "3.12.9"
-content-hash = "828601889e885ffba4247686f549a368038b65ea07ab461180df83d67431acc6"
+content-hash = "d2506b90ad62f8ea7e5f8cf9eb7a34c420d8747d5925ee922a860dd5c577a108"
