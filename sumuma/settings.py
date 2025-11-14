@@ -121,12 +121,18 @@ DATABASE_REMOTE = env.bool('DATABASE_REMOTE', default=False)
 
 if DATABASE_REMOTE:
     DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/sumuma',
-        conn_max_age=600
-    )
-}
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('PGDATABASE'),
+        'USER': env('PGUSER'),
+        'PASSWORD': env('PGPASSWORD'),
+        'HOST': env('PGHOST'),
+        'PORT': env('PGPORT', default=5432),
+            'OPTIONS': {
+                'sslmode': 'require',
+            }
+        }
+    }
 else:
     DATABASES = {
         'default': {
