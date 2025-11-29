@@ -107,6 +107,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sumuma.context_processors.google_analytics',
             ],
         },
     },
@@ -235,3 +236,5 @@ SWAGGER_SETTINGS = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+GA_MEASUREMENT_ID = env('GA_MEASUREMENT_ID', default='')
