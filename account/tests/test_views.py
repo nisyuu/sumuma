@@ -6,7 +6,7 @@ from account.models import User
 class AccountViewsTests(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = User.objects.create_user(email='testuser@example.com', password='testpassword')
 
     def test_login_view_get(self):
         """

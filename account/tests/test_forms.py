@@ -1,14 +1,21 @@
 from django.test import TestCase
+from unittest.mock import patch
+from django_recaptcha.client import RecaptchaResponse
 from account.forms import LoginForm
+from account.models import User
 
 
 class AccountFormsTests(TestCase):
-    def test_login_form_valid(self):
+
+    def setUp(self):
+        self.user = User.objects.create_user(email='testuser@example.com', password='testpassword')
+
+    @patch("django_recaptcha.fields.client.submit")
+    def test_login_form_valid(self, mock_submit):
         """
         Test the login form with valid data.
         """
-        form_data = {'username': 'testuser', 'password': 'testpassword'}
+        mock_submit.return_value = RecaptchaResponse(is_valid=True, extra_data={'score': 0.9})
+        form_data = {'username': 'testuser@example.com', 'password': 'testpassword', 'recaptcha': 'dummy-value'}
         form = LoginForm(data=form_data)
-        # This will fail until a user is created. It's a placeholder.
-        # self.assertTrue(form.is_valid())
-        pass
+        self.assertTrue(form.is_valid())
