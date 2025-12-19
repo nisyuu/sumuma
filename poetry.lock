@@ -556,14 +556,14 @@ testing = ["coveralls", "tox", "tox-gh-actions"]
 
 [[package]]
 name = "django-tailwind"
-version = "4.4.1"
+version = "4.4.2"
 description = "Tailwind CSS Framework for Django projects"
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "django_tailwind-4.4.1-py3-none-any.whl", hash = "sha256:91e0036247d88412698aa587138adcc3ff0e1d4de5e5189b1de38f435899a018"},
-    {file = "django_tailwind-4.4.1.tar.gz", hash = "sha256:12cea9710ca5f7f2cbd2f3f5c7ec201b21ad3031fe8049c1ad2db36124063e2d"},
+    {file = "django_tailwind-4.4.2-py3-none-any.whl", hash = "sha256:0e4a2836cb36e8952700457d049fadb8743583017cef80fa3a374f8597c289f4"},
+    {file = "django_tailwind-4.4.2.tar.gz", hash = "sha256:b3a3eb2d22cbb8c17565898fb68ccedcf806542b04fe4107bdfec7035d582819"},
 ]
 
 [package.dependencies]
@@ -1389,7 +1389,8 @@ version = "2025.3"
 description = "Provider of IANA time zone data"
 optional = false
 python-versions = ">=2"
-groups = ["main", "dev"]
+groups = ["main"]
+markers = "sys_platform == \"win32\""
 files = [
     {file = "tzdata-2025.3-py2.py3-none-any.whl", hash = "sha256:06a47e5700f3081aab02b2e513160914ff0694bce9947d6b76ebd6bf57cfc5d1"},
     {file = "tzdata-2025.3.tar.gz", hash = "sha256:de39c2ca5dc7b0344f2eba86f49d614019d29f060fc4ebc8a417896a620b56a7"},
@@ -1612,4 +1613,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = "3.12.9"
-content-hash = "ded17c22578137f9c098dcf1461c1bfb04cad8abced2f8b820ebcaa5547291a6"
+content-hash = "6a0c5d477bfcaf26f48c63b852d0bc1e5ea45b31d5207446b5afc1d3ac599f79"
