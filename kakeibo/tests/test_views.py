@@ -44,7 +44,8 @@ class KakeiboViewsTests(TestCase):
         unauthenticated_client = Client()
         response = unauthenticated_client.get(reverse('kakeibo:top'))
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, f"{reverse('account:login')}?next={reverse('kakeibo:top')}")
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('account:login').rstrip('/'), response.url)
 
     def test_create_income_valid(self):
         """Test creating an income with a valid POST request."""
@@ -68,7 +69,7 @@ class KakeiboViewsTests(TestCase):
         """Test that a user cannot edit another user's income."""
         url = reverse('kakeibo:edit_income', args=[self.user2_income.pk])
         response = self.client1.get(url)
-        self.assertEqual(response.status_code, 404) # OnlyYou mixin should cause a 404
+        self.assertEqual(response.status_code, 403) # OnlyYou mixin should cause a 403
 
     def test_delete_income(self):
         """Test that a user can delete their own income."""

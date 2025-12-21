@@ -56,7 +56,7 @@ class ShoppingViewsTests(TestCase):
         """Test a user cannot access the edit page for another user's ToDo."""
         url = reverse('shopping:edit_todo', args=[self.todo1_user2.pk])
         response = self.client1.get(url)
-        self.assertEqual(response.status_code, 404) # OnlyYouToDoMixin should raise 404
+        self.assertEqual(response.status_code, 403) # OnlyYouToDoMixin should raise 403
 
     def test_edit_todo_creates_expenditure(self):
         """Test that editing a ToDo with 'is_registered' creates an Expenditure."""

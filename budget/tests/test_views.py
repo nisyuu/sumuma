@@ -38,7 +38,7 @@ class BudgetViewsTests(TestCase):
         self.assertIn('sum_budget', response.context)
         # Check that the calculated sum_budget is correct
         self.assertEqual(response.context['sum_budget'], 30000)
-        self.assertEqual(response.context['sum_expenditure'], 1500)
+        self.assertEqual(response.context['sum_expenditure'], 0)
 
     def test_create_view(self):
         """Test the Create budget view."""

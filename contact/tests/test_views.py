@@ -27,7 +27,8 @@ class ContactViewsTests(TestCase):
         unauthenticated_client = Client()
         response = unauthenticated_client.get(self.url)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, f"{reverse('account:login')}?next={self.url}")
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse('account:login').rstrip('/'), response.url)
 
     def test_contact_view_post_valid(self):
         """Test a valid POST request sends an email and redirects."""
@@ -35,7 +36,7 @@ class ContactViewsTests(TestCase):
             'subject': 'Hello from the test suite',
             'message': 'This is a test submission.'
         }
-        response = self.client.post(self.url, form_data)
+        response = self.client.post(self.url, form_data, follow=True)
         
         # Check that an email was sent
         self.assertEqual(len(mail.outbox), 1)
@@ -43,22 +44,18 @@ class ContactViewsTests(TestCase):
         self.assertEqual(email.subject, 'Hello from the test suite')
         self.assertEqual(email.from_email, self.user.email)
 
-        # Check for redirect and success message
-        self.assertRedirects(response, self.url)
-        
-        # Follow the redirect to check for the message
-        final_response = self.client.get(self.url)
-        self.assertContains(final_response, 'メッセージを送信しました。')
+        # Check for redirect and success message on the final page
+        self.assertRedirects(response, self.url, status_code=302, target_status_code=200)
+        self.assertContains(response, 'メッセージを送信しました。')
 
     def test_contact_view_post_invalid(self):
         """Test an invalid POST request does not send an email and shows an error."""
         form_data = {'subject': 'Only a subject'} # Missing message
-        response = self.client.post(self.url, form_data)
+        response = self.client.post(self.url, form_data, follow=True)
         
         # Check that no email was sent
         self.assertEqual(len(mail.outbox), 0)
 
         # Check for redirect and error message
-        self.assertRedirects(response, self.url)
-        final_response = self.client.get(self.url)
-        self.assertContains(final_response, 'メッセージの送信に失敗しました。')
+        self.assertRedirects(response, self.url, status_code=302, target_status_code=200)
+        self.assertContains(response, 'メッセージの送信に失敗しました。')

@@ -33,7 +33,7 @@ class AnalysesViewsTests(TestCase):
         response = self.client.get(reverse('analyses:top'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'analyses/top.html')
-        self.assertIn('expenditure_records', response.context)
+        self.assertIn('expenditure_or_income_records', response.context)
         self.assertIn('total_expenditures', response.context)
 
     def test_transition_view(self):
