@@ -5,7 +5,7 @@ description = ""
 authors = ["にしゅう <37263474+nisyuu@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "3.12.9"
+python = "3.13.2"
 Django = "~6.0.0"
 django-environ = "^0.12.0"
 django-debug-toolbar = "^6.1.0"
@@ -36,3 +36,8 @@ django-anymail = {extras = ["resend"], version = "^14.0"}
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "coverage[toml] (>=7.13.0,<8.0.0)"
+]
