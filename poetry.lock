@@ -1384,15 +1384,34 @@ dev = ["build"]
 doc = ["sphinx"]
 
 [[package]]
+name = "standardwebhooks"
+version = "1.0.0"
+description = "Standard Webhooks"
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "standardwebhooks-1.0.0.tar.gz", hash = "sha256:d94b99c0dcea84156e03adad94f8dba32d5454cc68e12ec2c824051b55bb67ff"},
+]
+
+[package.dependencies]
+attrs = ">=21.3.0"
+Deprecated = "*"
+httpx = ">=0.23.0"
+python-dateutil = "*"
+types-Deprecated = "*"
+types-python-dateutil = "*"
+
+[[package]]
 name = "svix"
-version = "1.83.0"
+version = "1.84.0"
 description = "Svix webhooks API client and webhook verification library"
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "svix-1.83.0-py3-none-any.whl", hash = "sha256:c289a5faeea13fdd46512bf3f1ac18aab344aa4da69d0fec862ae6a18ea8157b"},
-    {file = "svix-1.83.0.tar.gz", hash = "sha256:ea42945b72045b5a189a8dd5945e84e2a121d2bf96f7ae1c178f356f8fea7026"},
+    {file = "svix-1.84.0-py3-none-any.whl", hash = "sha256:76de7adb1e688b4d895165588d2898e63fab29da90e103aabae4db3c92a3bc78"},
+    {file = "svix-1.84.0.tar.gz", hash = "sha256:9d3f802026e814fe54f2f672bf625b31ea98a0d2355f2caa0fc4b6a7d7d7a719"},
 ]
 
 [package.dependencies]
@@ -1401,6 +1420,7 @@ Deprecated = "*"
 httpx = ">=0.23.0"
 pydantic = ">=2.10"
 python-dateutil = "*"
+standardwebhooks = "*"
 types-Deprecated = "*"
 types-python-dateutil = "*"
 
