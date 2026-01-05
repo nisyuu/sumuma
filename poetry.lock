@@ -187,14 +187,14 @@ files = [
 
 [[package]]
 name = "certifi"
-version = "2025.11.12"
+version = "2026.1.4"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "certifi-2025.11.12-py3-none-any.whl", hash = "sha256:97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b"},
-    {file = "certifi-2025.11.12.tar.gz", hash = "sha256:d8ab5478f2ecd78af242878415affce761ca6bc54a22a27e026d7c25357c3316"},
+    {file = "certifi-2026.1.4-py3-none-any.whl", hash = "sha256:9943707519e4add1115f44c2bc244f782c0249876bf51b6599fee1ffbedd685c"},
+    {file = "certifi-2026.1.4.tar.gz", hash = "sha256:ac726dd470482006e014ad384921ed6438c457018f4b3d204aea4281258b2120"},
 ]
 
 [[package]]
@@ -488,18 +488,18 @@ dev = ["attribution (==1.8.0)", "black (==24.8.0)", "build (>=1)", "flit (==3.9.
 
 [[package]]
 name = "dj-database-url"
-version = "3.0.1"
+version = "3.1.0"
 description = "Use Database URLs in your Django Application."
 optional = false
-python-versions = "*"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "dj_database_url-3.0.1-py3-none-any.whl", hash = "sha256:43950018e1eeea486bf11136384aec0fe55b29fe6fd8a44553231b85661d9383"},
-    {file = "dj_database_url-3.0.1.tar.gz", hash = "sha256:8994961efb888fc6bf8c41550870c91f6f7691ca751888ebaa71442b7f84eff8"},
+    {file = "dj_database_url-3.1.0-py3-none-any.whl", hash = "sha256:155a56fbbecbaaf1348ccd73bf29138b4c9988363ba08261a0f0145e392e638c"},
+    {file = "dj_database_url-3.1.0.tar.gz", hash = "sha256:d80218426b83f9302c8d27d4fccf52de5cf0cab179f0645fb2839f37605d1353"},
 ]
 
 [package.dependencies]
-Django = ">=4.2"
+django = ">=4.2"
 
 [[package]]
 name = "django"
@@ -1246,22 +1246,21 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "ruamel-yaml"
-version = "0.18.17"
+version = "0.19.1"
 description = "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order"
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "ruamel_yaml-0.18.17-py3-none-any.whl", hash = "sha256:9c8ba9eb3e793efdf924b60d521820869d5bf0cb9c6f1b82d82de8295e290b9d"},
-    {file = "ruamel_yaml-0.18.17.tar.gz", hash = "sha256:9091cd6e2d93a3a4b157ddb8fabf348c3de7f1fb1381346d985b6b247dcd8d3c"},
+    {file = "ruamel_yaml-0.19.1-py3-none-any.whl", hash = "sha256:27592957fedf6e0b62f281e96effd28043345e0e66001f97683aa9a40c667c93"},
+    {file = "ruamel_yaml-0.19.1.tar.gz", hash = "sha256:53eb66cd27849eff968ebf8f0bf61f46cdac2da1d1f3576dd4ccee9b25c31993"},
 ]
-
-[package.dependencies]
-"ruamel.yaml.clib" = {version = ">=0.2.15", markers = "platform_python_implementation == \"CPython\" and python_version < \"3.15\""}
 
 [package.extras]
 docs = ["mercurial (>5.7)", "ryd"]
 jinja2 = ["ruamel.yaml.jinja2 (>=0.2)"]
+libyaml = ["ruamel.yaml.clibz (>=0.3.7) ; platform_python_implementation == \"CPython\""]
+oldlibyaml = ["ruamel.yaml.clib ; platform_python_implementation == \"CPython\""]
 
 [[package]]
 name = "ruamel-yaml-clib"
@@ -1384,15 +1383,34 @@ dev = ["build"]
 doc = ["sphinx"]
 
 [[package]]
+name = "standardwebhooks"
+version = "1.0.0"
+description = "Standard Webhooks"
+optional = false
+python-versions = ">=3.6"
+groups = ["main"]
+files = [
+    {file = "standardwebhooks-1.0.0.tar.gz", hash = "sha256:d94b99c0dcea84156e03adad94f8dba32d5454cc68e12ec2c824051b55bb67ff"},
+]
+
+[package.dependencies]
+attrs = ">=21.3.0"
+Deprecated = "*"
+httpx = ">=0.23.0"
+python-dateutil = "*"
+types-Deprecated = "*"
+types-python-dateutil = "*"
+
+[[package]]
 name = "svix"
-version = "1.83.0"
+version = "1.84.1"
 description = "Svix webhooks API client and webhook verification library"
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "svix-1.83.0-py3-none-any.whl", hash = "sha256:c289a5faeea13fdd46512bf3f1ac18aab344aa4da69d0fec862ae6a18ea8157b"},
-    {file = "svix-1.83.0.tar.gz", hash = "sha256:ea42945b72045b5a189a8dd5945e84e2a121d2bf96f7ae1c178f356f8fea7026"},
+    {file = "svix-1.84.1-py3-none-any.whl", hash = "sha256:22834fd3cd6f31e65f7da00b768e433118e032fe34b5b067394854b1442f0759"},
+    {file = "svix-1.84.1.tar.gz", hash = "sha256:ac3e32f66c5fff4fe2c65520122a37b640f38bc3ae4d1ccef65bfeb4d54eb525"},
 ]
 
 [package.dependencies]
@@ -1401,6 +1419,7 @@ Deprecated = "*"
 httpx = ">=0.23.0"
 pydantic = ">=2.10"
 python-dateutil = "*"
+standardwebhooks = "*"
 types-Deprecated = "*"
 types-python-dateutil = "*"
 
@@ -1706,4 +1725,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = "3.13.2"
-content-hash = "0f1c4cd5729633ebd044f962e3417578580c3d6e8b3a9282c0524a99142c19fc"
+content-hash = "ffe2acf2902fd8c2cfc98b5cfc57df075fec01a78cd7b71d21b9c7e22119161a"
