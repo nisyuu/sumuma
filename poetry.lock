@@ -1403,14 +1403,14 @@ types-python-dateutil = "*"
 
 [[package]]
 name = "svix"
-version = "1.84.1"
+version = "1.85.0"
 description = "Svix webhooks API client and webhook verification library"
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "svix-1.84.1-py3-none-any.whl", hash = "sha256:22834fd3cd6f31e65f7da00b768e433118e032fe34b5b067394854b1442f0759"},
-    {file = "svix-1.84.1.tar.gz", hash = "sha256:ac3e32f66c5fff4fe2c65520122a37b640f38bc3ae4d1ccef65bfeb4d54eb525"},
+    {file = "svix-1.85.0-py3-none-any.whl", hash = "sha256:a5bfa5d7ab0c623b1f2832374e8d7e9225a61118f98dece22d427f7aa538bae1"},
+    {file = "svix-1.85.0.tar.gz", hash = "sha256:89660846c026afc4d2673a8549034bff03a301576239e5a8b3dc904afcc56a45"},
 ]
 
 [package.dependencies]
