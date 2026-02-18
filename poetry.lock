@@ -1384,13 +1384,13 @@ doc = ["sphinx"]
 
 [[package]]
 name = "standardwebhooks"
-version = "1.0.0"
+version = "1.0.1"
 description = "Standard Webhooks"
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "standardwebhooks-1.0.0.tar.gz", hash = "sha256:d94b99c0dcea84156e03adad94f8dba32d5454cc68e12ec2c824051b55bb67ff"},
+    {file = "standardwebhooks-1.0.1.tar.gz", hash = "sha256:b557bb2e4b16ada179a517ec0fe6cbec5acf976c5619922bf29c457f89a451bd"},
 ]
 
 [package.dependencies]
