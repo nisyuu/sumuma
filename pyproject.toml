@@ -25,7 +25,7 @@ setuptools = "^82.0.0"
 django-recaptcha = "^4.0.0"
 drf-api-logger = "^1.1.21"
 django-cors-headers = "^4.4.0"
-django-import-export = "^4.1.0"
+django-import-export = "^4.4.0"
 psycopg2-binary = "^2.9.11"
 dj-database-url = "^3.1.2"
 whitenoise = {extras = ["brotli"], version = "^6.12.0"}
