@@ -5,8 +5,16 @@ updates:
     target-branch: "develop"
     open-pull-requests-limit: 20
     schedule:
-      interval: "daily"
-      time: "08:00"
+      interval: "weekly"
+      time: "09:00"
       timezone: "Asia/Tokyo"
     allow:
       - dependency-type: "all"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "develop"
+    open-pull-requests-limit: 20
+    schedule:
+      interval: "weekly"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
