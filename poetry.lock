@@ -554,18 +554,18 @@ bcrypt = ["bcrypt (>=4.1.1)"]
 
 [[package]]
 name = "django-anymail"
-version = "14.0"
+version = "15.0"
 description = "Django email backends and webhooks for Amazon SES, Brevo,  MailerSend, Mailgun, Mailjet, Mailtrap, Mandrill, Postal, Postmark, Resend,  Scaleway TEM, SendGrid, SparkPost, and Unisender Go  (EmailBackend, transactional email tracking and inbound email signals)"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "django_anymail-14.0-py3-none-any.whl", hash = "sha256:98e5575bcff231952a92117b7d0a4dd37fab582333a343de302d415a31dc72b1"},
-    {file = "django_anymail-14.0.tar.gz", hash = "sha256:ca42e52da62d2c96ce92412f9d68ef6d2067d96a384096b6e932d6a247e9fd61"},
+    {file = "django_anymail-15.0-py3-none-any.whl", hash = "sha256:64d33dd1084bfc8e4e12245f56629be40aa0b0498fc7fc7544d87b9b2048be1e"},
+    {file = "django_anymail-15.0.tar.gz", hash = "sha256:23d8ab6589afe8cc1ae7665c26879814ad192f4c3ed837a2a1868b0a056869e0"},
 ]
 
 [package.dependencies]
-django = ">=4.0"
+django = ">=5.0"
 idna = "*"
 requests = ">=2.4.3"
 svix = {version = "*", optional = true, markers = "extra == \"resend\""}
@@ -573,9 +573,9 @@ urllib3 = ">=1.25.0"
 
 [package.extras]
 amazon-ses = ["boto3 (>=1.24.6)"]
-postal = ["cryptography ; python_version >= \"3.9\""]
+postal = ["cryptography"]
 resend = ["svix"]
-sendgrid = ["cryptography ; python_version >= \"3.9\""]
+sendgrid = ["cryptography"]
 uts46 = ["uts46"]
 
 [[package]]
@@ -1527,15 +1527,15 @@ typing-extensions = ">=4.12.0"
 
 [[package]]
 name = "tzdata"
-version = "2025.3"
+version = "2026.2"
 description = "Provider of IANA time zone data"
 optional = false
 python-versions = ">=2"
 groups = ["main"]
 markers = "sys_platform == \"win32\""
 files = [
-    {file = "tzdata-2025.3-py2.py3-none-any.whl", hash = "sha256:06a47e5700f3081aab02b2e513160914ff0694bce9947d6b76ebd6bf57cfc5d1"},
-    {file = "tzdata-2025.3.tar.gz", hash = "sha256:de39c2ca5dc7b0344f2eba86f49d614019d29f060fc4ebc8a417896a620b56a7"},
+    {file = "tzdata-2026.2-py2.py3-none-any.whl", hash = "sha256:bbe9af844f658da81a5f95019480da3a89415801f6cc966806612cc7169bffe7"},
+    {file = "tzdata-2026.2.tar.gz", hash = "sha256:9173fde7d80d9018e02a662e168e5a2d04f87c41ea174b139fbef642eda62d10"},
 ]
 
 [[package]]
@@ -1738,4 +1738,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = "3.13.2"
-content-hash = "ab98fe390856c0f3ae38ec58688ca6aba83087f66ddfbb98d32a0f9538e561e1"
+content-hash = "55a2332617a648a5f71a9fdaa43e618be3c443d1c00ef19cab6c34c59588648e"
