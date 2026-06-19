@@ -7,7 +7,7 @@ authors = ["にしゅう <37263474+nisyuu@users.noreply.github.com>"]
 [tool.poetry.dependencies]
 python = "3.13.2"
 Django = "~6.0.3"
-django-environ = "^0.13.0"
+django-environ = ">=0.13,<0.15"
 django-debug-toolbar = "^6.3.0"
 django-tailwind = "^4.4.2"
 djangorestframework = "^3.17.1"
