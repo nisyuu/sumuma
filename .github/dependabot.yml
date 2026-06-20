@@ -8,6 +8,22 @@ updates:
       interval: "weekly"
       time: "09:00"
       timezone: "Asia/Tokyo"
+    groups:
+      patch-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      minor-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+      major-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "develop"
@@ -16,3 +32,19 @@ updates:
       interval: "weekly"
       time: "09:00"
       timezone: "Asia/Tokyo"
+    groups:
+      patch-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      minor-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+      major-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
