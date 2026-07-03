@@ -727,19 +727,20 @@ django = ">=4.2"
 
 [[package]]
 name = "drf-api-logger"
-version = "1.2.2"
-description = "An API Logger for your Django Rest Framework project."
+version = "1.2.3"
+description = "Production-ready API logging and profiling for Django REST Framework."
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "drf_api_logger-1.2.2-py3-none-any.whl", hash = "sha256:a11c3264f81f8e20ac744b71a270ba920d591bb95c108906d97baaec745031e4"},
-    {file = "drf_api_logger-1.2.2.tar.gz", hash = "sha256:7574250edc87940a25f8adb41e76458f25af313e74baa2b026b48b64d7c36145"},
+    {file = "drf_api_logger-1.2.3-py3-none-any.whl", hash = "sha256:f276bfa900ed9e515a0532457d1db76ed920d142aba9190bb49ca192254b40da"},
+    {file = "drf_api_logger-1.2.3.tar.gz", hash = "sha256:eb6eb58cb8390df90e781bb1ee5b63dede7bf8431300773a9f48609db311ad73"},
 ]
 
 [package.dependencies]
 bleach = ">=3.1.5"
-djangorestframework = ">=3.7.4"
+Django = ">=4.2"
+djangorestframework = ">=3.16"
 
 [[package]]
 name = "drf-flex-fields"
