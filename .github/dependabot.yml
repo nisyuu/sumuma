@@ -48,3 +48,27 @@ updates:
           - "*"
         update-types:
           - "major"
+  - package-ecosystem: "npm"
+    directory: "/theme/static_src"
+    target-branch: "develop"
+    open-pull-requests-limit: 20
+    schedule:
+      interval: "weekly"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    groups:
+      patch-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      minor-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+      major-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
