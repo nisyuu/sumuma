@@ -5,7 +5,7 @@
       <form class="p-3 pt-0 pb-8" action="{% url 'kakeibo:create_category' %}" method="post">
         {% csrf_token %}
         <input type='hidden' name='submit_token' value="{{ submit_token }}">
-        <div class="mt-2 p-3 bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div class="mt-2 p-3 bg-white shadow-sm overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <span class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">収支</span>
@@ -25,7 +25,7 @@
               {{ form.name }}
             </div>
           </div>
-          <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
+          <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-sm" type="submit">
             登録
           </button>
         </div>
@@ -34,7 +34,7 @@
     <div class="flex flex-col px-3">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8 pb-8">
-          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div class="shadow-sm overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
               <tr>
@@ -67,7 +67,7 @@
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button
-                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-category-button"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm delete-category-button"
                       data-category-id="{{ category.id }}"
                       onclick="toggleModal('delete-modal')">
                       削除

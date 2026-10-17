@@ -48,7 +48,7 @@
                 </svg>
               </div>
               <div
-                class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0 z-10"
+                class="bg-white mt-12 rounded-lg shadow-sm p-4 absolute top-0 left-0 z-10"
                 style="width: 17rem"
                 x-show.transition="showDatepicker"
                 @click.away="showDatepicker = false"
@@ -170,7 +170,7 @@
               支出に登録済み
             </label>
             <input type="checkbox"
-                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 mb-3" id="id_is_registered" checked
+                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded-sm border-gray-300 mb-3" id="id_is_registered" checked
                    disabled>
             <div class="hidden">
               {{ form.is_registered }}
@@ -184,7 +184,7 @@
         </div>
       </div>
       <div class="px-3">
-        <button class="w-full bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded"
+        <button class="w-full bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded-sm"
                 type="submit">更新
         </button>
       </div>

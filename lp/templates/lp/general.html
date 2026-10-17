@@ -6,19 +6,19 @@
       <header class="fixed w-full z-30 md:bg-opacity-90 transition duration-300 ease-in-out">
         <div class="max-w-6xl mx-auto px-5 sm:px-6">
           <div class="flex items-center justify-between h-16 md:h-20">
-            <div class="flex-shrink-0 mr-4">
+            <div class="shrink-0 mr-4">
               <a class="block" href="{% url 'lp:general' %}">
                 <img class="w-10" src="{% static 'home/images/logo/symbol-logo.png' %}" alt="">
               </a>
             </div>
-            <nav class="flex flex-grow">
-              <ul class="flex flex-grow justify-end flex-wrap items-center">
+            <nav class="flex grow">
+              <ul class="flex grow justify-end flex-wrap items-center">
                 <li>
-                  <a class="font-medium text-gray-600 hover:text-gray-900 bg-white py-2 px-4 rounded"
+                  <a class="font-medium text-gray-600 hover:text-gray-900 bg-white py-2 px-4 rounded-sm"
                      href="{% url 'account:login' %}">ログイン</a>
                 </li>
                 <li>
-                  <a class="text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3 py-2 px-4 rounded"
+                  <a class="text-gray-200 bg-gray-900 hover:bg-gray-800 ml-3 py-2 px-4 rounded-sm"
                      href="{% url 'account:signup' %}">
                     <span>サインアップ</span>
                   </a>
@@ -28,7 +28,7 @@
           </div>
         </div>
       </header>
-      <main class="flex-grow">
+      <main class="grow">
         <section class="relative">
           <div class="absolute left-1/2 transform -translate-x-1/2 bottom-0 pointer-events-none" aria-hidden="true">
             <svg width="1360" height="578" viewBox="0 0 1360 578" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@
                 <h1
                   class="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 aos-init aos-animate"
                   data-aos="zoom-y-out">常識を革新に
-                  <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 p-1">SUMUMA</span>
+                  <span class="bg-clip-text text-transparent bg-linear-to-r from-blue-500 to-teal-400 p-1">SUMUMA</span>
                 </h1>
                 <div class="max-w-3xl mx-auto">
                   <p class="text-xl text-gray-600 mb-8 aos-init aos-animate" data-aos="zoom-y-out" data-aos-delay="150">
@@ -88,13 +88,13 @@
                   </div>
                   <div class="mb-8 md:mb-0">
                     <div
-                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
+                      class="flex items-center text-lg p-5 rounded-sm border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
                       <div>
                         <div class="font-bold leading-snug tracking-tight mb-1">ストレスフリー</div>
                         <div class="text-base text-gray-600">ストレスフリーを第一に考えることで、初めてのご利用でも簡単にお使いいただけます。</div>
                       </div>
                       <div
-                        class="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
+                        class="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow-sm shrink-0 ml-3">
                         <svg class="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M11.334 8.06a.5.5 0 00-.421-.237 6.023 6.023 0 01-5.905-6c0-.41.042-.82.125-1.221a.5.5 0 00-.614-.586 6 6 0 106.832 8.529.5.5 0 00-.017-.485z"></path>
@@ -102,13 +102,13 @@
                       </div>
                     </div>
                     <div
-                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
+                      class="flex items-center text-lg p-5 rounded-sm border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
                       <div>
                         <div class="font-bold leading-snug tracking-tight mb-1">直感的</div>
                         <div class="text-base text-gray-600">直感的で洗練されたデザインに仕上げることで、高い操作性を提供しています。</div>
                       </div>
                       <div
-                        class="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
+                        class="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow-sm shrink-0 ml-3">
                         <svg class="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M11.854.146a.5.5 0 00-.525-.116l-11 4a.5.5 0 00-.015.934l4.8 1.921 1.921 4.8A.5.5 0 007.5 12h.008a.5.5 0 00.462-.329l4-11a.5.5 0 00-.116-.525z"
@@ -117,13 +117,13 @@
                       </div>
                     </div>
                     <div
-                      class="flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
+                      class="flex items-center text-lg p-5 rounded-sm border transition duration-300 ease-in-out mb-3 bg-white shadow-md border-gray-200 hover:shadow-lg">
                       <div>
                         <div class="font-bold leading-snug tracking-tight mb-1">利便性</div>
                         <div class="text-base text-gray-600">豊富な機能により、ただの家計簿にとどまない圧倒的な利便性を追求しています。</div>
                       </div>
                       <div
-                        class="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
+                        class="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow-sm shrink-0 ml-3">
                         <svg class="w-3 h-3 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M11.953 4.29a.5.5 0 00-.454-.292H6.14L6.984.62A.5.5 0 006.12.173l-6 7a.5.5 0 00.379.825h5.359l-.844 3.38a.5.5 0 00.864.445l6-7a.5.5 0 00.075-.534z"
@@ -139,7 +139,7 @@
                   <div class="relative flex flex-col text-center lg:text-right">
                     <div class="w-full appear-done enter-done" style="">
                       <div class="relative inline-flex flex-col">
-                        <img class="md:max-w-none mx-auto rounded" src="{% static 'home/images/daifuku.png' %}"
+                        <img class="md:max-w-none mx-auto rounded-sm" src="{% static 'home/images/daifuku.png' %}"
                              width="500" height="462" alt="Features bg">
                       </div>
                     </div>
@@ -162,7 +162,7 @@
               </div>
               <div
                 class="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none">
-                <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
+                <div class="relative flex flex-col items-center p-6 bg-white rounded-sm shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none" fill-rule="evenodd">
                       <rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
@@ -180,7 +180,7 @@
                   <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">収支分析</h4>
                   <p class="text-gray-600 text-center">月の支出状況を豊富なグラフによって様々な視点から分析することができます。</p>
                 </div>
-                <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
+                <div class="relative flex flex-col items-center p-6 bg-white rounded-sm shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none" fill-rule="evenodd">
                       <rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
@@ -197,7 +197,7 @@
                   <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">収支計画</h4>
                   <p class="text-gray-600 text-center">月々の収支を予め計画しておくことで今の支出状況を把握することができます。</p>
                 </div>
-                <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
+                <div class="relative flex flex-col items-center p-6 bg-white rounded-sm shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none" fill-rule="evenodd">
                       <rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
@@ -212,7 +212,7 @@
                   <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">直近登録履歴</h4>
                   <p class="text-gray-600 text-center">誤った日付で登録した場合でも、登録順なのですぐに見つけて編集ができます。</p>
                 </div>
-                <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
+                <div class="relative flex flex-col items-center p-6 bg-white rounded-sm shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none" fill-rule="evenodd">
                       <rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
@@ -230,7 +230,7 @@
                   <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">CSVエクスポート</h4>
                   <p class="text-gray-600 text-center">CSVエクスポートが可能なので、独自の分析も可能です。</p>
                 </div>
-                <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
+                <div class="relative flex flex-col items-center p-6 bg-white rounded-sm shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none" fill-rule="evenodd">
                       <rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
@@ -244,7 +244,7 @@
                   <h4 class="text-xl font-bold leading-snug tracking-tight mb-1">CSVインポート</h4>
                   <p class="text-gray-600 text-center">CSVインポートが可能なので、他の家計簿からの移行もスムーズです。</p>
                 </div>
-                <div class="relative flex flex-col items-center p-6 bg-white rounded shadow-xl">
+                <div class="relative flex flex-col items-center p-6 bg-white rounded-sm shadow-xl">
                   <svg class="w-16 h-16 p-1 -mt-1 mb-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                     <g fill="none" fill-rule="evenodd">
                       <rect class="fill-current text-blue-600" width="64" height="64" rx="32"></rect>
@@ -402,7 +402,7 @@
           <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="pb-12 md:pb-20">
               <div
-                class="relative bg-gray-900 rounded py-10 px-8 md:py-16 md:px-12 shadow-2xl overflow-hidden aos-init aos-animate"
+                class="relative bg-gray-900 rounded-sm py-10 px-8 md:py-16 md:px-12 shadow-2xl overflow-hidden aos-init aos-animate"
                 data-aos="zoom-y-out">
                 <div class="absolute right-0 bottom-0 pointer-events-none hidden lg:block" aria-hidden="true">
                   <svg width="428" height="328" xmlns="http://www.w3.org/2000/svg">
@@ -508,7 +508,7 @@
             <ul class="flex mb-4 md:order-1 md:ml-4 md:mb-0">
               <li>
                 <a
-                  class="flex justify-center items-center text-gray-600 hover:text-gray-900 bg-white hover:bg-white-100 rounded-full shadow transition duration-150 ease-in-out w-8 h-8"
+                  class="flex justify-center items-center text-gray-600 hover:text-gray-900 bg-white hover:bg-white-100 rounded-full shadow-sm transition duration-150 ease-in-out w-8 h-8"
                  aria-label="X (旧Twitter)" href="https://x.com/nishilyuu" target="_blank" rel="noopener">
                   <img src="{% static 'home/images/x_logo.svg' %}" alt="Xのロゴ" class="w-4 h-4" style="filter: invert(1);" loading="lazy" />
                 </a>

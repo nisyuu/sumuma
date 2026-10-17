@@ -1,12 +1,12 @@
 {% extends "loggedin_base.html" %}
 {% block content %}
   <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
-    <div class="m-3 mt-0 p-3 bg-white shadow border-b border-gray-200 sm:rounded-lg">
+    <div class="m-3 mt-0 p-3 bg-white shadow-sm border-b border-gray-200 sm:rounded-lg">
       <div class="flex flex-wrap">
         <form class="flex flex-wrap items-stretch w-full relative" id="event_month" action="{% url 'budget:top' %}"
               method="get">
           <input type="month"
-                 class="flex-shrink flex-grow flex-auto leading-normal border-gray-200 w-px flex-1 border h-10 rounded rounded-r-none px-3 relative"
+                 class="shrink grow flex-auto leading-normal border-gray-200 w-px flex-1 border h-10 rounded-sm rounded-r-none px-3 relative"
                  value="{{ year_and_month }}" name="year_and_month" required>
           <div class="flex">
             <select name="expenditure_or_income"
@@ -16,15 +16,15 @@
             </select>
           </div>
           <button type="submit"
-                  class="flex items-center bg-green-500 leading-normal bg-grey-lighter rounded rounded-l-none border-0 border-l-0 px-5 whitespace-no-wrap text-white">
+                  class="flex items-center bg-green-500 leading-normal bg-grey-lighter rounded-sm rounded-l-none border-0 border-l-0 px-5 whitespace-no-wrap text-white">
             検索
           </button>
         </form>
       </div>
     </div>
-    <div class="flex flex-row flex-wrap flex-grow">
+    <div class="flex flex-row flex-wrap grow">
       <div class="w-full">
-        <div class="bg-white border rounded shadow mx-3">
+        <div class="bg-white border rounded-sm shadow-sm mx-3">
           <div class="border-b p-3">
             <h5 class="font-bold uppercase text-gray-600">収支計画</h5>
           </div>
@@ -40,7 +40,7 @@
       <form class="px-3 pb-3" action="{% url 'budget:edit' %}" method="get">
         <input type="hidden" name="year_and_month" value="{{ year_and_month }}">
         <div class="w-full">
-          <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">編集</button>
+          <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-sm">編集</button>
         </div>
       </form>
     {% else %}
@@ -48,14 +48,14 @@
         <form class="w-full p-3 pr-0" action="{% url 'budget:create' %}" method="get">
           <input type="hidden" name="year_and_month" value="{{ year_and_month }}">
           <div class="w-full">
-            <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">新規作成</button>
+            <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-sm">新規作成</button>
           </div>
         </form>
         <form class="w-full p-3" action="{% url 'budget:copy_last_month_expenditure_plans' %}" method="post">
           {% csrf_token %}
           <input type="hidden" name="year_and_month" value="{{ year_and_month }}">
           <div class="w-full">
-            <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">前月複製</button>
+            <button class="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-sm">前月複製</button>
           </div>
         </form>
       </div>
@@ -65,7 +65,7 @@
       <div class="flex flex-col px-3 pb-8">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <div class="shadow-sm overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>

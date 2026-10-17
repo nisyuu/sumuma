@@ -19,7 +19,7 @@ class LoginForm(AuthenticationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                          'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
+                                          'border-gray-200 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden ' \
                                           'focus:bg-white'
 
         self.fields['recaptcha'] = ReCaptchaField(label="", widget=ReCaptchaV3())
@@ -39,7 +39,7 @@ class SignupForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                          'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
+                                          'border-gray-200 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden ' \
                                           'focus:bg-white'
 
         self.fields['recaptcha'] = ReCaptchaField(label="", widget=ReCaptchaV3())
@@ -55,18 +55,18 @@ class UpdateUserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['email'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                                     'border-gray-200 rounded py-3 px-4 leading-tight '
+                                                     'border-gray-200 rounded-sm py-3 px-4 leading-tight '
         self.fields['email'].widget.attrs['readonly'] = 'readonly'
         self.fields['last_name'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 ' \
-                                                         'border border-gray-200 rounded py-3 px-4 leading-tight ' \
-                                                         'focus:outline-none focus:bg-white focus:border-gray-300 '
+                                                         'border border-gray-200 rounded-sm py-3 px-4 leading-tight ' \
+                                                         'focus:outline-hidden focus:bg-white focus:border-gray-300 '
         self.fields['first_name'].widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 ' \
-                                                          'border border-gray-200 rounded py-3 px-4 leading-tight ' \
-                                                          'focus:outline-none focus:bg-white focus:border-gray-300 '
+                                                          'border border-gray-200 rounded-sm py-3 px-4 leading-tight ' \
+                                                          'focus:outline-hidden focus:bg-white focus:border-gray-300 '
         self.fields['twitter_username'].widget.attrs['class'] = \
             'appearance-none block w-full bg-gray-200 text-gray-700 ' \
-            'border border-gray-200 rounded py-3 px-4 leading-tight ' \
-            'focus:outline-none focus:bg-white focus:border-gray-300 '
+            'border border-gray-200 rounded-sm py-3 px-4 leading-tight ' \
+            'focus:outline-hidden focus:bg-white focus:border-gray-300 '
 
     def clean_email(self):
         if self.instance.email != self.cleaned_data['email']:
@@ -83,7 +83,7 @@ class PasswordChangeForm(PasswordChangeBaseForm):
 
         for field in self.fields.values():
             field.widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                          'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
+                                          'border-gray-200 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden ' \
                                           'focus:bg-white'
 
 
@@ -94,7 +94,7 @@ class PasswordResetForm(PasswordResetBaseForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                          'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
+                                          'border-gray-200 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden ' \
                                           'focus:bg-white'
 
 
@@ -105,5 +105,5 @@ class SetPasswordForm(SetPasswordBaseForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'appearance-none block w-full bg-gray-200 text-gray-700 border ' \
-                                          'border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none ' \
+                                          'border-gray-200 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden ' \
                                           'focus:bg-white'

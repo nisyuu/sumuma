@@ -1,0 +1,19 @@
+/*
+  @tailwindcss/forms の base スタイルは v4 では @layer base に入るため、レイヤーなしの
+  ユーティリティ（border-gray-200 など）に詳細度に関係なく負けてしまう。
+  v3 ではユーティリティより詳細度が高く勝っていた :focus / :checked のルールだけを、
+  同じセレクタ・同じ値でレイヤーなしに再定義する（utilities より前に読み込む）。
+*/
+input:where([type='text'], :not([type]), [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week']):focus,
+select:where([multiple]):focus,
+textarea:focus,
+select:focus {
+  border-color: #2563eb;
+}
+
+input:where([type='checkbox'], [type='radio']):checked,
+input:where([type='checkbox'], [type='radio']):checked:hover,
+input:where([type='checkbox'], [type='radio']):checked:focus {
+  border-color: transparent;
+  background-color: currentColor;
+}

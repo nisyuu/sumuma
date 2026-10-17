@@ -1,3 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+  Tailwind CSS v4 は既定でユーティリティを @layer の中に出力するが、
+  レイヤー外の CSS（各アプリの static/*.css）が常に優先されてしまう。
+  v3 と同じくユーティリティが読み込み順・詳細度で勝つよう、utilities は
+  レイヤーなしで読み込む。preflight はプラグイン（@tailwindcss/forms）の
+  base スタイルと同じ base レイヤーに置き、その順序を保つ。
+*/
+@layer theme, base;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import './forms-overrides.css';
+@import 'tailwindcss/utilities.css';
+
+@import './v3-colors.css';
+
+@config '../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+/*
+  @tailwindcss/forms のフォーカスリングは --tw-ring-offset-shadow などの変数を前提にしている。
+  v4 ではリング系のユーティリティを使っていないとこれらが未定義になり box-shadow が無効になるため、
+  v3 の preflight と同じ初期値を与える。
+*/
+@layer base {
+  *,
+  ::before,
+  ::after,
+  ::backdrop {
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+  }
+}
