@@ -1,17 +1,17 @@
 {% extends "loggedin_base.html" %}
 {% block content %}
   <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
-    <div class="m-3 mt-0 bg-white shadow border-b border-gray-200 sm:rounded-lg">
+    <div class="m-3 mt-0 bg-white shadow-sm border-b border-gray-200 sm:rounded-lg">
       <div class="flex">
         <div class="w-full md:w-1/2 p-3">
           <a href="{% url 'shopping:create_todo' %}"
-             class="inline-block bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">新規作成</a>
+             class="inline-block bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-sm">新規作成</a>
         </div>
         <div class="w-full md:w-1/2 p-3 flex items-center justify-end">
           <form action="{% url 'shopping:top' %}" method="get">
             <input type="checkbox" {% if not request.GET.is_all %} checked {% endif %} name="is_all"
-                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 hidden">
-            <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 ml-4 rounded">
+                   class="w-4 h-4 text-blue-600 bg-gray-100 rounded-sm border-gray-300 hidden">
+            <button class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 ml-4 rounded-sm">
               {% if request.GET.is_all %}
                 未購入のみ表示
               {% else %}
@@ -25,7 +25,7 @@
     <div class="flex flex-col px-3">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8 pb-8">
-          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div class="shadow-sm overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
               <tr>
@@ -59,11 +59,11 @@
                 <tr id="todo{{ todo.id }}">
                   <td class="px-6 py-4 whitespace-nowrap">
                     <input type="checkbox" {% if todo.is_bought %} checked {% endif %}
-                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300" disabled>
+                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded-sm border-gray-300" disabled>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <input type="checkbox" {% if todo.is_registered %} checked {% endif %}
-                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300" disabled>
+                           class="w-4 h-4 text-blue-600 bg-gray-100 rounded-sm border-gray-300" disabled>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     {{ todo.name }}
@@ -82,9 +82,9 @@
                   </td>
                   <td class="px-6 py-4 text-right whitespace-nowrap">
                     <a href="{% url 'shopping:edit_todo' pk=todo.id %}"
-                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded-sm">編集</a>
                     <button
-                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-todo-button"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm delete-todo-button"
                       data-todo-pk="{{ todo.pk }}"
                       onclick="toggleModal('delete-modal')">
                       削除
@@ -101,7 +101,7 @@
   </div>
   {% if is_paginated %}
     <div class="flex justify-center mt-2 p-3 pb-8">
-      <nav class="relative items-center z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+      <nav class="relative items-center z-0 inline-flex rounded-md shadow-xs -space-x-px" aria-label="Pagination">
         {% if page_obj.has_previous %}
           <a
             class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md"

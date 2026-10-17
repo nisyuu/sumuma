@@ -21,7 +21,7 @@
         <p class="text-red-500 text-xs italic">{{ form.password.errors }}</p>
       </div>
       <div class="flex items-center justify-between">
-        <button type="submit"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        <button type="submit"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline" type="button">
           ログイン
         </button>
         <a class="inline-block align-baseline font-bold text-sm text-green-500 hover:text-green-800" href="{% url 'account:password_reset' %}">

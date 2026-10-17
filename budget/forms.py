@@ -9,7 +9,7 @@ class ExpenditurePlanAmountForm(forms.ModelForm):
         widget=forms.NumberInput(attrs={'min': 0, 'max': 9999999999999, 'value': 0, 'class': 'appearance-none block '
                                                                                              'w-full bg-gray-200 '
                                                                                              'text-gray-700 border '
-                                                                                             'border-gray-200 rounded '
+                                                                                             'border-gray-200 rounded-sm '
                                                                                              'py-3 px-4 leading-tight '
                                                                                              'focus:outline-none '
                                                                                              'focus:bg-white'}),

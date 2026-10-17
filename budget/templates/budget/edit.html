@@ -7,7 +7,7 @@
       <div class="flex flex-col pb-4">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <div class="shadow-sm overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
@@ -31,11 +31,11 @@
                       <div class="text-sm text-gray-900">
                         {% if plan_each_categorie.amount %}
                           <input
-                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
                             name="amount" type="number" value={{ plan_each_categorie.amount }}>
                         {% else %}
                           <input
-                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
                             name="amount" type="number" value=0>
                         {% endif %}
                       </div>
@@ -48,7 +48,7 @@
           </div>
         </div>
       </div>
-      <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
+      <button class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-sm" type="submit">
         登録
       </button>
     </form>

@@ -1,9 +1,9 @@
 <div
-  class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
+  class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-hidden focus:outline-hidden justify-center items-center"
   id="delete-modal">
   <div class="relative w-auto mx-2 my-6 mx-auto max-w-3xl">
     <form
-      class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+      class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-hidden focus:outline-hidden"
       id="delete-form"
       action=""
       method="post">
@@ -15,9 +15,9 @@
           本当に削除しますか？
         </h3>
         <button
-          class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+          class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-hidden focus:outline-hidden"
           onclick="toggleModal('delete-modal')">
-          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+          <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-hidden focus:outline-hidden">
             ×
           </span>
         </button>
@@ -25,11 +25,11 @@
       <!--footer-->
       <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
         <button
-          class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-hidden focus:outline-hidden mr-1 mb-1 ease-linear transition-all duration-150"
           type="button" onclick="toggleModal('delete-modal')">
           閉じる
         </button>
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-sm" type="submit">
           削除
         </button>
       </div>

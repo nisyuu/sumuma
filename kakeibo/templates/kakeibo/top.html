@@ -6,10 +6,10 @@
 </style>
 {% block content %}
   <div class="w-full md:px-0 md:mt-8 text-gray-800 leading-normal">
-    <div class="flex flex-row flex-wrap flex-grow">
+    <div class="flex flex-row flex-wrap grow">
       <div class="w-full p-3 pb-0">
         <!--Graph Card-->
-        <div class="bg-white border rounded shadow">
+        <div class="bg-white border rounded-sm shadow-sm">
           <div class="md:p-3 lg:p-5 md:h-full lg:h-1/2">
             <canvas id="line_graph" class="h-full"></canvas>
           </div>
@@ -22,14 +22,14 @@
   <div class="flex flex-row items-center">
     <div class="w-full p-3 pr-0">
       <button
-        class="w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+        class="w-full bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded-sm shadow-sm hover:shadow-lg outline-hidden focus:outline-hidden ease-linear transition-all duration-150"
         type="button" onclick="toggleModal('modal-expenditure')">
         支出登録
       </button>
     </div>
     <div class="w-full p-3">
       <button
-        class="w-full bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+        class="w-full bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded-sm shadow-sm hover:shadow-lg outline-hidden focus:outline-hidden ease-linear transition-all duration-150"
         type="button" onclick="toggleModal('modal-income')">
         収入登録
       </button>
@@ -39,7 +39,7 @@
   <div class="flex flex-col px-3">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="pt-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div class="shadow-sm overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
             <tr>
@@ -99,9 +99,9 @@
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   {% if record.category_id in expenditure_categories %}
                     <a href="{% url 'kakeibo:edit_expenditure' pk=record.pk %}"
-                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded-sm">編集</a>
                     <button
-                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm delete-button"
                       data-record-pk={{ record.pk }}
                       data-category="expenditure"
                       onclick="toggleModal('delete-modal')">
@@ -109,9 +109,9 @@
                     </button>
                   {% elif record.category_id in income_categories %}
                     <a href="{% url 'kakeibo:edit_income' pk=record.pk %}"
-                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded">編集</a>
+                       class="inline-block bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded-sm">編集</a>
                     <button
-                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button"
+                      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-sm delete-button"
                       data-record-pk={{ record.pk }}
                       data-category="income"
                       onclick="toggleModal('delete-modal')">
@@ -129,7 +129,7 @@
   </div>
   {% if is_paginated %}
     <div class="flex justify-center mt-2 p-3">
-      <nav class="relative items-center z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+      <nav class="relative items-center z-0 inline-flex rounded-md shadow-xs -space-x-px" aria-label="Pagination">
         {% if page_obj.has_previous %}
           <a
             class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-mediumfont-medium rounded-l-md"

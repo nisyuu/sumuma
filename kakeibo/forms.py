@@ -11,13 +11,13 @@ class IncomeForm(forms.ModelForm):
             MaxValueValidator(9999999999999)
         ],
         widget=forms.NumberInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'mb-3 leading-tight focus:outline-none focus:bg-white'}),
+            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 '
+                     'mb-3 leading-tight focus:outline-hidden focus:bg-white'}),
     )
     event_date = forms.DateField(
         widget=forms.DateInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'mb-3 leading-tight focus:outline-none focus:bg-white',
+            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 '
+                     'mb-3 leading-tight focus:outline-hidden focus:bg-white',
             'x-model': 'datepickerValue',
             '@click': 'showDatepicker = !showDatepicker',
             '@keydown.escape': 'showDatepicker = false',
@@ -28,7 +28,7 @@ class IncomeForm(forms.ModelForm):
         queryset=None,
         widget=forms.Select(attrs={
             "class": "w-full bg-gray-200 border border-gray-200 "
-                     "text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white "
+                     "text-gray-700 py-3 px-4 pr-8 rounded-sm leading-tight focus:outline-hidden focus:bg-white "
                      "focus:border-gray-500pdown"}, ),
         empty_label='カテゴリーを選択してください'
     )
@@ -36,8 +36,8 @@ class IncomeForm(forms.ModelForm):
         max_length=100,
         required=False,
         widget=forms.Textarea(attrs={
-            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'leading-tight focus:outline-none focus:bg-white focus:border-gray-500'}),
+            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 '
+                     'leading-tight focus:outline-hidden focus:bg-white focus:border-gray-500'}),
     )
 
     def __init__(self, user=None, *args, **kwargs):
@@ -59,13 +59,13 @@ class ExpenditureForm(forms.ModelForm):
             MaxValueValidator(9999999999999)
         ],
         widget=forms.NumberInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'mb-3 leading-tight focus:outline-none focus:bg-white'}),
+            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 '
+                     'mb-3 leading-tight focus:outline-hidden focus:bg-white'}),
     )
     event_date = forms.DateField(
         widget=forms.DateInput(attrs={
-            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'mb-3 leading-tight focus:outline-none focus:bg-white',
+            'class': 'w-full bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 '
+                     'mb-3 leading-tight focus:outline-hidden focus:bg-white',
             'x-model': 'datepickerValue',
             '@click': 'showDatepicker = !showDatepicker',
             '@keydown.escape': 'showDatepicker = false',
@@ -76,7 +76,7 @@ class ExpenditureForm(forms.ModelForm):
         queryset=None,
         widget=forms.Select(attrs={
             "class": "w-full bg-gray-200 border border-gray-200 "
-                     "text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white "
+                     "text-gray-700 py-3 px-4 pr-8 rounded-sm leading-tight focus:outline-hidden focus:bg-white "
                      "focus:border-gray-500pdown"}, ),
         empty_label='カテゴリーを選択してください'
     )
@@ -84,8 +84,8 @@ class ExpenditureForm(forms.ModelForm):
         max_length=100,
         required=False,
         widget=forms.Textarea(attrs={
-            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 '
-                     'leading-tight focus:outline-none focus:bg-white focus:border-gray-500'}),
+            'class': 'w-full h-20 bg-gray-200 text-gray-700 border border-gray-200 rounded-sm py-3 px-4 '
+                     'leading-tight focus:outline-hidden focus:bg-white focus:border-gray-500'}),
     )
 
     def __init__(self, user=None, *args, **kwargs):
@@ -104,7 +104,7 @@ class CategoryForm(forms.ModelForm):
     name = forms.CharField(
         max_length=32,
         widget=forms.TextInput(attrs={'class': 'appearance-none block w-full bg-gray-200 text-gray-700 border '
-                                               'border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none '
+                                               'border-gray-200 rounded-sm py-3 px-4 leading-tight focus:outline-hidden '
                                                'focus:bg-white focus:border-gray-500" id="grid-last-name',
                                       'autofocus': 'true'}),
         required=True

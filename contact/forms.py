@@ -6,13 +6,13 @@ class ContactForm(forms.Form):
     subject = forms.CharField(required=True,
                               widget=forms.TextInput(attrs={
                                   'class': 'appearance-none block w-full bg-gray-200 text-gray-700 border '
-                                           'border-gray-200 rounded py-3 px-4 '
-                                           'leading-tight focus:outline-none focus:bg-white focus:border-gray-300'})
+                                           'border-gray-200 rounded-sm py-3 px-4 '
+                                           'leading-tight focus:outline-hidden focus:bg-white focus:border-gray-300'})
                               )
     message = forms.CharField(required=True, widget=forms.Textarea(attrs={
                                   'class': 'appearance-none block w-full bg-gray-200 text-gray-700 border '
-                                           'border-gray-200 rounded py-3 px-4 '
-                                           'leading-tight focus:outline-none focus:bg-white focus:border-gray-300'})
+                                           'border-gray-200 rounded-sm py-3 px-4 '
+                                           'leading-tight focus:outline-hidden focus:bg-white focus:border-gray-300'})
                               )
 
     def __init__(self, *args, **kwargs):

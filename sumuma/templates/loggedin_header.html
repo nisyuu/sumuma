@@ -1,4 +1,4 @@
-<nav id="header" class="bg-white fixed w-full z-10 top-0 shadow">
+<nav id="header" class="bg-white fixed w-full z-10 top-0 shadow-sm">
   <div
     class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-3 pb-3"
   >
@@ -14,7 +14,7 @@
         <div class="relative text-sm">
           <div
             id="userMenu"
-            class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible"
+            class="bg-white rounded-sm shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible"
           >
             <ul class="list-reset">
               <li>
@@ -47,7 +47,7 @@
         <div class="block lg:hidden pr-4">
           <button
             id="nav-toggle"
-            class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-teal-500 appearance-none focus:outline-none"
+            class="flex items-center px-3 py-2 border rounded-sm text-gray-500 border-gray-600 hover:text-gray-900 hover:border-teal-500 appearance-none focus:outline-hidden"
           >
             <svg
               class="fill-current h-3 w-3"
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div
-      class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20"
+      class="w-full grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-white z-20"
       id="nav-content"
     >
       <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
@@ -149,7 +149,7 @@
           {% csrf_token %}
           <button
             type="submit"
-            class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded"
+            class="bg-green-500 hover:bg-green-700 text-white hover:text-white font-bold py-2 px-4 rounded-sm"
           >
             ログアウト
           </button>
